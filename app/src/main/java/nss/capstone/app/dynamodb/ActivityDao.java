@@ -1,4 +1,4 @@
-package dynamodb;
+package nss.capstone.app.dynamodb;
 
 import VacanzaLambda.src.main.java.musicplaylistservice.dynamodb.models.Activity;
 import VacanzaLambda.src.main.java.musicplaylistservice.exceptions.ActivityNotFoundException;

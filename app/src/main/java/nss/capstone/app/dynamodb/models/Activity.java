@@ -1,4 +1,4 @@
-package dynamodb.models;
+package nss.capstone.app.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 

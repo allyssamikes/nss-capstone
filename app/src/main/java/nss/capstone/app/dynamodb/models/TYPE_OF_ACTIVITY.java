@@ -1,4 +1,4 @@
-package dynamodb.models;
+package nss.capstone.app.dynamodb.models;
 
 /**
  * This documents options for types of activities.

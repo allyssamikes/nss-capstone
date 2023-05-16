@@ -1,4 +1,4 @@
-package dynamodb;
+package nss.capstone.app.dynamodb;
 
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;
