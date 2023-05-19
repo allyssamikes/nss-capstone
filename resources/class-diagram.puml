@@ -1,0 +1,223 @@
+@startuml
+
+class Book {
+-String isbn // partition key
+-String title
+-String author
+-int yearPublished
+-int lengthInPages
+-ENUM genre
+-List<Review> reviews
+-String UUID
+ }
+
+ class TVShow {
+-String title // partition key
+-List<String> mainActors
+-int lengthInSeasons
+-int lengthInMinutes
+-ENUM genre
+-ENUM streamingService
+-List<Review> reviews
+-String UUID
+}
+
+class Movie {
+-String title // partition key
+-String director // sort key
+-List<String> mainActors
+-int lengthInMinutes
+-ENUM genre
+-ENUM streamingService
+-List<Review> reviews
+-String UUID
+}
+
+class Review {
+-String userId // sort key
+-String review
+-int rating
+-String UUIDOfEntity
+}
+
+class User {
+-String userId // partition key
+-String name
+-Set<Book> toReadList
+-Set<Book> currentlyReading
+-Set<Book> readList
+-Set<T> toWatchList
+-Set<T> currentlyWatching
+-Set<T> watchedList
+}
+
+newpage
+class getBookActivity {}
+class getBookRequest {}
+class getBookResponse {}
+
+class getTVShowActivity {}
+class getTVShowRequest {}
+class getTVShowResponse {}
+
+class getMovieActivity {}
+class getMovieRequest {}
+class getMovieResponse {}
+
+class addBookToToReadListActivity {}
+class addBookToToReadListRequest {}
+class addBookToToReadListResponse {}
+
+class addBookToReadListActivity {}
+class addBookToReadListRequest {}
+class addBookToReadListResponse {}
+
+class addToToWatchListActivity {}
+class addToToWatchListRequest {}
+class addToToWatchListResponse {}
+
+class addToWatchedListActivity {}
+class addToWatchedListRequest {}
+class addToWatchedListResponse {}
+
+class addToCurrentlyWatchingListActivity {}
+class addToCurrentlyWatchingListRequest {}
+class addToCurrentlyWatchingListResponse {}
+
+class addToCurrentlyReadingListActivity {}
+class addToCurrentlyReadingListRequest {}
+class addToCurrentlyReadingListResponse {}
+
+class getToReadListActivity {}
+class getToReadListRequest {}
+class getToReadListResponse {}
+
+class getReadListActivity {}
+class getReadListRequest {}
+class getReadListResponse {}
+
+class getToWatchListActivity {}
+class getToWatchListRequest {}
+class getToWatchListResponse {}
+
+class getWatchedListActivity {}
+class getWatchedListRequest {}
+class getWatchedListResponse {}
+
+class getCurrentlyWatchingListActivity {}
+class getCurrentlyWatchingRequest {}
+class getCurrentlyWatchingResponse {}
+
+class getCurrentlyReadingListActivity {}
+class getCurrentlyReadingRequest {}
+class getCurrentlyReadingResponse {}
+
+class searchBookActivity {}
+class searchBookRequest {}
+class searchBookResponse {}
+
+class searchTVShowActivity {}
+class searchTVShowRequest {}
+class searchTVShowResponse {}
+
+class searchMovieActivity {}
+class searchMovieRequest {}
+class searchMovieResponse {}
+
+class removeBookFromToReadListActivity {}
+class removeBookFromToReadListRequest {}
+class removeBookFromToReadListResponse {}
+
+class removeFromToWatchListActivity {}
+class removeFromToWatchListRequest {}
+class removeFromToWatchListResponse {}
+
+class removeBookFromCurrentlyReadingListActivity {}
+class removeBookFromCurrentlyReadingRequest {}
+class removeBookFromCurrentlyReadingResponse {}
+
+class removeFromCurrentlyWatchingListActivity {}
+class removeFromCurrentlyWatchingListRequest {}
+class removeFromCurrentlyWatchingListResponse {}
+
+class createReviewRequest {}
+class createReviewResponse {}
+class createReviewActivity {}
+
+class addBookReviewActivity {}
+class addBookReviewRequest {}
+class addBookReviewResponse {}
+
+class addTVShowReviewActivity {}
+class addTVShowReviewRequest {}
+class addTvShowReviewResponse {}
+
+class addMovieReviewActivity {}
+class addMovieReviewRequest {}
+class addMovieReviewResponse {}
+
+class updateUserActivity {}
+class updateUserRequest {}
+class updateUserResponse {}
+
+newpage
+class BookDao {}
+class MovieDao {}
+class TVShowDao{}
+class ReviewDao{}
+class UserDao{}
+class ModelConverter{}
+class ServiceComponent {}
+class MetricsModule{}
+class DaoModule{}
+class BookNotFoundException {}
+class TVShowNotFoundException {}
+class MovieNotFoundException {}
+class UserNotFoundException {}
+class BookModel {}
+class TVShowModel{}
+class MovieModel{}
+class AuthenticatedLambdaRequest{}
+class LambdaActivityRunner{}
+class LambdaRequest{}
+class LambdaResponse{}
+class getBookLambda {}
+class getTVShowLambda  {}
+class getMovieLambda  {}
+class addBookToToReadListLambda  {}
+class addBookToReadListLambda  {}
+class addToToWatchListLambda  {}
+class addToWatchedListLambda  {}
+class addToCurrentlyWatchingListLambda  {}
+class addToCurrentlyReadingListLambda  {}
+class getToReadListLambda  {}
+class getReadListLambda  {}
+class getToWatchListLambda  {}
+class getWatchedListLambda  {}
+class getCurrentlyWatchingListLambda  {}
+class getCurrentlyReadingListLambda  {}
+class searchBookLambda  {}
+class searchTVShowLambda  {}
+class searchMovieLambda  {}
+class removeBookFromToReadListLambda  {}
+class removeFromToWatchListLambda  {}
+class removeBookFromCurrentlyReadingListLambda  {}
+class removeFromCurrentlyWatchingListLambda  {}
+class createReviewLambda  {}
+class addBookReviewLambda  {}
+class addTVShowReviewLambda  {}
+class addMovieReviewLambda  {}
+class updateUserLambda  {}
+
+
+enum GENRE {
+GENRE.ROMANCE
+GENRE.COMEDY
+GENRE.HORROR
+GENRE.SCIENCE_FICTION
+GENRE.NONFICTION
+GENRE.DOCUMENTARY
+}
+
+
+@enduml

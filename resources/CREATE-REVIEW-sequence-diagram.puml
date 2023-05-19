@@ -1,0 +1,31 @@
+@startuml
+title CreateReview
+actor User
+
+participant FrontEndPage
+participant APIGatewayLambda
+participant CreateReviewActivity
+participant CreateReviewRequest
+participant ReviewDao
+participant ModelConverter
+participant ReviewModel
+participant CreateReviewResult
+database DynamoDB
+
+User -> FrontEndPage
+FrontEndPage -> APIGatewayLambda : CreateReviewRequest
+APIGatewayLambda ->CreateReviewActivity : CreateReviewRequest
+CreateReviewActivity -> CreateReviewRequest : getUserId()
+CreateReviewRequest --> CreateReviewActivity : userId
+CreateReviewActivity -> CreateReviewRequest : getUUIDOfEntity()
+CreateReviewRequest --> CreateReviewActivity: UUIDofEntity
+CreateReviewActivity -> ReviewDao : saveReview()
+ReviewDao -> DynamoDB : review
+DynamoDB --> ReviewDao : review
+ReviewDao--> CreateReviewActivity : review
+CreateReviewActivity -> ModelConverter : review
+ModelConverter --> CreateReviewActivity : ReviewModel
+CreateReviewActivity -> FrontEndPage: return CreateReviewResult
+FrontEndPage -> User : Review
+
+@enduml

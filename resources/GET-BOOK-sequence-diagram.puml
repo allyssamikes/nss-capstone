@@ -1,0 +1,32 @@
+@startuml
+title GetBook
+actor User
+
+participant FrontEndPage
+participant APIGateway_Lambda
+participant GetBookActivity
+participant GetBookRequest
+participant BookDao
+participant GetBookResult
+participant ModelConverter
+database DynamoDB
+
+User -> FrontEndPage
+FrontEndPage -> APIGateway_Lambda : GetBookRequest
+APIGateway_Lambda  -> GetBookActivity : handleRequest
+GetBookActivity ->GetBookRequest : getId
+GetBookRequest --> GetBookActivity : String isbn
+GetBookActivity -> BookDao : getBook(isbn)
+BookDao --> DynamoDB : String isbn
+alt Book Not Found
+ DynamoDB --> GetBookActivity : null
+ GetBookActivity --> Client: BookNot Found Exception
+ end
+ DynamoDB --> BookDao : Book
+BookDao --> GetBookActivity: Book
+GetBookActivity -> ModelConverter : toBookModel(book)
+ModelConverter --> GetBookActivity : BookModel
+GetBookActivity --> FrontEndPage : return GetBookResult
+FrontEndPage -> User : Book
+
+@enduml
