@@ -54,111 +54,111 @@ class User {
 newpage
 class getBookActivity {}
 class getBookRequest {}
-class getBookResponse {}
+class getBookResult {}
 
 class getTVShowActivity {}
 class getTVShowRequest {}
-class getTVShowResponse {}
+class getTVShowResult {}
 
 class getMovieActivity {}
 class getMovieRequest {}
-class getMovieResponse {}
+class getMovieResult {}
 
 class addBookToToReadListActivity {}
 class addBookToToReadListRequest {}
-class addBookToToReadListResponse {}
+class addBookToToReadListResult {}
 
 class addBookToReadListActivity {}
 class addBookToReadListRequest {}
-class addBookToReadListResponse {}
+class addBookToReadListResult{}
 
 class addToToWatchListActivity {}
 class addToToWatchListRequest {}
-class addToToWatchListResponse {}
+class addToToWatchListResult {}
 
 class addToWatchedListActivity {}
 class addToWatchedListRequest {}
-class addToWatchedListResponse {}
+class addToWatchedListResult {}
 
 class addToCurrentlyWatchingListActivity {}
 class addToCurrentlyWatchingListRequest {}
-class addToCurrentlyWatchingListResponse {}
+class addToCurrentlyWatchingListResult {}
 
 class addToCurrentlyReadingListActivity {}
 class addToCurrentlyReadingListRequest {}
-class addToCurrentlyReadingListResponse {}
+class addToCurrentlyReadingListResult {}
 
 class getToReadListActivity {}
 class getToReadListRequest {}
-class getToReadListResponse {}
+class getToReadListResult {}
 
 class getReadListActivity {}
 class getReadListRequest {}
-class getReadListResponse {}
+class getReadListResult {}
 
 class getToWatchListActivity {}
 class getToWatchListRequest {}
-class getToWatchListResponse {}
+class getToWatchListResult {}
 
 class getWatchedListActivity {}
 class getWatchedListRequest {}
-class getWatchedListResponse {}
+class getWatchedListResult {}
 
 class getCurrentlyWatchingListActivity {}
 class getCurrentlyWatchingRequest {}
-class getCurrentlyWatchingResponse {}
+class getCurrentlyWatchingResult {}
 
 class getCurrentlyReadingListActivity {}
 class getCurrentlyReadingRequest {}
-class getCurrentlyReadingResponse {}
+class getCurrentlyReadingResult {}
 
 class searchBookActivity {}
 class searchBookRequest {}
-class searchBookResponse {}
+class searchBookResult {}
 
 class searchTVShowActivity {}
 class searchTVShowRequest {}
-class searchTVShowResponse {}
+class searchTVShowResult {}
 
 class searchMovieActivity {}
 class searchMovieRequest {}
-class searchMovieResponse {}
+class searchMovieResult {}
 
 class removeBookFromToReadListActivity {}
 class removeBookFromToReadListRequest {}
-class removeBookFromToReadListResponse {}
+class removeBookFromToReadListResult {}
 
 class removeFromToWatchListActivity {}
 class removeFromToWatchListRequest {}
-class removeFromToWatchListResponse {}
+class removeFromToWatchListResult {}
 
 class removeBookFromCurrentlyReadingListActivity {}
 class removeBookFromCurrentlyReadingRequest {}
-class removeBookFromCurrentlyReadingResponse {}
+class removeBookFromCurrentlyReadingResult {}
 
 class removeFromCurrentlyWatchingListActivity {}
 class removeFromCurrentlyWatchingListRequest {}
-class removeFromCurrentlyWatchingListResponse {}
+class removeFromCurrentlyWatchingListResult {}
 
 class createReviewRequest {}
-class createReviewResponse {}
+class createReviewResult {}
 class createReviewActivity {}
 
 class addBookReviewActivity {}
 class addBookReviewRequest {}
-class addBookReviewResponse {}
+class addBookReviewResult {}
 
 class addTVShowReviewActivity {}
 class addTVShowReviewRequest {}
-class addTvShowReviewResponse {}
+class addTvShowReviewResult {}
 
 class addMovieReviewActivity {}
 class addMovieReviewRequest {}
-class addMovieReviewResponse {}
+class addMovieReviewResult {}
 
 class updateUserActivity {}
 class updateUserRequest {}
-class updateUserResponse {}
+class updateUserResult {}
 
 newpage
 class BookDao {}
@@ -177,6 +177,8 @@ class UserNotFoundException {}
 class BookModel {}
 class TVShowModel{}
 class MovieModel{}
+class UserModel {}
+class ReviewModel {}
 class AuthenticatedLambdaRequest{}
 class LambdaActivityRunner{}
 class LambdaRequest{}

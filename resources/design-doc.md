@@ -1,4 +1,4 @@
-# Design Document - gioia
+# Design Document 
 
 ## 1. Problem Statement
 
