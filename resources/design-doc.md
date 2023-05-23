@@ -64,8 +64,8 @@ _Extensions_
 * I will use API Gateway and Lambda to create my endpoints.
 * Data will be stored in DynamoDb.
 * There will be a web interface for Users to access their profiles, and lists.
-* PlantUML Diagram [here](./class-diagram.puml)
-* Sequence Diagram  [here](./CREATE-REVIEW-sequence-diagram.puml) and  [here](./GET-BOOK-sequence-diagram.puml)
+* PlantUML Diagram [here](class-diagram.puml)
+* Sequence Diagram  [here](CREATE-REVIEW-sequence-diagram.puml) and  [here](../2/GET-BOOK-sequence-diagram.puml)
 
 
 ## 6. API
@@ -246,4 +246,4 @@ Set<T> watchedList
 
 ## 7. Pages
 
-MockUps ![here](mockups.png)
+MockUps ![here](../2/mockups.png)
