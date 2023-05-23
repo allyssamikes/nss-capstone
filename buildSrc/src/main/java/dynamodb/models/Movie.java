@@ -2,6 +2,7 @@ package dynamodb.models;
 
 import java.util.List;
 
+@DynamoDBTable(tableName = "movies")
 public class Movie {
 
     private String title;
@@ -13,26 +14,33 @@ public class Movie {
     private List<Review> reviews;
     private String UUID;
 
+    @DynamoDBHashKey(attributeName = "title")
     public String getTitle() {
         return title;
     }
 
+    @DynamoDBRangeKey(attributeName = "director")
     public String getDirector() {
         return director;
     }
 
+    @DynamoDBAttribute(attributeName = "mainActors")
     public List<String> getMainActors() {
         return mainActors;
     }
-
+    @DynamoDBAttribute(attributeName = "lengthInMinutes")
     public Integer getLengthInMinutes() {
         return lengthInMinutes;
     }
 
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "genre")
     public GENRE getGenre() {
         return genre;
     }
 
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "streamingService")
     public STREAMING_SERVICE getStreamingService() {
         return streamingService;
     }
@@ -41,6 +49,7 @@ public class Movie {
         this.streamingService = streamingService;
     }
 
+    @DynamoDBAttribute(attributeName = "reviews")
     public List<Review> getReviews() {
         return reviews;
     }
@@ -49,6 +58,7 @@ public class Movie {
         this.reviews = reviews;
     }
 
+    @DynamoDBAttribute(attributeName = "UUID")
     public String getUUID() {
         return UUID;
     }
