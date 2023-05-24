@@ -20,7 +20,7 @@ public class GetBookActivityTest {
     }
 
     @Test
-    public void handleRequest_savedItineraryFound_returnsItineraryModelInResult() {
+    public void handleRequest_savedBookFound_returnsBookModelResult() {
         // GIVEN
         String expectedISBN = "123456789";
 
