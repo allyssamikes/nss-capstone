@@ -1,6 +1,7 @@
 package dynamodb.models;
 
 import java.util.List;
+import java.util.Objects;
 
 @DynamoDBTable(tableName = "tvshows")
 public class TVShow {
@@ -77,5 +78,18 @@ public class TVShow {
                 ", reviews=" + reviews +
                 ", UUID='" + UUID + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TVShow tvShow = (TVShow) o;
+        return Objects.equals(title, tvShow.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
     }
 }

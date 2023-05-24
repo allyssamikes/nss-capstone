@@ -12,7 +12,7 @@ public class BookDao {
 
     public BookDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;
-        this.metricsPublisher = metricsPublisher
+        this.metricsPublisher = metricsPublisher;
     }
 
     public Book getBook(String isbn) {

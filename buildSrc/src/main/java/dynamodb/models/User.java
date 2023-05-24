@@ -2,6 +2,7 @@ package dynamodb.models;
 
 import java.util.Set;
 
+@DynamoDBTable(tableName = "users")
 public class User {
 
     private String userId;
@@ -13,14 +14,17 @@ public class User {
     private Set<Object> currentlyWatching;
     private Set<Object> watchedList;
 
+    @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
         return userId;
     }
+
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
+    @DynamoDBAttribute(attributeName = "name")
     public String getName() {
         return name;
     }
@@ -29,6 +33,7 @@ public class User {
         this.name = name;
     }
 
+    @DynamoDBAttribute(attributeName = "toReadList")
     public Set<Book> getToReadList() {
         return toReadList;
     }
@@ -37,6 +42,7 @@ public class User {
         this.toReadList = toReadList;
     }
 
+    @DynamoDBAttribute(attributeName = "currentlyReadingList")
     public Set<Book> getCurrentlyReading() {
         return currentlyReading;
     }
@@ -45,6 +51,7 @@ public class User {
         this.currentlyReading = currentlyReading;
     }
 
+    @DynamoDBAttribute(attributeName = "readList")
     public Set<Book> getReadList() {
         return readList;
     }
@@ -53,6 +60,7 @@ public class User {
         this.readList = readList;
     }
 
+    @DynamoDBAttribute(attributeName = "toWatchList")
     public Set<Object> getToWatchList() {
         return toWatchList;
     }
@@ -61,6 +69,7 @@ public class User {
         this.toWatchList = toWatchList;
     }
 
+    @DynamoDBAttribute(attributeName = "toCurrentlyWatchingList")
     public Set<Object> getCurrentlyWatching() {
         return currentlyWatching;
     }
@@ -69,6 +78,7 @@ public class User {
         this.currentlyWatching = currentlyWatching;
     }
 
+    @DynamoDBAttribute(attributeName = "toWatchedList")
     public Set<Object> getWatchedList() {
         return watchedList;
     }

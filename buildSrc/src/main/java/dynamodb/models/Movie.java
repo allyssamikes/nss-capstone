@@ -1,6 +1,7 @@
 package dynamodb.models;
 
 import java.util.List;
+import java.util.Objects;
 
 @DynamoDBTable(tableName = "movies")
 public class Movie {
@@ -19,9 +20,17 @@ public class Movie {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @DynamoDBRangeKey(attributeName = "director")
     public String getDirector() {
         return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     @DynamoDBAttribute(attributeName = "mainActors")
@@ -75,5 +84,18 @@ public class Movie {
                 ", reviews=" + reviews +
                 ", UUID='" + UUID + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(title, movie.title) && Objects.equals(director, movie.director);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, director);
     }
 }
