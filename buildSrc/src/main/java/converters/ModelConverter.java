@@ -7,7 +7,12 @@ import models.BookModel;
 import models.MovieModel;
 import models.TVShowModel;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 public class ModelConverter {
+
 
     public MovieModel toMovieModel(Movie movie) {
         return MovieModel.builder()
@@ -47,4 +52,35 @@ public class ModelConverter {
                 .withUUID(tvshow.getUUID())
                 .build();
     }
+
+    public List<BookModel> toBookModelList(Set<Book> books) {
+        List<BookModel> bookModels = new
+                ArrayList<>();
+
+        for (Book b : books){
+            bookModels.add(toBookModel(b));
+        }
+
+        return bookModels;
+    }
+
+    public List<Object> toModelList(Set<Object> watchList) {
+        List<Object> models = new ArrayList<>();
+        TVShow tvShow = new TVShow();
+
+        for(Object o : watchList) {
+            if(o.getClass() == tvShow.getClass()) {
+                TVShow show = (TVShow) o;
+                TVShowModel tVModel = new ModelConverter().toTVShowModel(show);
+                models.add(tVModel);
+            } else {
+                Movie theMovie = (Movie) o;
+                MovieModel movieModel = new ModelConverter().toMovieModel(theMovie);
+                models.add(movieModel);
+            }
+        }
+
+      return models;
+    }
+
 }
