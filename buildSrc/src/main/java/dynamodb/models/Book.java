@@ -2,6 +2,7 @@ package dynamodb.models;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @DynamoDBTable(tableName = "books")
 public class Book {
@@ -13,7 +14,10 @@ public class Book {
     private Integer  lengthInPages;
     private GENRE  genre;
     private List<Review> reviews;
-    private String UUID;
+
+    private UUID uuid = UUID.randomUUID();
+
+    private String UUIDAsString = uuid.toString();
 
     @DynamoDBHashKey(attributeName = "isbn")
     public String getIsbn() {
@@ -55,10 +59,16 @@ public class Book {
         this.reviews = reviews;
     }
 
+    @DynamoDBTypeConverted(converter = UUID.class)
     @DynamoDBAttribute(attributeName = "UUID")
-    public String getUUID() {
-        return UUID;
+         public UUID getUuid() {
+        return uuid;
     }
+  @DynamoDBAttribute(attributeName = "UUIDAsString")
+    public String getUUIDAsString() {
+        return UUIDAsString;
+    }
+
 
     @Override
     public String toString() {

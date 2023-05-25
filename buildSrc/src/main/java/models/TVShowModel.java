@@ -5,6 +5,7 @@ import dynamodb.models.Review;
 import dynamodb.models.STREAMING_SERVICE;
 
 import java.util.List;
+import java.util.UUID;
 
 public class TVShowModel {
 
@@ -15,9 +16,11 @@ public class TVShowModel {
     private GENRE genre;
     private STREAMING_SERVICE streamingService;
     private List<Review> reviews;
-    private String UUID;
+    private String UUIDAsString;
 
-    public TVShowModel(String title, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUID) {
+    private  UUID uuid;
+
+    public TVShowModel(String title, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString, UUID uuid) {
         this.title = title;
         this.mainActors = mainActors;
         this.lengthInSeasons = lengthInSeasons;
@@ -25,8 +28,10 @@ public class TVShowModel {
         this.genre = genre;
         this.streamingService = streamingService;
         this.reviews = reviews;
-        this.UUID = UUID;
+        this.UUIDAsString = UUIDAsString;
+        this.uuid = uuid;
     }
+
 
     public String getTitle() {
         return title;
@@ -56,8 +61,12 @@ public class TVShowModel {
         return reviews;
     }
 
-    public String getUUID() {
-        return UUID;
+    public String getUUIDAsString() {
+        return UUIDAsString;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     //CHECKSTYLE:OFF:Builder
@@ -73,7 +82,9 @@ public class TVShowModel {
         private GENRE genre;
         private STREAMING_SERVICE streamingService;
         private List<Review> reviews;
-        private String UUID;
+        private String UUIDAsString;
+
+        private  UUID uuid;
 
         public Builder withTitle(String title) {
             this.title = title;
@@ -108,12 +119,16 @@ public class TVShowModel {
             return this;
         }
 
-        public Builder withUUID(String UUID) {
-            this.UUID = UUID;
+        public Builder withUUIDAsString(String UUIDAsString) {
+            this.UUIDAsString = UUIDAsString;
+            return this;
+        }
+        public Builder withUUID(java.util.UUID uuid) {
+            this.uuid = uuid;
             return this;
         }
         public TVShowModel build() {
-            return new TVShowModel(title, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUID);
+            return new TVShowModel(title, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUIDAsString, uuid);
         }
     }
 }

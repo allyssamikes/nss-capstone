@@ -4,6 +4,7 @@ import dynamodb.models.GENRE;
 import dynamodb.models.Review;
 
 import java.util.List;
+import java.util.UUID;
 
 public class BookModel {
     private String isbn;
@@ -14,9 +15,12 @@ public class BookModel {
     private Integer  lengthInPages;
     private GENRE genre;
     private List<Review> reviews;
-    private String UUID;
 
-    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, GENRE genre, List<Review> reviews, String UUID) {
+    private String UUIDAsString;
+
+    private  UUID uuid;
+
+    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, GENRE genre, List<Review> reviews, String UUIDAsString, UUID uuid) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -24,8 +28,10 @@ public class BookModel {
         this.lengthInPages = lengthInPages;
         this.genre = genre;
         this.reviews = reviews;
-        this.UUID = UUID;
+        this.UUIDAsString = UUIDAsString;
+        this.uuid = uuid;
     }
+
 
     public String getIsbn() {
         return isbn;
@@ -55,14 +61,20 @@ public class BookModel {
         return reviews;
     }
 
-    public String getUUID() {
-        return UUID;
-    }
 
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
+
+    public String getUUIDAsString() {
+        return UUIDAsString;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
     public static class Builder {
         private String isbn;
         private String title;
@@ -72,7 +84,9 @@ public class BookModel {
         private Integer  lengthInPages;
         private GENRE genre;
         private List<Review> reviews;
-        private String UUID;
+        private String UUIDAsString;
+
+        private  UUID uuid;
 
         public Builder withIsbn(String isbn) {
             this.isbn = isbn;
@@ -109,13 +123,17 @@ public class BookModel {
             return this;
         }
 
-        public Builder withUUID(String UUID) {
-            this.UUID = UUID;
+        public Builder withUUIDAsString(String UUIDAsString) {
+            this.UUIDAsString = UUIDAsString;
+            return this;
+        }
+        public Builder withUUID(UUID uuid) {
+            this.uuid = uuid;
             return this;
         }
 
         public BookModel build() {
-            return new BookModel(isbn, title, author, yearPublished, lengthInPages, genre, reviews, UUID);
+            return new BookModel(isbn, title, author, yearPublished, lengthInPages, genre, reviews, UUIDAsString, uuid);
         }
     }
 }

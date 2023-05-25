@@ -5,6 +5,7 @@ import dynamodb.models.Review;
 import dynamodb.models.STREAMING_SERVICE;
 
 import java.util.List;
+import java.util.UUID;
 
 public class MovieModel {
     private String title;
@@ -14,9 +15,11 @@ public class MovieModel {
     private GENRE genre;
     private STREAMING_SERVICE streamingService;
     private List<Review> reviews;
-    private String UUID;
+    private String UUIDAsString;
 
-    public MovieModel(String title, String director, List<String> mainActors, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUID) {
+    private  UUID uuid;
+
+    public MovieModel(String title, String director, List<String> mainActors, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString, UUID uuid) {
         this.title = title;
         this.director = director;
         this.mainActors = mainActors;
@@ -24,8 +27,10 @@ public class MovieModel {
         this.genre = genre;
         this.streamingService = streamingService;
         this.reviews = reviews;
-        this.UUID = UUID;
+        this.UUIDAsString = UUIDAsString;
+        this.uuid = uuid;
     }
+
 
     public String getTitle() {
         return title;
@@ -55,8 +60,12 @@ public class MovieModel {
         return reviews;
     }
 
-    public String getUUID() {
-        return UUID;
+    public String getUUIDAsString() {
+        return UUIDAsString;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
 
@@ -64,6 +73,7 @@ public class MovieModel {
     public static Builder builder() {
         return new Builder();
     }
+
 
     public static class Builder {
         private String title;
@@ -73,7 +83,8 @@ public class MovieModel {
         private GENRE genre;
         private STREAMING_SERVICE streamingService;
         private List<Review> reviews;
-        private String UUID;
+        private String UUIDAsString;
+        private  UUID uuid;
 
 
     public Builder withTitle(String title) {
@@ -111,13 +122,17 @@ public class MovieModel {
         return this;
     }
 
-    public Builder withUUID(String UUID) {
-        this.UUID = UUID;
-        return this;
-    }
+        public Builder withUUIDAsString(String UUIDAsString) {
+            this.UUIDAsString = UUIDAsString;
+            return this;
+        }
+        public Builder withUUID(java.util.UUID uuid) {
+            this.uuid = uuid;
+            return this;
+        }
 
     public MovieModel build() {
-        return new MovieModel(title, director, mainActors, lengthInMinutes, genre, streamingService, reviews, UUID);
+        return new MovieModel(title, director, mainActors, lengthInMinutes, genre, streamingService, reviews, UUIDAsString, uuid);
     }
 
 }}
