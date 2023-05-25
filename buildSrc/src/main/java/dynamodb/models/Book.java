@@ -61,7 +61,7 @@ public class Book {
 
     @DynamoDBTypeConverted(converter = UUID.class)
     @DynamoDBAttribute(attributeName = "UUID")
-         public UUID getUuid() {
+         public UUID getUUID() {
         return uuid;
     }
   @DynamoDBAttribute(attributeName = "UUIDAsString")
