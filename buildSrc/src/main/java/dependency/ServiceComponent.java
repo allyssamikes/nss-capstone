@@ -29,4 +29,16 @@ public interface ServiceComponent {
     CreateReviewActivity provideCreateReviewActivity();
 
     UpdateUserActivity provideUpdateUserActivity();
+
+    AddToCurrentlyReadingListActivity provideAddToCurrentlyReadingListActivity();
+
+    AddToCurrentlyWatchingListActivity provideAddToCurrentlyWatchingListActivity();
+
+    AddBookToToReadListActivity provideAddBookToToReadListActivity();
+
+    AddToToWatchListActivity provideAddToToWatchListActivity();
+
+    AddBookToReadListActivity provideAddBookToReadListActivity();
+
+    AddToWatchedListActivity provideAddToWatchedListActivity();
 }

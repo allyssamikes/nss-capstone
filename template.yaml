@@ -459,12 +459,12 @@ Resources:
             Path: /users/{name}
             Method: put
 
-  AddSongToPlaylistLambda:
+  AddToCurrentlyReadingListLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
-      Handler: com.nashss.se.musicplaylistservice.lambda.AddSongToPlaylistLambda::handleRequest
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddToCurrentlyReadingListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -476,7 +476,107 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /playlists/{id}/songs
+            Path: /users/{userId}/currentlyReading
+            Method: post
+
+  AddToCurrentlyWatchingListLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddToCurrentlyWatchingListLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /users/{userId}/currentlyWatching
+            Method: post
+
+  AddToToReadListLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddToToReadListLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /users/{userId}/toReadList
+            Method: post
+
+  AddToToWatchListLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddToToWatchListLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /users/{userId}/toWatchList
+            Method: post
+
+  AddToWatchedListLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddToWatchedListLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /users/{userId}/watchedList
+            Method: post
+
+  AddToReadListLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddToReadListLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /users/{userId}/readList
             Method: post
 
   SearchPlaylistsLambda:
