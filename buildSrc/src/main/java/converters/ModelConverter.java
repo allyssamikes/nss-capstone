@@ -19,7 +19,8 @@ public class ModelConverter {
                 .withGenre(movie.getGenre())
                 .withStreamingService(movie.getStreamingService())
                 .withReviews(movie.getReviews())
-                .withUUID(movie.getUUID())
+                .withUUIDAsString(movie.getUUIDAsString())
+                .withUUID(movie.getUuid())
                 .build();
     }
 
@@ -32,6 +33,7 @@ public class ModelConverter {
                 .withLengthInPages(book.getLengthInPages())
                 .withGenre(book.getGenre())
                 .withReviews(book.getReviews())
+                .withUUIDAsString(book.getUUIDAsString())
                 .withUUID(book.getUUID())
                 .build();
     }
@@ -45,6 +47,7 @@ public class ModelConverter {
                 .withGenre(tvshow.getGenre())
                 .withStreamingService(tvshow.getStreamingService())
                 .withReviews(tvshow.getReviews())
+                .withUUIDAsString(tvshow.getUUIDAsString())
                 .withUUID(tvshow.getUUID())
                 .build();
     }
