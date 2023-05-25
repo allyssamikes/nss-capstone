@@ -2,9 +2,11 @@ package converters;
 
 import dynamodb.models.Book;
 import dynamodb.models.Movie;
+import dynamodb.models.Review;
 import dynamodb.models.TVShow;
 import models.BookModel;
 import models.MovieModel;
+import models.ReviewModel;
 import models.TVShowModel;
 
 import java.util.ArrayList;
@@ -50,6 +52,15 @@ public class ModelConverter {
                 .withStreamingService(tvshow.getStreamingService())
                 .withReviews(tvshow.getReviews())
                 .withUUID(tvshow.getUUID())
+                .build();
+    }
+
+    public ReviewModel toReviewModel(Review review) {
+        return ReviewModel.builder()
+                .withUserId(review.getUserId())
+                .withReview(review.getReview())
+                .withRating(review.getRating())
+                .withUUID(review.getUUIDOfEntity())
                 .build();
     }
 

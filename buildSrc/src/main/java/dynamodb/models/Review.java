@@ -1,5 +1,7 @@
 package dynamodb.models;
 
+
+@DynamoDBTable(tableName = "reviews")
 public class Review {
 
     private String userId;
@@ -7,6 +9,8 @@ public class Review {
     private Integer rating;
     private  String UUIDOfEntity;
 
+
+    @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
         return userId;
     }
@@ -15,6 +19,8 @@ public class Review {
         this.userId = userId;
     }
 
+
+    @DynamoDBAttribute(attributeName = "review")
     public String getReview() {
         return review;
     }
@@ -23,6 +29,7 @@ public class Review {
         this.review = review;
     }
 
+    @DynamoDBAttribute(attributeName = "rating")
     public Integer getRating() {
         return rating;
     }
@@ -31,6 +38,8 @@ public class Review {
         this.rating = rating;
     }
 
+
+    @DynamoDBRangeKey(attributeName = "UUIDOfEntity")
     public String getUUIDOfEntity() {
         return UUIDOfEntity;
     }
