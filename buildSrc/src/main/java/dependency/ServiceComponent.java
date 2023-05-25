@@ -41,4 +41,12 @@ public interface ServiceComponent {
     AddBookToReadListActivity provideAddBookToReadListActivity();
 
     AddToWatchedListActivity provideAddToWatchedListActivity();
+
+    RemoveBookFromCurrentlyReadingActivity provideRemoveBookFromCurrentlyReadingActivity();
+
+    RemoveBookFromToReadListActivity provideRemoveBookFromToReadListActivity();
+
+    RemoveFromToWatchListActivity provideRemoveFromToWatchListActivity();
+
+    RemoveFromCurrentlyWatchingActivity provideRemoveFromCurrentlyWatchingActivity();
 }
