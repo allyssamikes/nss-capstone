@@ -1,5 +1,6 @@
 package dynamodb;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import dynamodb.models.Review;
 import metrics.MetricsPublisher;
 

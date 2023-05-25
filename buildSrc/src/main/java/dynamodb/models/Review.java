@@ -1,7 +1,8 @@
 package dynamodb.models;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
-@DynamoDBTable(tableName = "reviews")
+@DynamoDBTable(tableName ="reviews")
 public class Review {
 
     private String userId;

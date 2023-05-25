@@ -2,7 +2,6 @@ package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 ;import dynamodb.models.TVShow;
-import exceptions.MovieNotFoundException;
 import exceptions.TVShowNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;

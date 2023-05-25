@@ -1,10 +1,12 @@
 package dynamodb.models;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-@DynamoDBTable(tableName = "movies")
+@DynamoDBTable(tableName ="movies")
 public class Movie {
 
     private String title;

@@ -1,8 +1,9 @@
 package dynamodb.models;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import java.util.Set;
 
-@DynamoDBTable(tableName = "users")
+@DynamoDBTable(tableName ="users")
 public class User {
 
     private String userId;

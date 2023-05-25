@@ -3,12 +3,12 @@ package lambda;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.LogManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.gradle.internal.impldep.com.fasterxml.jackson.core.JsonProcessingException;
 import org.gradle.internal.impldep.com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Map;
 
 /**
  * An APIGateway response from a lambda function.

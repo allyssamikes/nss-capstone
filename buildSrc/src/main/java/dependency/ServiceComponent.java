@@ -1,6 +1,7 @@
 package dependency;
 
 import activity.*;
+import dagger.Component;
 
 import javax.inject.Singleton;
 
