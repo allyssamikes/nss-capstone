@@ -1,13 +1,7 @@
 package converters;
 
-import dynamodb.models.Book;
-import dynamodb.models.Movie;
-import dynamodb.models.Review;
-import dynamodb.models.TVShow;
-import models.BookModel;
-import models.MovieModel;
-import models.ReviewModel;
-import models.TVShowModel;
+import dynamodb.models.*;
+import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +57,20 @@ public class ModelConverter {
                 .withUUID(review.getUUIDOfEntity())
                 .build();
     }
+
+    public UserModel toUserModel(User user) {
+        return UserModel.builder()
+                .withUserId(user.getUserId())
+                .withName(user.getName())
+                .withCurrentlyReadingList(user.getCurrentlyReading())
+                .withCurrentlyWatchingList(user.getCurrentlyWatching())
+                .withToReadList(user.getToReadList())
+                .withToWatchList(user.getToWatchList())
+                .withReadList(user.getReadList())
+                .withWatchedList(user.getWatchedList())
+                .build();
+    }
+
 
     public List<BookModel> toBookModelList(Set<Book> books) {
         List<BookModel> bookModels = new
