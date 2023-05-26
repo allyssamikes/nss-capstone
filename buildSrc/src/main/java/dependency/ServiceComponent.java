@@ -50,4 +50,16 @@ public interface ServiceComponent {
     RemoveFromToWatchListActivity provideRemoveFromToWatchListActivity();
 
     RemoveFromCurrentlyWatchingActivity provideRemoveFromCurrentlyWatchingActivity();
+
+    AddBookReviewActivity provideAddBookReviewActivity();
+
+    AddTVShowReviewActivity provideAddTVShowReviewActivity();
+
+    AddMovieReviewActivity provideAddMovieReviewActivity();
+
+    GetBookByGenreActivity provideGetBookByGenreActivity();
+
+    GetTVShowByStreamingServiceActivity provideGetTVShowByStreamingServiceActivity();
+
+    GetMovieByStreamingServiceActivity provideGetMovieByStreamingServiceActivity();
 }

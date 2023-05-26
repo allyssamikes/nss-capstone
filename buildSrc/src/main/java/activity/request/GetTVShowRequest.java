@@ -1,5 +1,7 @@
 package activity.request;
 
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 public class GetTVShowRequest {
 
     private final String title;
@@ -24,6 +26,7 @@ public class GetTVShowRequest {
         return new GetMovieRequest.Builder();
     }
 
+    @JsonPOJOBuilder
     public static class Builder {
         private String title;
 

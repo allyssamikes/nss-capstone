@@ -1,5 +1,8 @@
 package activity.request;
 
+import dynamodb.models.GENRE;
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 public class GetListRequest {
     private final String userId;
 
@@ -22,7 +25,7 @@ public class GetListRequest {
     public static Builder builder() {
         return new Builder();
     }
-
+    @JsonPOJOBuilder
     public static class Builder {
         private String userId;
 

@@ -1,5 +1,7 @@
 package activity.request;
 
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 public class UpdateUserRequest {
     private final String userId;
     private final String name;
@@ -31,6 +33,7 @@ public class UpdateUserRequest {
         return new Builder();
     }
 
+    @JsonPOJOBuilder
     public static class Builder {
         private String userId;
         private String name;
