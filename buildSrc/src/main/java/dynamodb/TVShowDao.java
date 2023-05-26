@@ -1,7 +1,8 @@
 package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-;import dynamodb.models.TVShow;
+;import dynamodb.models.Book;
+import dynamodb.models.TVShow;
 import exceptions.TVShowNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;
@@ -23,6 +24,11 @@ public class TVShowDao {
             String.format("Could not find TVShow with title'%s'", title);
         }
         metricsPublisher.addCount(MetricsConstants.GETTVSHOW_TVSHOWNOTFOUND_COUNT, 0);
+        return tvShow;
+    }
+
+    public TVShow saveTVShow(TVShow tvShow){
+        this.dynamoDbMapper.save(tvShow);
         return tvShow;
     }
 }

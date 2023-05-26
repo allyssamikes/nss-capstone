@@ -1,5 +1,7 @@
 package activity.request;
 
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 public class CreateReviewRequest {
 
     private final String userId;
@@ -35,6 +37,7 @@ public class CreateReviewRequest {
         return new Builder();
     }
 
+    @JsonPOJOBuilder
     public static class Builder {
         private String userId;
         private String review;

@@ -1,5 +1,7 @@
 package activity.request;
 
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 public class GetBookRequest {
 
     private final String isbn;
@@ -19,10 +21,12 @@ public class GetBookRequest {
     }
 
     //CHECKSTYLE:OFF:Builder
+
     public static Builder builder() {
         return new Builder();
     }
 
+    @JsonPOJOBuilder
     public static class Builder {
         private String isbn;
 

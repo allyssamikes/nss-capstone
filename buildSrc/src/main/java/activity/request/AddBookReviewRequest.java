@@ -2,14 +2,17 @@ package activity.request;
 
 import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-public class RemoveBookFromCurrentlyReadingRequest {
-
+public class AddBookReviewRequest {
     private final String isbn;
+
     private final String userId;
 
-    public RemoveBookFromCurrentlyReadingRequest(String isbn, String userId) {
+    private final String UUIDOfEntity;
+
+    public AddBookReviewRequest(String isbn, String userId, String UUIDOfEntity) {
         this.isbn = isbn;
         this.userId = userId;
+        this.UUIDOfEntity = UUIDOfEntity;
     }
 
     public String getIsbn() {
@@ -20,11 +23,16 @@ public class RemoveBookFromCurrentlyReadingRequest {
         return userId;
     }
 
+    public String getUUIDOfEntity() {
+        return UUIDOfEntity;
+    }
+
     @Override
     public String toString() {
-        return "RemoveBookFromCurrentlyReadingRequest{" +
+        return "AddBookReviewRequest{" +
                 "isbn='" + isbn + '\'' +
                 ", userId='" + userId + '\'' +
+                ", UUIDOfEntity='" + UUIDOfEntity + '\'' +
                 '}';
     }
 
@@ -35,8 +43,12 @@ public class RemoveBookFromCurrentlyReadingRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
+
         private String isbn;
+
         private String userId;
+
+        private String UUIDOfEntity;
 
         public Builder withIsbn(String isbn) {
             this.isbn = isbn;
@@ -48,8 +60,13 @@ public class RemoveBookFromCurrentlyReadingRequest {
             return this;
         }
 
-        public RemoveBookFromCurrentlyReadingRequest build(){
-            return new RemoveBookFromCurrentlyReadingRequest(isbn, userId);
+        public Builder withUUID(String UUIDOfEntity) {
+            this.UUIDOfEntity = UUIDOfEntity;
+            return this;
+        }
+
+        public AddBookReviewRequest build() {
+            return new AddBookReviewRequest(isbn, userId, UUIDOfEntity);
         }
     }
 }

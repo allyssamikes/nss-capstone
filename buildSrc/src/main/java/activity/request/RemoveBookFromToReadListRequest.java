@@ -1,6 +1,7 @@
 package activity.request;
 
 
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 public class RemoveBookFromToReadListRequest {
 
@@ -33,7 +34,9 @@ public class RemoveBookFromToReadListRequest {
         return new Builder();
     }
 
-    public static class Builder {
+
+    @JsonPOJOBuilder
+      public static class Builder {
         private String isbn;
         private String userId;
 

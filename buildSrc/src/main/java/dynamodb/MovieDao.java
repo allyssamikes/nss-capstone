@@ -2,6 +2,7 @@ package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import dynamodb.models.Movie;
+import dynamodb.models.Review;
 import exceptions.MovieNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;
@@ -23,6 +24,11 @@ public class MovieDao {
                     String.format("Could not find Movie with title'%s' and director %s", title, director);
         }
         metricsPublisher.addCount(MetricsConstants.GETMOVIE_MOVIENOTFOUND_COUNT, 0);
+        return movie;
+    }
+
+    public Movie saveMovie(Movie movie){
+        this.dynamoDbMapper.save(movie);
         return movie;
     }
 }

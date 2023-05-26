@@ -2,6 +2,7 @@ package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import dynamodb.models.Book;
+import dynamodb.models.Review;
 import exceptions.MovieNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;
@@ -23,6 +24,11 @@ public class BookDao {
             String.format("Could not find Book with isbn'%s'", isbn);
         }
         metricsPublisher.addCount(MetricsConstants.GETBOOK_BOOKNOTFOUND_COUNT, 0);
+        return book;
+    }
+
+    public Book saveBook(Book book){
+        this.dynamoDbMapper.save(book);
         return book;
     }
 }
