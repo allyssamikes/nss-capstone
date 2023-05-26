@@ -1,5 +1,6 @@
 package activity.request;
 
+import dynamodb.models.GENRE;
 import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 public class GetListRequest {

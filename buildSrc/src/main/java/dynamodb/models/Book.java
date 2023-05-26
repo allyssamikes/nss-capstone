@@ -8,6 +8,7 @@ import java.util.UUID;
 
 @DynamoDBTable(tableName ="books")
 public class Book {
+    public static final String GENRE_INDEX = "Genre Index";
     private String isbn;
     private String title;
     private String author;
@@ -47,7 +48,7 @@ public class Book {
     }
 
     @DynamoDBTypeConvertedEnum
-    @DynamoDBAttribute(attributeName = "genre")
+    @DynamoDBIndexHashKey(globalSecondaryIndexNames = {GENRE_INDEX}, attributeName = "genre")
     public GENRE getGenre() {
         return genre;
     }

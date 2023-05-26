@@ -9,6 +9,7 @@ import java.util.UUID;
 @DynamoDBTable(tableName ="tvshows")
 public class TVShow {
 
+    public static final String GENRE_INDEX = "Genre Index";
     private String title;
     private List<String> mainActors;
     private Integer  lengthInSeasons;
@@ -41,7 +42,7 @@ public class TVShow {
     }
 
     @DynamoDBTypeConvertedEnum
-    @DynamoDBAttribute(attributeName = "genre")
+    @DynamoDBIndexHashKey(globalSecondaryIndexNames = {GENRE_INDEX}, attributeName = "genre")
     public GENRE getGenre() {
         return genre;
     }

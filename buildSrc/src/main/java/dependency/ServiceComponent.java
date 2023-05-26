@@ -56,4 +56,10 @@ public interface ServiceComponent {
     AddTVShowReviewActivity provideAddTVShowReviewActivity();
 
     AddMovieReviewActivity provideAddMovieReviewActivity();
+
+    GetBookByGenreActivity provideGetBookByGenreActivity();
+
+    GetTVShowByStreamingServiceActivity provideGetTVShowByStreamingServiceActivity();
+
+    GetMovieByStreamingServiceActivity provideGetMovieByStreamingServiceActivity();
 }
