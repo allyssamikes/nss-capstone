@@ -579,6 +579,66 @@ Resources:
             Path: /users/{userId}/readList
             Method: post
 
+  AddBookReviewLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddBookReviewLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /books/{isbn}/reviews
+            Method: post
+
+  AddMovieReviewLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddMovieReviewLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /movies/{title}/{director}/reviews
+            Method: post
+
+  AddTVShowReviewLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.AddTVShowReviewLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /tvshows/{title}/reviews
+            Method: post
+
   RemoveFromToReadListLambda:
     Type: AWS::Serverless::Function
     Properties:
