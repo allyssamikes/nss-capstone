@@ -62,4 +62,8 @@ public interface ServiceComponent {
     GetTVShowByStreamingServiceActivity provideGetTVShowByStreamingServiceActivity();
 
     GetMovieByStreamingServiceActivity provideGetMovieByStreamingServiceActivity();
+
+    CreateUserActivity provideCreateUserActivity();
+
+    DeleteUserActivity provideDeleteUserActivity();
 }
