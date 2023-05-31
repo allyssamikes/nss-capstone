@@ -26,4 +26,9 @@ public class UserDao {
         return user;
     }
 
+    public User deleteUser(User user) {
+        this.dynamoDbMapper.delete(user);
+        return user;
+    }
+
 }

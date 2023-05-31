@@ -657,7 +657,7 @@ Resources:
           Type: Api
           Properties:
             Path: /users/{userId}/toReadList
-            Method: delete
+            Method: put
 
   RemoveFromCurrentlyReadingListLambda:
     Type: AWS::Serverless::Function
@@ -677,7 +677,7 @@ Resources:
           Type: Api
           Properties:
             Path: /users/{userId}/currentlyReading
-            Method: delete
+            Method: put
 
   RemoveFromCurrentlyWatchingListLambda:
     Type: AWS::Serverless::Function
@@ -697,7 +697,7 @@ Resources:
           Type: Api
           Properties:
             Path: /users/{userId}/currentlyWatching
-            Method: delete
+            Method: put
 
   RemoveFromToWatchListLambda:
     Type: AWS::Serverless::Function
@@ -717,7 +717,7 @@ Resources:
           Type: Api
           Properties:
             Path: /users/{userId}/toWatchList
-            Method: delete
+            Method: put
 
   GetBookByGenreLambda:
     Type: AWS::Serverless::Function
@@ -784,6 +784,46 @@ Resources:
             Method: get
             Auth:
               Authorizer: 'NONE'
+
+  CreateUserLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.CreateUserLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /users
+            Method: post
+
+  DeleteUserLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: CapstoneLambda
+      Handler: buildSrc.src.main.java.lambda.DeleteUserLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        MusicPlaylistService:
+          Type: Api
+          Properties:
+            Path: /users/{userId}
+            Method: delete
 
   #-----------------------------------------------------
   # DynamoDB Configuration
