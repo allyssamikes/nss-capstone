@@ -18,9 +18,7 @@ public class TVShowModel {
     private List<Review> reviews;
     private String UUIDAsString;
 
-    private  UUID uuid;
-
-    public TVShowModel(String title, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString, UUID uuid) {
+    public TVShowModel(String title, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString) {
         this.title = title;
         this.mainActors = mainActors;
         this.lengthInSeasons = lengthInSeasons;
@@ -29,7 +27,6 @@ public class TVShowModel {
         this.streamingService = streamingService;
         this.reviews = reviews;
         this.UUIDAsString = UUIDAsString;
-        this.uuid = uuid;
     }
 
 
@@ -65,10 +62,6 @@ public class TVShowModel {
         return UUIDAsString;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
@@ -83,8 +76,6 @@ public class TVShowModel {
         private STREAMING_SERVICE streamingService;
         private List<Review> reviews;
         private String UUIDAsString;
-
-        private  UUID uuid;
 
         public Builder withTitle(String title) {
             this.title = title;
@@ -123,12 +114,8 @@ public class TVShowModel {
             this.UUIDAsString = UUIDAsString;
             return this;
         }
-        public Builder withUUID(java.util.UUID uuid) {
-            this.uuid = uuid;
-            return this;
-        }
         public TVShowModel build() {
-            return new TVShowModel(title, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUIDAsString, uuid);
+            return new TVShowModel(title, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUIDAsString);
         }
     }
 }

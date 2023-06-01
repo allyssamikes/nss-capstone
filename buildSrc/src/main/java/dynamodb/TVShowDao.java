@@ -13,11 +13,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.util.Map;
+import javax.inject.Singleton;
+import javax.inject.Inject;
+
+@Singleton
 public class TVShowDao {
     private final DynamoDBMapper dynamoDbMapper;
     private final MetricsPublisher metricsPublisher;
     public static final String GENRE_INDEX = "Genre Index";
 
+    @Inject
     public TVShowDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;
         this.metricsPublisher = metricsPublisher;
@@ -28,7 +34,6 @@ public class TVShowDao {
         if (null == tvShow) {
             metricsPublisher.addCount(MetricsConstants.GETTVSHOW_TVSHOWNOTFOUND_COUNT, 1);
             throw new TVShowNotFoundException();
-            String.format("Could not find TVShow with title'%s'", title);
         }
         metricsPublisher.addCount(MetricsConstants.GETTVSHOW_TVSHOWNOTFOUND_COUNT, 0);
         return tvShow;
@@ -47,7 +52,7 @@ public class TVShowDao {
         valueMap.put("service", new AttributeValue().withS(service));
 
         DynamoDBQueryExpression<TVShow> queryExpression = new DynamoDBQueryExpression<TVShow>()
-                .withHashConditionExpression("service = :service")
+                .withKeyConditionExpression("service = :service")
                 .withExpressionAttributeValues(valueMap);
         PaginatedQueryList<TVShow> tvShowList = dynamoDbMapper.query(TVShow.class, queryExpression);
 

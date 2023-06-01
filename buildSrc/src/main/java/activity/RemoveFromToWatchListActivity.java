@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 public class RemoveFromToWatchListActivity {
 
     private final UserDao userDao;
@@ -26,6 +28,7 @@ public class RemoveFromToWatchListActivity {
     private final TVShowDao tvShowDao;
     private final MovieDao movieDao;
 
+    @Inject
     public RemoveFromToWatchListActivity(UserDao userDao, TVShowDao tvShowDao, MovieDao movieDao) {
         this.userDao = userDao;
         this.tvShowDao = tvShowDao;

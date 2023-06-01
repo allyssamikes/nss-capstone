@@ -1,7 +1,8 @@
 package dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import utils.UUID;
+import utils.UniqueId;
+
 
 import java.util.List;
 import java.util.Objects;
@@ -15,7 +16,7 @@ public class Book {
 
     private Integer  yearPublished;
     private Integer  lengthInPages;
-    private GENRE  genre;
+    private GENRE genre;
     private List<Review> reviews;
 
     private UniqueId uniqueId = new UniqueId();
@@ -62,17 +63,10 @@ public class Book {
         this.reviews = reviews;
     }
 
-    @DynamoDBTypeConverted(converter = UUID.class)
-    @DynamoDBAttribute(attributeName = "UUID")
-         public UUID getUUID() {
-        return uuid;
-    }
   @DynamoDBAttribute(attributeName = "UUIDAsString")
     public String getUUIDAsString() {
         return UUIDAsString;
     }
-
-
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
@@ -101,7 +95,6 @@ public class Book {
                 ", lengthInPages=" + lengthInPages +
                 ", genre=" + genre +
                 ", reviews=" + reviews +
-                ", uuid=" + uuid +
                 ", UUIDAsString='" + UUIDAsString + '\'' +
                 '}';
     }

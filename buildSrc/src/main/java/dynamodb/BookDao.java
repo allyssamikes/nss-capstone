@@ -13,13 +13,21 @@ import metrics.MetricsPublisher;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.inject.Singleton;
 
+import javax.inject.Inject;
+
+
+
+
+@Singleton
 public class BookDao {
     private final DynamoDBMapper dynamoDbMapper;
     private final MetricsPublisher metricsPublisher;
     public static final String GENRE_INDEX = "Genre Index";
 
-    public BookDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
+   @Inject
+   public BookDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;
         this.metricsPublisher = metricsPublisher;
     }
@@ -29,7 +37,6 @@ public class BookDao {
         if (null == book) {
             metricsPublisher.addCount(MetricsConstants.GETBOOK_BOOKNOTFOUND_COUNT, 1);
             throw new MovieNotFoundException();
-            String.format("Could not find Book with isbn'%s'", isbn);
         }
         metricsPublisher.addCount(MetricsConstants.GETBOOK_BOOKNOTFOUND_COUNT, 0);
         return book;

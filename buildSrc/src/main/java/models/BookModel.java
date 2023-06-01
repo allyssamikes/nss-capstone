@@ -18,9 +18,7 @@ public class BookModel {
 
     private String UUIDAsString;
 
-    private  UUID uuid;
-
-    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, GENRE genre, List<Review> reviews, String UUIDAsString, UUID uuid) {
+    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, GENRE genre, List<Review> reviews, String UUIDAsString) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -29,7 +27,6 @@ public class BookModel {
         this.genre = genre;
         this.reviews = reviews;
         this.UUIDAsString = UUIDAsString;
-        this.uuid = uuid;
     }
 
 
@@ -71,9 +68,6 @@ public class BookModel {
         return UUIDAsString;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
 
     public static class Builder {
         private String isbn;
@@ -85,8 +79,6 @@ public class BookModel {
         private GENRE genre;
         private List<Review> reviews;
         private String UUIDAsString;
-
-        private  UUID uuid;
 
         public Builder withIsbn(String isbn) {
             this.isbn = isbn;
@@ -127,13 +119,8 @@ public class BookModel {
             this.UUIDAsString = UUIDAsString;
             return this;
         }
-        public Builder withUUID(UUID uuid) {
-            this.uuid = uuid;
-            return this;
-        }
-
         public BookModel build() {
-            return new BookModel(isbn, title, author, yearPublished, lengthInPages, genre, reviews, UUIDAsString, uuid);
+            return new BookModel(isbn, title, author, yearPublished, lengthInPages, genre, reviews, UUIDAsString);
         }
     }
 }

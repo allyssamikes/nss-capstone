@@ -20,12 +20,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 public class AddToCurrentlyWatchingListActivity {
 
     private final UserDao userDao;
     private final MovieDao movieDao;
     private final TVShowDao tvShowDao;
 
+    @Inject
     public AddToCurrentlyWatchingListActivity (UserDao userDao, MovieDao movieDao, TVShowDao tvShowDao) {
         this.userDao = userDao;
         this.movieDao = movieDao;

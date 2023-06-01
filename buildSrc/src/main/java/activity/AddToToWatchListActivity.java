@@ -20,11 +20,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 public class AddToToWatchListActivity {
     private final UserDao userDao;
     private final MovieDao movieDao;
     private final TVShowDao tvShowDao;
 
+    @Inject
     public AddToToWatchListActivity(UserDao userDao, MovieDao movieDao, TVShowDao tvShowDao) {
         this.userDao = userDao;
         this.movieDao = movieDao;
