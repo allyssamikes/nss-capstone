@@ -12,6 +12,10 @@ public class AddBookReviewResult {
     public AddBookReviewResult(List<ReviewModel> reviewModelsList) {
         this.reviewModelsList = reviewModelsList;
     }
+
+    public List<ReviewModel> getReviewModelsList() {
+        return reviewModelsList;
+    }
     @Override
     public String toString() {
         return "AddBookReviewResult{" +
