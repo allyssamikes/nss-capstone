@@ -1,9 +1,10 @@
 package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import dependency.DynamoDbClientProvider;
 import dynamodb.models.Book;
 import dynamodb.models.GENRE;
-import dynamodb.models.Review;
 import exceptions.MovieNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;

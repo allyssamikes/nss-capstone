@@ -4,9 +4,8 @@ import activity.request.AddBookToReadListRequest;
 import activity.request.AddBookToToReadListRequest;
 import activity.result.AddBookToReadListResult;
 import activity.result.AddBookToToReadListResult;
-import org.gradle.process.internal.worker.RequestHandler;
-
-import javax.naming.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
 public class AddBookToToReadListLambda
         extends LambdaActivityRunner<AddBookToToReadListRequest, AddBookToToReadListResult>

@@ -2,9 +2,9 @@ package lambda;
 
 import activity.request.GetListRequest;
 import activity.result.GetToReadListResult;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
-import javax.naming.Context;
 
 public class GetToReadListLambda
         extends LambdaActivityRunner<GetListRequest, GetToReadListResult>
