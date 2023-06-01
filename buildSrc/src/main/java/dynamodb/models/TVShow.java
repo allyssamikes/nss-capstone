@@ -77,20 +77,6 @@ public class TVShow {
         return UUIDAsString;
     }
     @Override
-    public String toString() {
-        return "TVShow{" +
-                "title='" + title + '\'' +
-                ", mainActors=" + mainActors +
-                ", lengthInSeasons=" + lengthInSeasons +
-                ", lengthInMinutes=" + lengthInMinutes +
-                ", genre=" + genre +
-                ", streamingService=" + streamingService +
-                ", reviews=" + reviews +
-                ", UUID='" + UUID + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -101,5 +87,20 @@ public class TVShow {
     @Override
     public int hashCode() {
         return Objects.hash(title);
+    }
+
+    @Override
+    public String toString() {
+        return "TVShow{" +
+                "title='" + title + '\'' +
+                ", mainActors=" + mainActors +
+                ", lengthInSeasons=" + lengthInSeasons +
+                ", lengthInMinutes=" + lengthInMinutes +
+                ", genre=" + genre +
+                ", streamingService=" + streamingService +
+                ", reviews=" + reviews +
+                ", uuid=" + uuid +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
     }
 }

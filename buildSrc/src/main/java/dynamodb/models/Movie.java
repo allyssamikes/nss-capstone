@@ -83,19 +83,7 @@ public class Movie {
         return UUIDAsString;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "title='" + title + '\'' +
-                ", director='" + director + '\'' +
-                ", mainActors=" + mainActors +
-                ", lengthInMinutes=" + lengthInMinutes +
-                ", genre=" + genre +
-                ", streamingService=" + streamingService +
-                ", reviews=" + reviews +
-                ", UUID='" + UUID + '\'' +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -108,5 +96,20 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hash(title, director);
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                ", director='" + director + '\'' +
+                ", mainActors=" + mainActors +
+                ", lengthInMinutes=" + lengthInMinutes +
+                ", genre=" + genre +
+                ", streamingService=" + streamingService +
+                ", reviews=" + reviews +
+                ", uuid=" + uuid +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
     }
 }

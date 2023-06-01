@@ -2,9 +2,9 @@ package lambda;
 
 import activity.request.GetBookByGenreRequest;
 import activity.result.GetBookByGenreResult;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
-import javax.naming.Context;
 
 public class GetBookByGenreLambda  extends LambdaActivityRunner<GetBookByGenreRequest,GetBookByGenreResult>
         implements RequestHandler<AuthenticatedLambdaRequest<GetBookByGenreRequest> , LambdaResponse> {

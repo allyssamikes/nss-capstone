@@ -2,9 +2,8 @@ package lambda;
 
 import activity.request.GetListRequest;
 import activity.result.GetToWatchListResult;
-import org.gradle.process.internal.worker.RequestHandler;
-
-import javax.naming.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
 public class GetToWatchListLambda
         extends LambdaActivityRunner<GetListRequest, GetToWatchListResult>

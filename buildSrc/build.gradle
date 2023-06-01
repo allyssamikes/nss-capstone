@@ -9,6 +9,10 @@ plugins {
     id 'com.adarshr.test-logger' version '3.2.0'
 }
 
+group ''
+version '1.0.0'
+defaultTasks 'clean', 'build'
+
 repositories {
     // Use the plugin portal to apply community plugins in convention plugins.
     mavenCentral()

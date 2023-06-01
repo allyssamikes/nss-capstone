@@ -3,19 +3,15 @@ package lambda;
 import activity.request.GetTVShowRequest;
 import activity.result.GetTVShowResult;
 import org.apache.log4j.LogManager;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
-import javax.naming.Context;
-import java.util.logging.Logger;
 
 public class GetTVShowLambda extends LambdaActivityRunner<GetTVShowRequest, GetTVShowResult>
         implements RequestHandler<LambdaRequest<GetTVShowRequest>, LambdaResponse> {
 
-    private final Logger log = LogManager.getLogger();
-
     @Override
     public LambdaResponse handleRequest(LambdaRequest<GetTVShowRequest> input, Context context) {
-        log.info("handleRequest");
         return super.runActivity(
                 () -> input.fromPath(path ->
                         GetTVShowRequest.builder()

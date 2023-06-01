@@ -22,8 +22,8 @@ public class GetTVShowRequest {
     }
 
     //CHECKSTYLE:OFF:Builder
-    public static GetMovieRequest.Builder builder() {
-        return new GetMovieRequest.Builder();
+    public static Builder builder() {
+        return new Builder();
     }
 
     @JsonPOJOBuilder

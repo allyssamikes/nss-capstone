@@ -2,9 +2,8 @@ package lambda;
 
 import activity.request.AddToCurrentlyWatchingListRequest;
 import activity.result.AddToCurrentlyWatchingListResult;
-import org.gradle.process.internal.worker.RequestHandler;
-
-import javax.naming.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
 public class AddToCurrentlyWatchingListLambda
         extends LambdaActivityRunner<AddToCurrentlyWatchingListRequest, AddToCurrentlyWatchingListResult>

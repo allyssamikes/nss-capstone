@@ -1,11 +1,13 @@
 package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 ;import dynamodb.models.*;
 import exceptions.TVShowNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;
-import org.gradle.api.internal.attributes.AttributeValue;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +39,8 @@ public class TVShowDao {
         return tvShow;
     }
 
-    public List<TVShow> getTVShowByService(STREAMING_SERVICE service) {
+    public List<TVShow> getTVShowByService(STREAMING_SERVICE sService) {
+        String service = sService.toString();
 
 
         Map<String, AttributeValue> valueMap = new HashMap<>();

@@ -1,10 +1,10 @@
 package dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import utils.UUID;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @DynamoDBTable(tableName ="books")
 public class Book {
@@ -18,9 +18,9 @@ public class Book {
     private GENRE  genre;
     private List<Review> reviews;
 
-    private UUID uuid = UUID.randomUUID();
+    private UniqueId uniqueId = new UniqueId();
 
-    private String UUIDAsString = uuid.toString();
+    private String UUIDAsString = uniqueId.generate();
 
     @DynamoDBHashKey(attributeName = "isbn")
     public String getIsbn() {
@@ -73,19 +73,6 @@ public class Book {
     }
 
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", yearPublished=" + yearPublished +
-                ", lengthInPages=" + lengthInPages +
-                ", genre=" + genre +
-                ", reviews=" + reviews +
-                ", UUID='" + UUID + '\'' +
-                '}';
-    }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
@@ -102,5 +89,20 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(isbn);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", yearPublished=" + yearPublished +
+                ", lengthInPages=" + lengthInPages +
+                ", genre=" + genre +
+                ", reviews=" + reviews +
+                ", uuid=" + uuid +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
     }
 }

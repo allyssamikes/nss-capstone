@@ -1,12 +1,14 @@
 package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import dynamodb.models.*;
 import exceptions.MovieNotFoundException;
 import exceptions.TVShowNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;
-import org.gradle.api.internal.attributes.AttributeValue;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,8 +40,8 @@ public class MovieDao {
         return movie;
     }
 
-    public List<Movie> getMovieByService(STREAMING_SERVICE service) {
-
+    public List<Movie> getMovieByService(STREAMING_SERVICE sService) {
+            String service = sService.toString();
 
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put("service", new AttributeValue().withS(service));

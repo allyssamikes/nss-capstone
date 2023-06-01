@@ -2,9 +2,8 @@ package lambda;
 
 import activity.request.AddToCurrentlyReadingListRequest;
 import activity.result.AddToCurrentlyReadingListResult;
-import org.gradle.process.internal.worker.RequestHandler;
-
-import javax.naming.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
 public class AddToCurrentlyReadingListLambda
         extends LambdaActivityRunner<AddToCurrentlyReadingListRequest, AddToCurrentlyReadingListResult>

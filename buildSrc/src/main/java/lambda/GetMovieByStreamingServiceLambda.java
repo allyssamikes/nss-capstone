@@ -2,9 +2,9 @@ package lambda;
 
 import activity.request.GetMovieByStreamingServiceRequest;
 import activity.result.GetMovieByStreamingServiceResult;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
-import javax.naming.Context;
 
 public class GetMovieByStreamingServiceLambda         extends LambdaActivityRunner<GetMovieByStreamingServiceRequest, GetMovieByStreamingServiceResult>
         implements RequestHandler<AuthenticatedLambdaRequest<GetMovieByStreamingServiceRequest> , LambdaResponse> {

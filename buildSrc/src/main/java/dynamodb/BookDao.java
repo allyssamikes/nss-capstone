@@ -2,13 +2,13 @@ package dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import dependency.DynamoDbClientProvider;
 import dynamodb.models.Book;
 import dynamodb.models.GENRE;
 import exceptions.MovieNotFoundException;
 import metrics.MetricsConstants;
 import metrics.MetricsPublisher;
-import org.gradle.api.internal.attributes.AttributeValue;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +39,9 @@ public class BookDao {
         this.dynamoDbMapper.save(book);
         return book;
     }
-public List<Book> getBooksByGenre(GENRE genre) {
+public List<Book> getBooksByGenre(GENRE enumGenre) {
+        String genre  = enumGenre.toString();
+
     DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
     Map<String, AttributeValue> valueMap = new HashMap<>();
     valueMap.put(":genre", new AttributeValue().withS(genre));
