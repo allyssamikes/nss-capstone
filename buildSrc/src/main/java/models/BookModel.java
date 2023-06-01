@@ -4,6 +4,7 @@ import dynamodb.models.GENRE;
 import dynamodb.models.Review;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class BookModel {
@@ -66,6 +67,19 @@ public class BookModel {
 
     public String getUUIDAsString() {
         return UUIDAsString;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookModel bookModel = (BookModel) o;
+        return Objects.equals(isbn, bookModel.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn);
     }
 
 

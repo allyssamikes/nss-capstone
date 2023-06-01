@@ -5,6 +5,7 @@ import dynamodb.models.Review;
 import dynamodb.models.STREAMING_SERVICE;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class TVShowModel {
@@ -65,6 +66,19 @@ public class TVShowModel {
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TVShowModel that = (TVShowModel) o;
+        return Objects.equals(title, that.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
     }
 
     public static class Builder {

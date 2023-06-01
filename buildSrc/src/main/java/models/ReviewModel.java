@@ -1,6 +1,8 @@
 package models;
 
 
+import java.util.Objects;
+
 public class ReviewModel {
 
     private String userId;
@@ -36,6 +38,20 @@ public class ReviewModel {
     public static Builder builder() {
         return new Builder();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReviewModel that = (ReviewModel) o;
+        return Objects.equals(userId, that.userId) && Objects.equals(UUIDOfEntity, that.UUIDOfEntity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, UUIDOfEntity);
+    }
+
     public static class Builder {
         private String userId;
         private String review;

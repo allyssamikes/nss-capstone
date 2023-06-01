@@ -2,6 +2,7 @@ package models;
 
 import dynamodb.models.Book;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class UserModel {
@@ -62,6 +63,20 @@ public class UserModel {
     public static Builder builder() {
         return new Builder();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserModel userModel = (UserModel) o;
+        return Objects.equals(userId, userModel.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
+    }
+
     public static class Builder {
         private String userId;
         private String name;

@@ -17,9 +17,6 @@ import javax.inject.Singleton;
 
 import javax.inject.Inject;
 
-
-
-
 @Singleton
 public class BookDao {
     private final DynamoDBMapper dynamoDbMapper;

@@ -5,10 +5,25 @@ import dynamodb.models.Review;
 import dynamodb.models.STREAMING_SERVICE;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class MovieModel {
     private String title;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MovieModel that = (MovieModel) o;
+        return Objects.equals(title, that.title) && Objects.equals(director, that.director);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, director);
+    }
+
     private String director;
     private List<String> mainActors;
     private Integer lengthInMinutes;
