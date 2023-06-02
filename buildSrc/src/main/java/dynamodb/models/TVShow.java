@@ -12,6 +12,8 @@ public class TVShow {
 
     public static final String GENRE_INDEX = "Genre Index";
     private String title;
+
+    private String director;
     private List<String> mainActors;
     private Integer  lengthInSeasons;
     private Integer  lengthInMinutes;
@@ -24,6 +26,18 @@ public class TVShow {
     @DynamoDBHashKey(attributeName = "title")
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @DynamoDBAttribute(attributeName = "director")
+    public String getDirector() {
+        return director;
+    }
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     @DynamoDBAttribute(attributeName = "mainActors")
@@ -84,16 +98,19 @@ public class TVShow {
         return Objects.hash(title);
     }
 
+
     @Override
     public String toString() {
         return "TVShow{" +
                 "title='" + title + '\'' +
+                ", director='" + director + '\'' +
                 ", mainActors=" + mainActors +
                 ", lengthInSeasons=" + lengthInSeasons +
                 ", lengthInMinutes=" + lengthInMinutes +
                 ", genre=" + genre +
                 ", streamingService=" + streamingService +
                 ", reviews=" + reviews +
+                ", uniqueId=" + uniqueId +
                 ", UUIDAsString='" + UUIDAsString + '\'' +
                 '}';
     }

@@ -75,7 +75,7 @@ public class AddToToWatchListActivity {
 
         List<Object> models = new ArrayList<>();
         for(Object o : watchList) {
-            if(o.getClass() == tvShow.getClass()) {
+            if(o.getClass().equals(tvShow.getClass())) {
                 TVShow show = (TVShow) o;
                 watchList.add(show);
                 TVShowModel tVModel = new ModelConverter().toTVShowModel(show);

@@ -47,7 +47,6 @@ public class TVShowDao {
     public List<TVShow> getTVShowByService(STREAMING_SERVICE sService) {
         String service = sService.toString();
 
-
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put("service", new AttributeValue().withS(service));
 

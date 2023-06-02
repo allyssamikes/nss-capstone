@@ -11,6 +11,7 @@ import java.util.UUID;
 public class TVShowModel {
 
     private String title;
+    private String director;
     private List<String> mainActors;
     private Integer  lengthInSeasons;
     private Integer  lengthInMinutes;
@@ -19,8 +20,9 @@ public class TVShowModel {
     private List<Review> reviews;
     private String UUIDAsString;
 
-    public TVShowModel(String title, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString) {
+    public TVShowModel(String title, String director, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString) {
         this.title = title;
+        this.director = director;
         this.mainActors = mainActors;
         this.lengthInSeasons = lengthInSeasons;
         this.lengthInMinutes = lengthInMinutes;
@@ -34,6 +36,8 @@ public class TVShowModel {
     public String getTitle() {
         return title;
     }
+
+    public String getDirector() {return director;}
 
     public List<String> getMainActors() {
         return mainActors;
@@ -83,6 +87,8 @@ public class TVShowModel {
 
     public static class Builder {
         private String title;
+
+        private String director;
         private List<String> mainActors;
         private Integer  lengthInSeasons;
         private Integer  lengthInMinutes;
@@ -95,6 +101,12 @@ public class TVShowModel {
             this.title = title;
             return this;
         }
+
+        public Builder withDirector(String director) {
+            this.director = director;
+            return this;
+        }
+
         public Builder withMainActors(List<String> mainActors) {
             this.mainActors = mainActors;
             return this;
@@ -129,7 +141,7 @@ public class TVShowModel {
             return this;
         }
         public TVShowModel build() {
-            return new TVShowModel(title, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUIDAsString);
+            return new TVShowModel(title, director, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUIDAsString);
         }
     }
 }
