@@ -443,7 +443,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
+      CodeUri: CapstoneLambda
       Handler: buildSrc.src.main.java.lambda.UpdateUserLambda::handleRequest
       Runtime: java11
       Architectures:
