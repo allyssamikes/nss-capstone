@@ -9,13 +9,11 @@ public class AddToToWatchListRequest {
 
     private final String title;
     private final  String director;
-    private final List<Review> reviews;
     private final String userId;
 
-    public AddToToWatchListRequest(String title, String director, List<Review> reviews, String userId) {
+    public AddToToWatchListRequest(String title, String director,String userId) {
         this.title = title;
         this.director = director;
-        this.reviews = reviews;
         this.userId = userId;
     }
 
@@ -27,9 +25,6 @@ public class AddToToWatchListRequest {
         return director;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
 
     public String getUserId() {
         return userId;
@@ -43,7 +38,6 @@ public class AddToToWatchListRequest {
     public static class Builder {
         private String title;
         private String director;
-        private List<Review> reviews;
         private String userId;
 
 
@@ -57,18 +51,13 @@ public class AddToToWatchListRequest {
             return this;
         }
 
-        public Builder withReviews(List<Review> reviews) {
-            this.reviews = reviews;
-            return this;
-        }
-
         public Builder withUserId(String userId) {
             this.userId = userId;
             return this;
         }
 
         public AddToToWatchListRequest build() {
-            return new AddToToWatchListRequest(title, director, reviews,userId);
+            return new AddToToWatchListRequest(title, director,userId);
         }
     }
 }

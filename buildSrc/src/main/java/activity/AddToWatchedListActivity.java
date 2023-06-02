@@ -78,12 +78,14 @@ public class AddToWatchedListActivity {
         List<Object> models = new ArrayList<>();
         for(Object o : watchList) {
             if(o.getClass() == tvShow.getClass()) {
-                TVShow show = (TVShow) o;
+                TVShow show;
+                show = (TVShow) o;
                 watchList.add(show);
                 TVShowModel tVModel = new ModelConverter().toTVShowModel(show);
                 models.add(tVModel);
             } else {
-                Movie theMovie = (Movie) o;
+                Movie theMovie;
+                theMovie = (Movie) o;
                 watchList.add(theMovie);
                 MovieModel movieModel = new ModelConverter().toMovieModel(theMovie);
                 models.add(movieModel);
