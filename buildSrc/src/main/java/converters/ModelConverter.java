@@ -20,7 +20,6 @@ public class ModelConverter {
                 .withStreamingService(movie.getStreamingService())
                 .withReviews(movie.getReviews())
                 .withUUIDAsString(movie.getUUIDAsString())
-                .withUUID(movie.getUuid())
                 .build();
     }
 
@@ -34,13 +33,13 @@ public class ModelConverter {
                 .withGenre(book.getGenre())
                 .withReviews(book.getReviews())
                 .withUUIDAsString(book.getUUIDAsString())
-                .withUUID(book.getUUID())
                 .build();
     }
 
     public TVShowModel toTVShowModel(TVShow tvshow) {
         return TVShowModel.builder()
                 .withTitle(tvshow.getTitle())
+                .withDirector(tvshow.getDirector())
                 .withMainActors(tvshow.getMainActors())
                 .withLengthInSeasons(tvshow.getLengthInSeasons())
                 .withLengthInMinutes(tvshow.getLengthInMinutes())
@@ -48,7 +47,6 @@ public class ModelConverter {
                 .withStreamingService(tvshow.getStreamingService())
                 .withReviews(tvshow.getReviews())
                 .withUUIDAsString(tvshow.getUUIDAsString())
-                .withUUID(tvshow.getUUID())
                 .build();
     }
 
@@ -91,12 +89,14 @@ public class ModelConverter {
         TVShow tvShow = new TVShow();
 
         for(Object o : watchList) {
-            if(o.getClass() == tvShow.getClass()) {
-                TVShow show = (TVShow) o;
+            if(o.getClass().equals(tvShow.getClass())) {
+                TVShow show ;
+                show = (TVShow) o;
                 TVShowModel tVModel = new ModelConverter().toTVShowModel(show);
                 models.add(tVModel);
             } else {
-                Movie theMovie = (Movie) o;
+                Movie theMovie;
+                theMovie = (Movie) o;
                 MovieModel movieModel = new ModelConverter().toMovieModel(theMovie);
                 models.add(movieModel);
             }

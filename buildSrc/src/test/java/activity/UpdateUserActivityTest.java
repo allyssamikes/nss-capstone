@@ -5,6 +5,14 @@ import activity.result.UpdateUserResult;
 import dynamodb.UserDao;
 import dynamodb.models.User;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.openMocks;
+import static org.junit.jupiter.api.Assertions.*;
 public class UpdateUserActivityTest {
 
     @Mock
@@ -39,6 +47,6 @@ public class UpdateUserActivityTest {
         UpdateUserResult result = updateUserActivity.handleRequest(request);
 
         // THEN
-        assertEquals(expectedName, result.getName());
+        assertEquals(expectedName, result.getUserModel().getName());
     }
 }

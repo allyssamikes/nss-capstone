@@ -1,6 +1,7 @@
 package dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import utils.UniqueId;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +18,9 @@ public class Movie {
     private GENRE genre;
     private STREAMING_SERVICE streamingService;
     private List<Review> reviews;
-    private UUID uuid = UUID.randomUUID();
+    private UniqueId uniqueId = new UniqueId();
 
-    private String UUIDAsString = uuid.toString();
+    private String UUIDAsString = uniqueId.generate();
 
     @DynamoDBHashKey(attributeName = "title")
     public String getTitle() {
@@ -73,29 +74,12 @@ public class Movie {
         this.reviews = reviews;
     }
 
-    @DynamoDBTypeConverted(converter = java.util.UUID.class)
-    @DynamoDBAttribute(attributeName = "UUID")
-    public UUID getUuid() {
-        return uuid;
-    }
     @DynamoDBAttribute(attributeName = "UUIDAsString")
     public String getUUIDAsString() {
         return UUIDAsString;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "title='" + title + '\'' +
-                ", director='" + director + '\'' +
-                ", mainActors=" + mainActors +
-                ", lengthInMinutes=" + lengthInMinutes +
-                ", genre=" + genre +
-                ", streamingService=" + streamingService +
-                ", reviews=" + reviews +
-                ", UUID='" + UUID + '\'' +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -108,5 +92,19 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hash(title, director);
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                ", director='" + director + '\'' +
+                ", mainActors=" + mainActors +
+                ", lengthInMinutes=" + lengthInMinutes +
+                ", genre=" + genre +
+                ", streamingService=" + streamingService +
+                ", reviews=" + reviews +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
     }
 }

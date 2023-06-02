@@ -9,6 +9,10 @@ plugins {
     id 'com.adarshr.test-logger' version '3.2.0'
 }
 
+group ''
+version '1.0.0'
+defaultTasks 'clean', 'build'
+
 repositories {
     // Use the plugin portal to apply community plugins in convention plugins.
     mavenCentral()
@@ -23,7 +27,7 @@ dependencies {
 
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'com.google.dagger:dagger:2.42'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.42.+'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.42'
     implementation 'com.google.code.gson:gson:2.8.+'
 
     implementation 'com.fasterxml.jackson.core:jackson-core:2.11.+'

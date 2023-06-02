@@ -20,13 +20,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 public class AddToWatchedListActivity {
 
     private final UserDao userDao;
     private final MovieDao movieDao;
     private final TVShowDao tvShowDao;
 
-    public AddToWatchedListActivity(UserDao userDao, MovieDao movieDao, TVShowDao tvShowDao) {
+
+   @Inject
+   public AddToWatchedListActivity(UserDao userDao, MovieDao movieDao, TVShowDao tvShowDao) {
         this.userDao = userDao;
         this.movieDao = movieDao;
         this.tvShowDao = tvShowDao;
@@ -73,13 +77,15 @@ public class AddToWatchedListActivity {
 
         List<Object> models = new ArrayList<>();
         for(Object o : watchList) {
-            if(o.getClass() == tvShow.getClass()) {
-                TVShow show = (TVShow) o;
+            if(o.getClass().equals(tvShow.getClass())) {
+                TVShow show;
+                show = (TVShow) o;
                 watchList.add(show);
                 TVShowModel tVModel = new ModelConverter().toTVShowModel(show);
                 models.add(tVModel);
             } else {
-                Movie theMovie = (Movie) o;
+                Movie theMovie;
+                theMovie = (Movie) o;
                 watchList.add(theMovie);
                 MovieModel movieModel = new ModelConverter().toMovieModel(theMovie);
                 models.add(movieModel);

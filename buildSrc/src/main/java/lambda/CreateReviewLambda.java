@@ -2,9 +2,8 @@ package lambda;
 
 import activity.request.CreateReviewRequest;
 import activity.result.CreateReviewResult;
-import org.gradle.process.internal.worker.RequestHandler;
-
-import javax.naming.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
 public class CreateReviewLambda
         extends LambdaActivityRunner<CreateReviewRequest, CreateReviewResult>

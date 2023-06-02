@@ -2,9 +2,9 @@ package lambda;
 
 import activity.request.AddToWatchedListRequest;
 import activity.result.AddToWatchedListResult;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
-import javax.naming.Context;
 
 public class AddToWatchedListLambda
         extends LambdaActivityRunner<AddToWatchedListRequest, AddToWatchedListResult>

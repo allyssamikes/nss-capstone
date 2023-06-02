@@ -7,6 +7,7 @@ import com.amazonaws.services.cloudwatch.model.PutMetricDataRequest;
 import com.amazonaws.services.cloudwatch.model.StandardUnit;
 
 import javax.inject.Inject;
+import java.awt.*;
 
 /**
  * Contains operations for publishing metrics.

@@ -5,11 +5,13 @@ import dynamodb.models.Review;
 import dynamodb.models.STREAMING_SERVICE;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class TVShowModel {
 
     private String title;
+    private String director;
     private List<String> mainActors;
     private Integer  lengthInSeasons;
     private Integer  lengthInMinutes;
@@ -18,10 +20,9 @@ public class TVShowModel {
     private List<Review> reviews;
     private String UUIDAsString;
 
-    private  UUID uuid;
-
-    public TVShowModel(String title, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString, UUID uuid) {
+    public TVShowModel(String title, String director, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString) {
         this.title = title;
+        this.director = director;
         this.mainActors = mainActors;
         this.lengthInSeasons = lengthInSeasons;
         this.lengthInMinutes = lengthInMinutes;
@@ -29,13 +30,14 @@ public class TVShowModel {
         this.streamingService = streamingService;
         this.reviews = reviews;
         this.UUIDAsString = UUIDAsString;
-        this.uuid = uuid;
     }
 
 
     public String getTitle() {
         return title;
     }
+
+    public String getDirector() {return director;}
 
     public List<String> getMainActors() {
         return mainActors;
@@ -65,17 +67,28 @@ public class TVShowModel {
         return UUIDAsString;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TVShowModel that = (TVShowModel) o;
+        return Objects.equals(title, that.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
+    }
+
     public static class Builder {
         private String title;
+
+        private String director;
         private List<String> mainActors;
         private Integer  lengthInSeasons;
         private Integer  lengthInMinutes;
@@ -84,12 +97,16 @@ public class TVShowModel {
         private List<Review> reviews;
         private String UUIDAsString;
 
-        private  UUID uuid;
-
         public Builder withTitle(String title) {
             this.title = title;
             return this;
         }
+
+        public Builder withDirector(String director) {
+            this.director = director;
+            return this;
+        }
+
         public Builder withMainActors(List<String> mainActors) {
             this.mainActors = mainActors;
             return this;
@@ -123,12 +140,8 @@ public class TVShowModel {
             this.UUIDAsString = UUIDAsString;
             return this;
         }
-        public Builder withUUID(java.util.UUID uuid) {
-            this.uuid = uuid;
-            return this;
-        }
         public TVShowModel build() {
-            return new TVShowModel(title, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUIDAsString, uuid);
+            return new TVShowModel(title, director, mainActors, lengthInSeasons, lengthInMinutes, genre, streamingService,  reviews,  UUIDAsString);
         }
     }
 }

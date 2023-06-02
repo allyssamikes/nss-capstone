@@ -9,13 +9,11 @@ public class AddToCurrentlyWatchingListRequest {
 
     private final String title;
     private final  String director;
-    private final List<Review> reviews;
     private final String userId;
 
-    public AddToCurrentlyWatchingListRequest(String title, String director, List<Review> reviews, String userId) {
+    public AddToCurrentlyWatchingListRequest(String title, String director, String userId) {
         this.title = title;
         this.director = director;
-        this.reviews = reviews;
         this.userId = userId;
     }
 
@@ -27,9 +25,6 @@ public class AddToCurrentlyWatchingListRequest {
         return director;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
 
     public String getUserId() {
         return userId;
@@ -43,7 +38,6 @@ public class AddToCurrentlyWatchingListRequest {
     public static class Builder {
         private String title;
         private String director;
-        private List<Review> reviews;
         private String userId;
 
 
@@ -57,10 +51,6 @@ public class AddToCurrentlyWatchingListRequest {
             return this;
         }
 
-        public Builder withReviews(List<Review> reviews) {
-            this.reviews = reviews;
-            return this;
-        }
 
         public Builder withUserId(String userId) {
             this.userId = userId;
@@ -68,7 +58,7 @@ public class AddToCurrentlyWatchingListRequest {
         }
 
         public AddToCurrentlyWatchingListRequest build() {
-            return new AddToCurrentlyWatchingListRequest(title, director, reviews,userId);
+            return new AddToCurrentlyWatchingListRequest(title, director, userId);
         }
     }
 }

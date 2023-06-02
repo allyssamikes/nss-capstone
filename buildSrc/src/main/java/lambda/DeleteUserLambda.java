@@ -2,9 +2,9 @@ package lambda;
 
 import activity.request.DeleteUserRequest;
 import activity.result.DeleteUserResult;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
-import javax.naming.Context;
 
 public class DeleteUserLambda
         extends LambdaActivityRunner<DeleteUserRequest, DeleteUserResult>

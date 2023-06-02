@@ -1,4 +1,4 @@
-package dynamodb;
+package dependency;
 
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.Regions;

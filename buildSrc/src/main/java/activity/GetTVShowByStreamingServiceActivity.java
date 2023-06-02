@@ -1,17 +1,11 @@
 package activity;
 
-import activity.request.GetBookByGenreRequest;
 import activity.request.GetTVShowByStreamingServiceRequest;
-import activity.result.GetBookByGenreResult;
 import activity.result.GetTVShowByStreamingServiceResult;
 import converters.ModelConverter;
-import dynamodb.BookDao;
 import dynamodb.TVShowDao;
-import dynamodb.models.Book;
-import dynamodb.models.GENRE;
 import dynamodb.models.STREAMING_SERVICE;
 import dynamodb.models.TVShow;
-import models.BookModel;
 import models.TVShowModel;
 
 import javax.inject.Inject;

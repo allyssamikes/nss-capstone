@@ -4,18 +4,27 @@ import activity.request.GetBookRequest;
 import activity.result.GetBookResult;
 import dynamodb.BookDao;
 import dynamodb.models.Book;
-import org.gradle.internal.impldep.org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.openMocks;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class GetBookActivityTest {
 
     @Mock
     private BookDao bookDao;
 
+    @InjectMocks
     private GetBookActivity getBookActivity;
 
     @BeforeEach
     public void setUp() {
-        initMocks(this);
+        openMocks(this);
         getBookActivity = new GetBookActivity(bookDao);
     }
 

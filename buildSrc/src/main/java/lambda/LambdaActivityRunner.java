@@ -1,5 +1,6 @@
 package lambda;
 
+import dependency.DaggerServiceComponent;
 import dependency.ServiceComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

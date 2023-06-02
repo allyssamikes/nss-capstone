@@ -2,7 +2,9 @@ package lambda;
 
 import activity.request.RemoveBookFromToReadListRequest;
 import activity.result.RemoveBookFromToReadListResult;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
+
 
 public class RemoveBookFromToReadListLambda
         extends LambdaActivityRunner<RemoveBookFromToReadListRequest, RemoveBookFromToReadListResult>

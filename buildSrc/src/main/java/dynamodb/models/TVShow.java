@@ -1,6 +1,7 @@
 package dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import utils.UniqueId;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,19 +12,32 @@ public class TVShow {
 
     public static final String GENRE_INDEX = "Genre Index";
     private String title;
+
+    private String director;
     private List<String> mainActors;
     private Integer  lengthInSeasons;
     private Integer  lengthInMinutes;
     private GENRE genre;
     private STREAMING_SERVICE streamingService;
     private List<Review> reviews;
-    private UUID uuid = UUID.randomUUID();
+    private UniqueId uniqueId = new UniqueId();
 
-    private String UUIDAsString = uuid.toString();
-
+    private String UUIDAsString = uniqueId.generate();
     @DynamoDBHashKey(attributeName = "title")
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @DynamoDBAttribute(attributeName = "director")
+    public String getDirector() {
+        return director;
+    }
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     @DynamoDBAttribute(attributeName = "mainActors")
@@ -67,29 +81,10 @@ public class TVShow {
         this.reviews = reviews;
     }
 
-    @DynamoDBTypeConverted(converter = java.util.UUID.class)
-    @DynamoDBAttribute(attributeName = "UUID")
-    public UUID getUUID() {
-        return uuid;
-    }
     @DynamoDBAttribute(attributeName = "UUIDAsString")
     public String getUUIDAsString() {
         return UUIDAsString;
     }
-    @Override
-    public String toString() {
-        return "TVShow{" +
-                "title='" + title + '\'' +
-                ", mainActors=" + mainActors +
-                ", lengthInSeasons=" + lengthInSeasons +
-                ", lengthInMinutes=" + lengthInMinutes +
-                ", genre=" + genre +
-                ", streamingService=" + streamingService +
-                ", reviews=" + reviews +
-                ", UUID='" + UUID + '\'' +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,5 +96,22 @@ public class TVShow {
     @Override
     public int hashCode() {
         return Objects.hash(title);
+    }
+
+
+    @Override
+    public String toString() {
+        return "TVShow{" +
+                "title='" + title + '\'' +
+                ", director='" + director + '\'' +
+                ", mainActors=" + mainActors +
+                ", lengthInSeasons=" + lengthInSeasons +
+                ", lengthInMinutes=" + lengthInMinutes +
+                ", genre=" + genre +
+                ", streamingService=" + streamingService +
+                ", reviews=" + reviews +
+                ", uniqueId=" + uniqueId +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
     }
 }

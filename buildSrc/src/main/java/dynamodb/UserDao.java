@@ -5,10 +5,14 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import dynamodb.models.User;
 import exceptions.UserNotFoundException;
 
+import javax.inject.Singleton;
+import javax.inject.Inject;
 
+@Singleton
 public class UserDao {
     private final DynamoDBMapper dynamoDbMapper;
 
+    @Inject
     public UserDao(DynamoDBMapper dynamoDbMapper) {
         this.dynamoDbMapper = dynamoDbMapper;
     }
@@ -16,7 +20,6 @@ public class UserDao {
         User user = dynamoDbMapper.load(User.class, userId);
         if (null == user) {
             throw new UserNotFoundException();
-            String.format("Could not find User with userID'%s'", userId);
         }
         return user;
     }

@@ -2,9 +2,9 @@ package lambda;
 
 import activity.request.AddBookReviewRequest;
 import activity.result.AddBookReviewResult;
-import org.gradle.process.internal.worker.RequestHandler;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.Context;
 
-import javax.naming.Context;
 
 public class AddBookReviewLambda
         extends LambdaActivityRunner<AddBookReviewRequest, AddBookReviewResult>

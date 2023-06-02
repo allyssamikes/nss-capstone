@@ -1,10 +1,11 @@
 package dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import utils.UniqueId;
+
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @DynamoDBTable(tableName ="books")
 public class Book {
@@ -15,12 +16,12 @@ public class Book {
 
     private Integer  yearPublished;
     private Integer  lengthInPages;
-    private GENRE  genre;
+    private GENRE genre;
     private List<Review> reviews;
 
-    private UUID uuid = UUID.randomUUID();
+    private UniqueId uniqueId = new UniqueId();
 
-    private String UUIDAsString = uuid.toString();
+    private String UUIDAsString = uniqueId.generate();
 
     @DynamoDBHashKey(attributeName = "isbn")
     public String getIsbn() {
@@ -62,29 +63,9 @@ public class Book {
         this.reviews = reviews;
     }
 
-    @DynamoDBTypeConverted(converter = UUID.class)
-    @DynamoDBAttribute(attributeName = "UUID")
-         public UUID getUUID() {
-        return uuid;
-    }
   @DynamoDBAttribute(attributeName = "UUIDAsString")
     public String getUUIDAsString() {
         return UUIDAsString;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", yearPublished=" + yearPublished +
-                ", lengthInPages=" + lengthInPages +
-                ", genre=" + genre +
-                ", reviews=" + reviews +
-                ", UUID='" + UUID + '\'' +
-                '}';
     }
 
     public void setIsbn(String isbn) {
@@ -102,5 +83,19 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(isbn);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", yearPublished=" + yearPublished +
+                ", lengthInPages=" + lengthInPages +
+                ", genre=" + genre +
+                ", reviews=" + reviews +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
     }
 }

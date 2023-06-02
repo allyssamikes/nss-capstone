@@ -10,15 +10,13 @@ import java.util.List;
         private final String isbn;
         private final String title;
         private final String author;
-        private List<Review> reviews;
 
         private final String userId;
 
-        public AddBookToReadListRequest(String isbn, String title, String author, List<Review> reviews, String userId) {
+        public AddBookToReadListRequest(String isbn, String title, String author, String userId) {
             this.isbn = isbn;
             this.title = title;
             this.author = author;
-            this.reviews = reviews;
             this.userId = userId;
         }
         public String getIsbn() {
@@ -33,9 +31,6 @@ import java.util.List;
             return author;
         }
 
-        public List<Review> getReviews() {
-            return reviews;
-        }
 
         public String getUserId() {
             return userId;
@@ -50,7 +45,6 @@ import java.util.List;
             private String isbn;
             private  String title;
             private  String author;
-            private List<Review> reviews;
 
             private String userId;
             public Builder withIsbn(String isbn) {
@@ -68,17 +62,13 @@ import java.util.List;
                 return this;
             }
 
-            public Builder withReviews(List<Review> reviews) {
-                this.reviews = reviews;
-                return this;
-            }
 
             public Builder withUserId(String userId) {
                 this.userId = userId;
                 return this;
             }
             public AddBookToReadListRequest build() {
-                return new AddBookToReadListRequest(isbn, title, author, reviews,userId);
+                return new AddBookToReadListRequest(isbn, title, author, userId);
             }
         }
     }
