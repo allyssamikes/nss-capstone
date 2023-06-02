@@ -10,4 +10,5 @@
 rootProject.name = 'nss-capstone'
 include('app', 'list', 'utilities')
 include 'resources'
+include 'CapstoneLambda'
 
