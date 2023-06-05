@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Capston - Joy Service
+  Capstone - Joy Service
 
 Parameters:
 
@@ -736,7 +736,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /books/{genre}
+            Path: /books
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -758,7 +758,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /tvshows/{genre}
+            Path: /tvshows
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -780,7 +780,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /movies/{genre}
+            Path: /movies
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -847,20 +847,24 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "isbn"
           AttributeType: "S"
+        - AttributeName: "author"
+          AttributeType: "S"
+        - AttributeName: "title"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "isbn"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "books"
       GlobalSecondaryIndexes:
-        - IndexName: "GenreIndex"
+        - IndexName: "AuthorIndex"
           KeySchema:
-            - AttributeName: "genre"
+            - AttributeName: "author"
               KeyType: "HASH"
+            - AttributeName: "title"
+              KeyType: "RANGE"
           Projection:
-            ProjectionType: "INCLUDE"
-            NonKeyAttributes:
-              - ""
+            ProjectionType: "ALL"
 
   TVShowsTable:
     Type: AWS::DynamoDB::Table
@@ -888,7 +892,7 @@ Resources:
         - AttributeName: "UUIDOfEntity"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "movies"
+      TableName: "reviews"
 
   MoviesTable:
     Type: AWS::DynamoDB::Table

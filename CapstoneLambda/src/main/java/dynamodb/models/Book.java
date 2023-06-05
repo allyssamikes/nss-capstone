@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @DynamoDBTable(tableName ="books")
 public class Book {
-    public static final String GENRE_INDEX = "Genre Index";
+    public static final String AUTHOR_INDEX = "AuthorIndex";
     private String isbn;
     private String title;
     private String author;
@@ -29,11 +29,13 @@ public class Book {
     }
 
     @DynamoDBAttribute(attributeName = "title")
+    @DynamoDBIndexRangeKey(globalSecondaryIndexNames = {AUTHOR_INDEX}, attributeName = "title")
     public String getTitle() {
         return title;
     }
 
     @DynamoDBAttribute(attributeName = "author")
+    @DynamoDBIndexHashKey(globalSecondaryIndexNames = {AUTHOR_INDEX}, attributeName = "author")
     public String getAuthor() {
         return author;
     }
@@ -49,7 +51,6 @@ public class Book {
     }
 
     @DynamoDBTypeConvertedEnum
-    @DynamoDBIndexHashKey(globalSecondaryIndexNames = {GENRE_INDEX}, attributeName = "genre")
     public GENRE getGenre() {
         return genre;
     }
