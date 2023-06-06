@@ -1,9 +1,10 @@
 package activity;
 
-import activity.request.GetBookRequest;
-import activity.result.GetBookResult;
-import dynamodb.BookDao;
-import dynamodb.models.Book;
+import capstoneservice.activity.GetBookActivity;
+import capstoneservice.activity.request.GetBookRequest;
+import capstoneservice.activity.result.GetBookResult;
+import capstoneservice.dynamodb.BookDao;
+import capstoneservice.dynamodb.models.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

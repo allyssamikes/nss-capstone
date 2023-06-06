@@ -1,13 +1,14 @@
 package activity;
 
-import activity.request.RemoveFromCurrentlyWatchingRequest;
-import activity.result.RemoveFromCurrentlyWatchingResult;
-import converters.ModelConverter;
-import dynamodb.MovieDao;
-import dynamodb.TVShowDao;
-import dynamodb.UserDao;
-import dynamodb.models.TVShow;
-import dynamodb.models.User;
+import capstoneservice.activity.RemoveFromCurrentlyWatchingActivity;
+import capstoneservice.activity.request.RemoveFromCurrentlyWatchingRequest;
+import capstoneservice.activity.result.RemoveFromCurrentlyWatchingResult;
+import capstoneservice.converters.ModelConverter;
+import capstoneservice.dynamodb.MovieDao;
+import capstoneservice.dynamodb.TVShowDao;
+import capstoneservice.dynamodb.UserDao;
+import capstoneservice.dynamodb.models.TVShow;
+import capstoneservice.dynamodb.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,14 +1,13 @@
 package activity;
 
-import activity.request.GetTVShowByStreamingServiceRequest;
-import activity.result.GetTVShowByStreamingServiceResult;
-import converters.ModelConverter;
-import dynamodb.TVShowDao;
-import dynamodb.UserDao;
-import dynamodb.models.STREAMING_SERVICE;
-import dynamodb.models.TVShow;
-import dynamodb.models.User;
-import models.TVShowModel;
+import capstoneservice.activity.GetTVShowByStreamingServiceActivity;
+import capstoneservice.activity.request.GetTVShowByStreamingServiceRequest;
+import capstoneservice.activity.result.GetTVShowByStreamingServiceResult;
+import capstoneservice.converters.ModelConverter;
+import capstoneservice.dynamodb.TVShowDao;
+import capstoneservice.dynamodb.models.STREAMING_SERVICE;
+import capstoneservice.dynamodb.models.TVShow;
+import capstoneservice.models.TVShowModel;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;

@@ -226,7 +226,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: nss-capstone.CapstoneLambda.src.main.java.lambda.GetBookLambda::handleRequest
+      Handler: capstoneservice.lambda.GetBookLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -248,7 +248,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: CapstoneLambda.src.main.java.lambda.GetMovieLambda::handleRequest
+      Handler: lambda.GetMovieLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64

@@ -1,9 +1,10 @@
 package activity;
 
-import activity.request.UpdateUserRequest;
-import activity.result.UpdateUserResult;
-import dynamodb.UserDao;
-import dynamodb.models.User;
+import capstoneservice.activity.UpdateUserActivity;
+import capstoneservice.activity.request.UpdateUserRequest;
+import capstoneservice.activity.result.UpdateUserResult;
+import capstoneservice.dynamodb.UserDao;
+import capstoneservice.dynamodb.models.User;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
