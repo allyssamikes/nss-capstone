@@ -1,8 +1,11 @@
 package capstoneservice.activity.request;
 
 import capstoneservice.dynamodb.models.GENRE;
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+
+@JsonDeserialize(builder = GetBookByGenreRequest.Builder.class)
 public class GetBookByGenreRequest {
     private final GENRE genre;
 
@@ -26,8 +29,6 @@ public class GetBookByGenreRequest {
     public static Builder builder() {
         return new Builder();
     }
-
-
 
     @JsonPOJOBuilder
     public static class Builder {

@@ -1,7 +1,10 @@
 package capstoneservice.activity.request;
 
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+
+@JsonDeserialize(builder = RemoveFromCurrentlyWatchingRequest.Builder.class)
 public class RemoveFromCurrentlyWatchingRequest {
 
     private final String userId;
@@ -41,7 +44,6 @@ public class RemoveFromCurrentlyWatchingRequest {
     }
 
     @JsonPOJOBuilder
-
        public static class Builder {
         private String userId;
         private String title;

@@ -1,7 +1,9 @@
 package capstoneservice.activity.request;
 
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+@JsonDeserialize(builder = UpdateUserRequest.Builder.class)
 public class UpdateUserRequest {
     private final String userId;
     private final String name;

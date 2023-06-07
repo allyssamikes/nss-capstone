@@ -5,7 +5,7 @@ import capstoneservice.activity.result.AddBookToReadListResult;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 
-public class AddBookToReadListLambda
+public class AddToReadListLambda
         extends LambdaActivityRunner<AddBookToReadListRequest, AddBookToReadListResult>
         implements RequestHandler<AuthenticatedLambdaRequest<AddBookToReadListRequest>, LambdaResponse> {
     @Override

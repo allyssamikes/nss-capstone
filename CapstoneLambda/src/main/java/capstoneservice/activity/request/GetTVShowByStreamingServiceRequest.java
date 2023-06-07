@@ -1,8 +1,11 @@
 package capstoneservice.activity.request;
 
 import capstoneservice.dynamodb.models.STREAMING_SERVICE;
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+
+@JsonDeserialize(builder = GetTVShowByStreamingServiceRequest.Builder.class)
 public class GetTVShowByStreamingServiceRequest {
     private final STREAMING_SERVICE service;
     public GetTVShowByStreamingServiceRequest(STREAMING_SERVICE service) {

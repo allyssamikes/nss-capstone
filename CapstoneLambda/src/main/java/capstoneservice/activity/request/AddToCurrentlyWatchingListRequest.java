@@ -1,7 +1,9 @@
 package capstoneservice.activity.request;
 
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+@JsonDeserialize(builder = AddToCurrentlyWatchingListRequest.Builder.class)
 public class AddToCurrentlyWatchingListRequest {
 
     private final String title;

@@ -1,8 +1,8 @@
 package capstoneservice.activity.request;
 
 import capstoneservice.dynamodb.models.Book;
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.HashSet;
 import java.util.Set;

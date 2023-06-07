@@ -1,7 +1,10 @@
 package capstoneservice.activity.request;
 
-import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+
+@JsonDeserialize(builder = RemoveBookFromCurrentlyReadingRequest.Builder.class)
 public class RemoveBookFromCurrentlyReadingRequest {
 
     private final String isbn;
