@@ -1,9 +1,10 @@
 package activity;
 
-import activity.request.CreateUserRequest;
-import activity.result.CreateUserResult;
-import dynamodb.UserDao;
-import dynamodb.models.User;
+import capstoneservice.activity.CreateUserActivity;
+import capstoneservice.activity.request.CreateUserRequest;
+import capstoneservice.activity.result.CreateUserResult;
+import capstoneservice.dynamodb.UserDao;
+import capstoneservice.dynamodb.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Capston - Joy Service
+  Capstone - Joy Service
 
 Parameters:
 
@@ -226,7 +226,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetBookLambda::handleRequest
+      Handler: capstoneservice.lambda.GetBookLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -248,7 +248,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetMovieLambda::handleRequest
+      Handler: capstoneservice.lambda.GetMovieLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -270,7 +270,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetTVShowLambda::handleRequest
+      Handler: capstoneservice.lambda.GetTVShowLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -282,7 +282,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /tvshows/{title}
+            Path: /tvshows/{title}/{director}
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -292,7 +292,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetCurrentlyReadingListLambda::handleRequest
+      Handler: capstoneservice.lambda.GetCurrentlyReadingListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -314,7 +314,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetCurrentlyWatchingListLambda::handleRequest
+      Handler: capstoneservice.lambda.GetCurrentlyWatchingListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -336,7 +336,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetToReadListLambda::handleRequest
+      Handler: capstoneservice.lambda.GetToReadListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -358,7 +358,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetToWatchListLambda::handleRequest
+      Handler: capstoneservice.lambda.GetToWatchListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -380,7 +380,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetReadListLambda::handleRequest
+      Handler: capstoneservice.lambda.GetReadListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -402,7 +402,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetWatchedListLambda::handleRequest
+      Handler: capstoneservice.lambda.GetWatchedListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -424,7 +424,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.CreateReviewLambda::handleRequest
+      Handler: capstoneservice.lambda.CreateReviewLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -444,7 +444,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.UpdateUserLambda::handleRequest
+      Handler: capstoneservice.lambda.UpdateUserLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -456,7 +456,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /users/{name}
+            Path: /users/{userId}
             Method: put
 
   AddToCurrentlyReadingListLambda:
@@ -464,7 +464,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddToCurrentlyReadingListLambda::handleRequest
+      Handler: capstoneservice.lambda.AddToCurrentlyReadingListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -484,7 +484,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddToCurrentlyWatchingListLambda::handleRequest
+      Handler: capstoneservice.lambda.AddToCurrentlyWatchingListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -504,7 +504,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddToToReadListLambda::handleRequest
+      Handler: capstoneservice.lambda.AddToToReadListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -524,7 +524,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddToToWatchListLambda::handleRequest
+      Handler: capstoneservice.lambda.AddToToWatchListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -544,7 +544,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddToWatchedListLambda::handleRequest
+      Handler: capstoneservice.lambda.AddToWatchedListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -564,7 +564,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddToReadListLambda::handleRequest
+      Handler: capstoneservice.lambda.AddToReadListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -584,7 +584,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddBookReviewLambda::handleRequest
+      Handler: capstoneservice.lambda.AddBookReviewLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -604,7 +604,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddMovieReviewLambda::handleRequest
+      Handler: capstoneservice.lambda.AddMovieReviewLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -624,7 +624,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.AddTVShowReviewLambda::handleRequest
+      Handler: capstoneservice.lambda.AddTVShowReviewLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -644,7 +644,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.RemoveFromToReadListLambda::handleRequest
+      Handler: capstoneservice.lambda.RemoveFromToReadListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -664,7 +664,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.RemoveFromCurrentlyReadingListLambda::handleRequest
+      Handler: capstoneservice.lambda.RemoveFromCurrentlyReadingListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -684,7 +684,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.RemoveFromCurrentlyWatchingListLambda::handleRequest
+      Handler: capstoneservice.ambda.RemoveFromCurrentlyWatchingListLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -704,7 +704,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.RemoveFromToReadWatchLambda::handleRequest
+      Handler: capstoneservice.lambda.RemoveFromToReadWatchLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -724,7 +724,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetBookByGenreLambda::handleRequest
+      Handler: capstoneservice.lambda.GetBookByGenreLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -736,7 +736,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /books/{genre}
+            Path: /books
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -746,7 +746,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetTVShowByStreamingServiceLambda::handleRequest
+      Handler: capstoneservice.lambda.GetTVShowByStreamingServiceLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -758,7 +758,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /tvshows/{genre}
+            Path: /tvshows
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -768,7 +768,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.GetMovieByStreamingServiceLambda::handleRequest
+      Handler: capstoneservice.lambda.GetMovieByStreamingServiceLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -780,7 +780,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /movies/{genre}
+            Path: /movies
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -790,7 +790,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.CreateUserLambda::handleRequest
+      Handler: capstoneservice.lambda.CreateUserLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -804,13 +804,15 @@ Resources:
           Properties:
             Path: /users
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   DeleteUserLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: buildSrc.src.main.java.lambda.DeleteUserLambda::handleRequest
+      Handler: capstoneservice.lambda.DeleteUserLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -847,20 +849,24 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "isbn"
           AttributeType: "S"
+        - AttributeName: "author"
+          AttributeType: "S"
+        - AttributeName: "title"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "isbn"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "books"
       GlobalSecondaryIndexes:
-        - IndexName: "GenreIndex"
+        - IndexName: "AuthorIndex"
           KeySchema:
-            - AttributeName: "genre"
+            - AttributeName: "author"
               KeyType: "HASH"
+            - AttributeName: "title"
+              KeyType: "RANGE"
           Projection:
-            ProjectionType: "INCLUDE"
-            NonKeyAttributes:
-              - ""
+            ProjectionType: "ALL"
 
   TVShowsTable:
     Type: AWS::DynamoDB::Table
@@ -868,9 +874,13 @@ Resources:
       AttributeDefinitions:
        - AttributeName: "title"
          AttributeType: "S"
+       - AttributeName: "director"
+         AttributeType: "S"
       KeySchema:
         - AttributeName: "title"
           KeyType: "HASH"
+        - AttributeName: "director"
+          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "tvshows"
 
@@ -888,7 +898,7 @@ Resources:
         - AttributeName: "UUIDOfEntity"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "movies"
+      TableName: "reviews"
 
   MoviesTable:
     Type: AWS::DynamoDB::Table

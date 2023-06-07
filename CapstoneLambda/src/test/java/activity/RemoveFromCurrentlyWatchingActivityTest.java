@@ -1,13 +1,14 @@
 package activity;
 
-import activity.request.RemoveFromCurrentlyWatchingRequest;
-import activity.result.RemoveFromCurrentlyWatchingResult;
-import converters.ModelConverter;
-import dynamodb.MovieDao;
-import dynamodb.TVShowDao;
-import dynamodb.UserDao;
-import dynamodb.models.TVShow;
-import dynamodb.models.User;
+import capstoneservice.activity.RemoveFromCurrentlyWatchingActivity;
+import capstoneservice.activity.request.RemoveFromCurrentlyWatchingRequest;
+import capstoneservice.activity.result.RemoveFromCurrentlyWatchingResult;
+import capstoneservice.converters.ModelConverter;
+import capstoneservice.dynamodb.MovieDao;
+import capstoneservice.dynamodb.TVShowDao;
+import capstoneservice.dynamodb.UserDao;
+import capstoneservice.dynamodb.models.TVShow;
+import capstoneservice.dynamodb.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -50,11 +51,12 @@ public class RemoveFromCurrentlyWatchingActivityTest {
         when(userDao.getUser("abcd")).thenReturn(user);
         TVShow tvShow = new TVShow();
         tvShow.setTitle("Friends");
-        when(tvShowDao.getTVShow("Friends")).thenReturn(tvShow);
+        tvShow.setDirector("James-Burrows");
+        when(tvShowDao.getTVShow("Friends", "James-Burrows")).thenReturn(tvShow);
         TVShow show = new TVShow();
         show.setTitle("The Office");
-        show.setDirector("Greg Daniels");
-        when(tvShowDao.getTVShow("The Office")).thenReturn(show);
+        show.setDirector("Ken-Kwapis");
+        when(tvShowDao.getTVShow("The Office", "Ken-Kwapis")).thenReturn(show);
         Set<Object> shows = new HashSet<>();
         shows.add(tvShow);
         shows.add(show);
@@ -67,7 +69,7 @@ public class RemoveFromCurrentlyWatchingActivityTest {
         RemoveFromCurrentlyWatchingRequest request = RemoveFromCurrentlyWatchingRequest.builder()
                 .withUserId("abcd")
                 .withTitle("The Office")
-                .withDirector("Greg Daniels")
+                .withDirector("Ken-Kwapis")
                 .build();
 
 

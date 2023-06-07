@@ -1,9 +1,10 @@
 package activity;
 
-import activity.request.DeleteUserRequest;
-import activity.result.DeleteUserResult;
-import dynamodb.UserDao;
-import dynamodb.models.User;
+import capstoneservice.activity.DeleteUserActivity;
+import capstoneservice.activity.request.DeleteUserRequest;
+import capstoneservice.activity.result.DeleteUserResult;
+import capstoneservice.dynamodb.UserDao;
+import capstoneservice.dynamodb.models.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

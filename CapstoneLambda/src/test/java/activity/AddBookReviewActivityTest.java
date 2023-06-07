@@ -1,12 +1,14 @@
 package activity;
 
-import activity.request.AddBookReviewRequest;
-import activity.result.AddBookReviewResult;
-import converters.ModelConverter;
-import dynamodb.*;
-import dynamodb.models.Book;
-import dynamodb.models.Review;
-import models.ReviewModel;
+import capstoneservice.activity.AddBookReviewActivity;
+import capstoneservice.activity.request.AddBookReviewRequest;
+import capstoneservice.dynamodb.BookDao;
+import capstoneservice.dynamodb.ReviewDao;
+import capstoneservice.activity.result.AddBookReviewResult;
+import capstoneservice.converters.ModelConverter;
+import capstoneservice.dynamodb.models.Book;
+import capstoneservice.dynamodb.models.Review;
+import capstoneservice.models.ReviewModel;
 
 import org.junit.jupiter.api.BeforeEach;
 

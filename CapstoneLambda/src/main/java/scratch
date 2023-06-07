@@ -1,0 +1,35 @@
+
+
+CREATE USER
+curl  -X POST http://localhost:3000/users \
+    -H "Content-Type: application/json"  \
+    -d '{"userId":"allyssamikes","name":"Allyssa Mikes"}'
+    unable to deserialize
+
+DELETE USER
+curl DELETE http://localhost:3000/users/allyssamikes
+     missing aithentication
+
+CREATE REVIEW
+curl -X POST http://localhost:3000/reviews \
+     -H "Content-Type: application/json" \
+    -d '{"userId":"allyssamikes","review":"I really liked this. Great story telling","rating":10,"UUIDOfEntity":"64be5fd0-f21e-4dc8-92c0-ab360a84b67c"}'
+    unable to deserialize
+
+
+    curl http://localhost:3000/users/allyssamikes/currentlyReading
+
+
+    Update USER
+    curl -X PUT http://localhost:3000/users/allyssamikes \
+     -H "Content-Type: application/json" \
+     -d  '{"name":"Allyssa S Mikes"}'
+        unable to deserialize
+
+         curl -X POST http://localhost:3000/users/allyssamikes/readList \
+             -H "Content-Type: application/json" \
+             -d  '{"isbn":"978-0-525-55948-1","title":"The Midnight Library"}'
+
+               curl -X POST http://localhost:3000/users/allyssamikes/toWatchList \
+                          -H "Content-Type: application/json" \
+                          -d  '{"userId":"allyssamikes","title":"Friends","director":"James-Burrows"}'

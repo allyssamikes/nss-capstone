@@ -1,9 +1,10 @@
 package activity;
 
-import activity.request.CreateReviewRequest;
-import activity.result.CreateReviewResult;
-import dynamodb.ReviewDao;
-import dynamodb.models.Review;
+import capstoneservice.activity.CreateReviewActivity;
+import capstoneservice.activity.request.CreateReviewRequest;
+import capstoneservice.activity.result.CreateReviewResult;
+import capstoneservice.dynamodb.ReviewDao;
+import capstoneservice.dynamodb.models.Review;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

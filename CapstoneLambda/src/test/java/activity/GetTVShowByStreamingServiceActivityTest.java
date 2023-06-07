@@ -1,14 +1,13 @@
 package activity;
 
-import activity.request.GetTVShowByStreamingServiceRequest;
-import activity.result.GetTVShowByStreamingServiceResult;
-import converters.ModelConverter;
-import dynamodb.TVShowDao;
-import dynamodb.UserDao;
-import dynamodb.models.STREAMING_SERVICE;
-import dynamodb.models.TVShow;
-import dynamodb.models.User;
-import models.TVShowModel;
+import capstoneservice.activity.GetTVShowByStreamingServiceActivity;
+import capstoneservice.activity.request.GetTVShowByStreamingServiceRequest;
+import capstoneservice.activity.result.GetTVShowByStreamingServiceResult;
+import capstoneservice.converters.ModelConverter;
+import capstoneservice.dynamodb.TVShowDao;
+import capstoneservice.dynamodb.models.STREAMING_SERVICE;
+import capstoneservice.dynamodb.models.TVShow;
+import capstoneservice.models.TVShowModel;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
@@ -40,12 +39,14 @@ public class GetTVShowByStreamingServiceActivityTest {
             // GIVEN
             TVShow tvShow = new TVShow();
             tvShow.setTitle("Friends");
+            tvShow.setDirector("James-Burrows");
             tvShow.setStreamingService(STREAMING_SERVICE.NETFLIX);
-            when(tvShowDao.getTVShow("Friends")).thenReturn(tvShow);
+            when(tvShowDao.getTVShow("Friends", "James-Burrows")).thenReturn(tvShow);
             TVShow show = new TVShow();
             show.setTitle("The Office");
+            show.setDirector("Ken-Kwapis");
             tvShow.setStreamingService(STREAMING_SERVICE.HULU);
-            when(tvShowDao.getTVShow("The Office")).thenReturn(show);
+            when(tvShowDao.getTVShow("The Office", "Ken-Kwapis")).thenReturn(show);
 
             List<TVShow> shows = new ArrayList<>();
             shows.add(tvShow);
