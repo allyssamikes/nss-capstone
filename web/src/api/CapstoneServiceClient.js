@@ -3,14 +3,14 @@ import BindingClass from "../util/bindingClass";
 import Authenticator from "./authenticator";
 
 /**
- * Client to call the MusicPlaylistService.
+ * Client to call the CapstoneService.
  *
  * This could be a great place to explore Mixins. Currently the client is being loaded multiple times on each page,
  * which we could avoid using inheritance or Mixins.
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins
  * https://javascript.info/mixins
   */
-export default class MusicPlaylistClient extends BindingClass {
+export default class CapstoneServiceClient extends BindingClass {
 
     constructor(props = {}) {
         super();

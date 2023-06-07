@@ -15,7 +15,7 @@ export default class Header extends BindingClass {
 
         this.bindClassMethods(methodsToBind, this);
 
-        this.client = new MusicPlaylistClient();
+        this.client = new CapstoneServiceClient();
 
     }
 

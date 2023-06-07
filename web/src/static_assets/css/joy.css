@@ -1,16 +1,16 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #cce6ff;
-    --secondary-color: #4da6ff;
-    --tertiary-color: #0039e6;
-    --error-color: #ff3377;
+    --primary-color: #9CCOE7;
+    --secondary-color: #9CCOE7;
+    --tertiary-color: #E6E6FA;
+    --error-color: #e7e0ed;
 }
 
 .background {
-    background-color: #f2f2f2;
+    background-color: #FFFAF0;
     margin: 0;
     counter-reset: section;
-    font-family: "Arial Narrow",Arial,sans-serif;
+    font-family: "GFS Didot", Georgia, san-serif;
 }
 
 .header {
@@ -48,8 +48,8 @@
 }
 
 .card {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
     margin: 20px;
     padding: 10px 20px;
 }
