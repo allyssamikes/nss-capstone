@@ -32,6 +32,7 @@ public class AddTVShowReviewActivity {
             final AddTVShowReviewRequest addTVShowReviewRequest) {
 
         String title= addTVShowReviewRequest.getTitle();
+        String director = addTVShowReviewRequest.getDirector();
         String userId = addTVShowReviewRequest.getUserId();
         String UUID = addTVShowReviewRequest.getUUIDOfEntity();
 
@@ -45,7 +46,7 @@ public class AddTVShowReviewActivity {
 
         TVShow tvShow;
         try {
-            tvShow = tvShowDao.getTVShow(title);
+            tvShow = tvShowDao.getTVShow(title, director);
         } catch (NullPointerException ex) {
             throw new TVShowNotFoundException("TVShow is not in our database.");
         }

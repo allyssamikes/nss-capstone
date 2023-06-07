@@ -37,6 +37,7 @@ public class RemoveFromToWatchListActivity {
             final RemoveFromToWatchListRequest removeFromToWatchListRequest) {
 
         String userId = removeFromToWatchListRequest.getUserId();
+        String director = removeFromToWatchListRequest.getDirector();
         String title = removeFromToWatchListRequest.getTitle();
         User user;
 
@@ -48,15 +49,13 @@ public class RemoveFromToWatchListActivity {
 
         TVShow tvShow;
         try {
-            tvShow = tvShowDao.getTVShow(title);
+            tvShow = tvShowDao.getTVShow(title, director);
         } catch (NullPointerException ex) {
             throw new TVShowNotFoundException("TVShow is not in our database.");
         }
 
         Movie movie;
-        String director;
         try {
-            director = removeFromToWatchListRequest.getDirector();
             movie = movieDao.getMovie(title, director);
         } catch (NullPointerException ex) {
             throw new MovieNotFoundException("This is a TV Show");

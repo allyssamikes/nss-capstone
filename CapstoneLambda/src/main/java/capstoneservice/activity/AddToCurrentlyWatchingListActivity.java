@@ -39,6 +39,7 @@ public class AddToCurrentlyWatchingListActivity {
             final AddToCurrentlyWatchingListRequest addToCurrentlyWatchingListRequest) {
 
         String title =addToCurrentlyWatchingListRequest.getTitle();
+        String director = addToCurrentlyWatchingListRequest.getDirector();
         String userId = addToCurrentlyWatchingListRequest.getUserId();
         User theUser;
 
@@ -50,15 +51,13 @@ public class AddToCurrentlyWatchingListActivity {
 
         TVShow tvShow;
         try {
-            tvShow = tvShowDao.getTVShow(title);
+            tvShow = tvShowDao.getTVShow(title, director);
         } catch (NullPointerException ex) {
             throw new TVShowNotFoundException("TVShow is not in our database.");
         }
 
         Movie movie;
-        String director;
         try {
-            director = addToCurrentlyWatchingListRequest.getDirector();
             movie = movieDao.getMovie(title, director);
         } catch (NullPointerException ex) {
             throw new MovieNotFoundException("This is a TV Show");

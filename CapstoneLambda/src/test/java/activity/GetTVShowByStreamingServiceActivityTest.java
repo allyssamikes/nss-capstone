@@ -39,12 +39,14 @@ public class GetTVShowByStreamingServiceActivityTest {
             // GIVEN
             TVShow tvShow = new TVShow();
             tvShow.setTitle("Friends");
+            tvShow.setDirector("James-Burrows");
             tvShow.setStreamingService(STREAMING_SERVICE.NETFLIX);
-            when(tvShowDao.getTVShow("Friends")).thenReturn(tvShow);
+            when(tvShowDao.getTVShow("Friends", "James-Burrows")).thenReturn(tvShow);
             TVShow show = new TVShow();
             show.setTitle("The Office");
+            show.setDirector("Ken-Kwapis");
             tvShow.setStreamingService(STREAMING_SERVICE.HULU);
-            when(tvShowDao.getTVShow("The Office")).thenReturn(show);
+            when(tvShowDao.getTVShow("The Office", "Ken-Kwapis")).thenReturn(show);
 
             List<TVShow> shows = new ArrayList<>();
             shows.add(tvShow);

@@ -20,7 +20,8 @@ public class GetTVShowActivity {
 
     public GetTVShowResult handleRequest(final GetTVShowRequest getTVShowRequest) {
         String title = getTVShowRequest.getTitle();
-        TVShow tvShow = tvShowDao.getTVShow(title);
+        String director = getTVShowRequest.getDirector();
+        TVShow tvShow = tvShowDao.getTVShow(title, director);
         TVShowModel tvShowModel = new ModelConverter().toTVShowModel(tvShow);
 
         return GetTVShowResult.builder()

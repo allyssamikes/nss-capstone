@@ -1,11 +1,14 @@
 package capstoneservice.activity.request;
 
 import capstoneservice.dynamodb.models.Book;
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.util.HashSet;
 import java.util.Set;
 
+
+@JsonDeserialize(builder = CreateUserRequest.Builder.class)
 public class CreateUserRequest {
 
     private final String userId;
@@ -100,8 +103,8 @@ public class CreateUserRequest {
             return this;
         }
 
-        public Builder withToReadList(Set<Book> currentlyReading) {
-            this.currentlyReading = currentlyReading;
+        public Builder withToReadList(Set<Book> toReadList) {
+            this.toReadList = toReadList;
             return this;
         }
 
@@ -124,7 +127,6 @@ public class CreateUserRequest {
             this.currentlyWatching = currentlyWatching;
             return this;
         }
-
 
         public Builder withWatchedList(Set<Object> watchedList) {
             this.watchedList = watchedList;

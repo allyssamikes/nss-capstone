@@ -38,6 +38,7 @@ public class AddToToWatchListActivity {
             final AddToToWatchListRequest addToToWatchListRequest) {
 
         String title = addToToWatchListRequest.getTitle();
+        String director = addToToWatchListRequest.getDirector();
         String userId = addToToWatchListRequest.getUserId();
         User theUser;
 
@@ -49,15 +50,13 @@ public class AddToToWatchListActivity {
 
         TVShow tvShow;
         try {
-            tvShow = tvShowDao.getTVShow(title);
+            tvShow = tvShowDao.getTVShow(title, director);
         } catch (NullPointerException ex) {
             throw new TVShowNotFoundException("TVShow is not in our database.");
         }
 
         Movie movie;
-        String director;
         try {
-            director = addToToWatchListRequest.getDirector();
             movie = movieDao.getMovie(title, director);
         } catch (NullPointerException ex) {
             throw new MovieNotFoundException("This is a TV Show");

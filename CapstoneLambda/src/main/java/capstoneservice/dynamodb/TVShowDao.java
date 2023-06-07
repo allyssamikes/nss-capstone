@@ -30,8 +30,8 @@ public class TVShowDao {
         this.metricsPublisher = metricsPublisher;
     }
 
-    public TVShow getTVShow(String title) {
-        TVShow tvShow = dynamoDbMapper.load(TVShow.class, title);
+    public TVShow getTVShow(String title, String director) {
+        TVShow tvShow = dynamoDbMapper.load(TVShow.class, title, director);
         if (null == tvShow) {
             metricsPublisher.addCount(MetricsConstants.GETTVSHOW_TVSHOWNOTFOUND_COUNT, 1);
             throw new TVShowNotFoundException();

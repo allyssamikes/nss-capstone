@@ -66,23 +66,25 @@ public class TVShowModel {
         return UUIDAsString;
     }
 
-    //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TVShowModel that = (TVShowModel) o;
-        return Objects.equals(title, that.title);
+        return Objects.equals(title, that.title) && Objects.equals(director, that.director);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title);
+        return Objects.hash(title, director);
     }
+
+
+    //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
 
     public static class Builder {
         private String title;

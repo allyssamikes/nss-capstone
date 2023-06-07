@@ -39,6 +39,7 @@ public class RemoveFromCurrentlyWatchingActivity {
             final RemoveFromCurrentlyWatchingRequest removeFromCurrentlyWatchingRequest) {
 
         String userId = removeFromCurrentlyWatchingRequest.getUserId();
+        String director = removeFromCurrentlyWatchingRequest.getDirector();
         String title = removeFromCurrentlyWatchingRequest.getTitle();
         User user;
 
@@ -50,15 +51,13 @@ public class RemoveFromCurrentlyWatchingActivity {
 
         TVShow tvShow;
         try {
-            tvShow = tvShowDao.getTVShow(title);
+            tvShow = tvShowDao.getTVShow(title, director);
         } catch (NullPointerException ex) {
             throw new TVShowNotFoundException("TVShow is not in our database.");
         }
 
         Movie movie;
-        String director;
         try {
-            director = removeFromCurrentlyWatchingRequest.getDirector();
             movie = movieDao.getMovie(title, director);
         } catch (NullPointerException ex) {
             throw new MovieNotFoundException("This is a TV Show");

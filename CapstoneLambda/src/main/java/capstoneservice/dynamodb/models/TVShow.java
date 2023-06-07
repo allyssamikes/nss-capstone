@@ -31,7 +31,7 @@ public class TVShow {
         this.title = title;
     }
 
-    @DynamoDBAttribute(attributeName = "director")
+    @DynamoDBRangeKey(attributeName = "director")
     public String getDirector() {
         return director;
     }

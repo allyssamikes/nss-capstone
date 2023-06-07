@@ -8,10 +8,13 @@ public class AddTVShowReviewRequest {
 
     private final String userId;
 
+    private final String director;
+
     private final String UUIDOfEntity;
 
-    public AddTVShowReviewRequest(String title,String userId, String UUIDOfEntity) {
+    public AddTVShowReviewRequest(String title, String director, String userId, String UUIDOfEntity) {
         this.title = title;
+        this.director = director;
         this.userId = userId;
         this.UUIDOfEntity = UUIDOfEntity;
     }
@@ -19,6 +22,8 @@ public class AddTVShowReviewRequest {
     public String getTitle() {
         return title;
     }
+
+    public String getDirector() {return director;}
 
     public String getUserId() {
         return userId;
@@ -33,6 +38,7 @@ public class AddTVShowReviewRequest {
     public String toString() {
         return "AddTVShowReviewRequest{" +
                 "title='" + title + '\'' +
+                "director=" + director + '\'' +
                 ", userId='" + userId + '\'' +
                 ", UUIDOfEntity='" + UUIDOfEntity + '\'' +
                 '}';
@@ -47,6 +53,7 @@ public class AddTVShowReviewRequest {
     public static class Builder {
 
         private String title;
+        private String director;
 
         private String userId;
 
@@ -54,6 +61,10 @@ public class AddTVShowReviewRequest {
 
         public Builder withTitle(String title) {
             this.title = title;
+            return this;
+        }
+        public Builder withDirector(String director) {
+            this.director = director;
             return this;
         }
 
@@ -68,7 +79,7 @@ public class AddTVShowReviewRequest {
         }
 
         public AddTVShowReviewRequest build() {
-            return new AddTVShowReviewRequest(title, userId, UUIDOfEntity);
+            return new AddTVShowReviewRequest(title, director, userId, UUIDOfEntity);
         }
     }
 }

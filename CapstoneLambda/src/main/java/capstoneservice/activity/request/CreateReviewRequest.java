@@ -1,7 +1,9 @@
 package capstoneservice.activity.request;
 
+import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.gradle.internal.impldep.com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+@JsonDeserialize(builder = CreateReviewRequest.Builder.class)
 public class CreateReviewRequest {
 
     private final String userId;
