@@ -126,7 +126,7 @@ Resources:
     Properties:
       DistributionConfig:
         Comment: "Cloudfront distribution for serverless website"
-        DefaultRootObject: "index.html"
+        DefaultRootObject: "vacanzaindex.html"
         Enabled: true
         HttpVersion: http2
         PriceClass: PriceClass_100
@@ -438,6 +438,8 @@ Resources:
           Properties:
             Path: /reviews
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   UpdateUserLambda:
     Type: AWS::Serverless::Function
@@ -458,6 +460,8 @@ Resources:
           Properties:
             Path: /users/{userId}
             Method: put
+            Auth:
+              Authorizer: 'NONE'
 
   AddToCurrentlyReadingListLambda:
     Type: AWS::Serverless::Function
@@ -478,6 +482,8 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyReading
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddToCurrentlyWatchingListLambda:
     Type: AWS::Serverless::Function
@@ -498,6 +504,8 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyWatching
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddToToReadListLambda:
     Type: AWS::Serverless::Function
@@ -518,6 +526,8 @@ Resources:
           Properties:
             Path: /users/{userId}/toReadList
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddToToWatchListLambda:
     Type: AWS::Serverless::Function
@@ -538,6 +548,8 @@ Resources:
           Properties:
             Path: /users/{userId}/toWatchList
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddToWatchedListLambda:
     Type: AWS::Serverless::Function
@@ -558,6 +570,8 @@ Resources:
           Properties:
             Path: /users/{userId}/watchedList
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddToReadListLambda:
     Type: AWS::Serverless::Function
@@ -578,6 +592,8 @@ Resources:
           Properties:
             Path: /users/{userId}/readList
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddBookReviewLambda:
     Type: AWS::Serverless::Function
@@ -598,6 +614,8 @@ Resources:
           Properties:
             Path: /books/{isbn}/reviews
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddMovieReviewLambda:
     Type: AWS::Serverless::Function
@@ -618,6 +636,8 @@ Resources:
           Properties:
             Path: /movies/{title}/{director}/reviews
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddTVShowReviewLambda:
     Type: AWS::Serverless::Function
@@ -636,8 +656,10 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /tvshows/{title}/reviews
+            Path: /tvshows/{title}/{director}/reviews
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   RemoveFromToReadListLambda:
     Type: AWS::Serverless::Function
@@ -658,6 +680,8 @@ Resources:
           Properties:
             Path: /users/{userId}/toReadList
             Method: put
+            Auth:
+              Authorizer: 'NONE'
 
   RemoveFromCurrentlyReadingListLambda:
     Type: AWS::Serverless::Function
@@ -678,6 +702,8 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyReading
             Method: put
+            Auth:
+              Authorizer: 'NONE'
 
   RemoveFromCurrentlyWatchingListLambda:
     Type: AWS::Serverless::Function
@@ -698,6 +724,8 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyWatching
             Method: put
+            Auth:
+              Authorizer: 'NONE'
 
   RemoveFromToWatchListLambda:
     Type: AWS::Serverless::Function
@@ -718,6 +746,8 @@ Resources:
           Properties:
             Path: /users/{userId}/toWatchList
             Method: put
+            Auth:
+              Authorizer: 'NONE'
 
   GetBookByGenreLambda:
     Type: AWS::Serverless::Function
@@ -826,6 +856,8 @@ Resources:
           Properties:
             Path: /users/{userId}
             Method: delete
+            Auth:
+              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration

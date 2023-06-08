@@ -2,21 +2,22 @@ package capstoneservice.models;
 
 import capstoneservice.dynamodb.models.Book;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 public class UserModel {
     private String userId;
     private String name;
-    private Set<Book> toReadList;
-    private Set<Book> currentlyReading;
-    private Set<Book> readList;
-    private Set<Object> toWatchList;
-    private Set<Object> currentlyWatching;
-    private Set<Object> watchedList;
+    private List<Book> toReadList;
+    private List<Book> currentlyReading;
+    private List<Book> readList;
+    private List<Object> toWatchList;
+    private List<Object> currentlyWatching;
+    private List<Object> watchedList;
 
 
-    public UserModel(String userId, String name, Set<Book> toReadList, Set<Book> currentlyReading, Set<Book> readList, Set<Object> toWatchList, Set<Object> currentlyWatching, Set<Object> watchedList) {
+    public UserModel(String userId, String name, List<Book> toReadList, List<Book> currentlyReading, List<Book> readList, List<Object> toWatchList, List<Object> currentlyWatching, List<Object> watchedList) {
         this.userId = userId;
         this.name = name;
         this.toReadList = toReadList;
@@ -35,27 +36,27 @@ public class UserModel {
         return name;
     }
 
-    public Set<Book> getToReadList() {
+    public List<Book> getToReadList() {
         return toReadList;
     }
 
-    public Set<Book> getCurrentlyReading() {
+    public List<Book> getCurrentlyReading() {
         return currentlyReading;
     }
 
-    public Set<Book> getReadList() {
+    public List<Book> getReadList() {
         return readList;
     }
 
-    public Set<Object> getToWatchList() {
+    public List<Object> getToWatchList() {
         return toWatchList;
     }
 
-    public Set<Object> getCurrentlyWatching() {
+    public List<Object> getCurrentlyWatching() {
         return currentlyWatching;
     }
 
-    public Set<Object> getWatchedList() {
+    public List<Object> getWatchedList() {
         return watchedList;
     }
 
@@ -80,12 +81,12 @@ public class UserModel {
     public static class Builder {
         private String userId;
         private String name;
-        private Set<Book> toReadList;
-        private Set<Book> currentlyReading;
-        private Set<Book> readList;
-        private Set<Object> toWatchList;
-        private Set<Object> currentlyWatching;
-        private Set<Object> watchedList;
+        private List<Book> toReadList;
+        private List<Book> currentlyReading;
+        private List<Book> readList;
+        private List<Object> toWatchList;
+        private List<Object> currentlyWatching;
+        private List<Object> watchedList;
 
         public Builder withUserId(String userId) {
             this.userId = userId;
@@ -97,32 +98,32 @@ public class UserModel {
             return this;
         }
 
-        public Builder withToReadList(Set<Book> toReadList) {
+        public Builder withToReadList(List<Book> toReadList) {
             this.toReadList = toReadList;
             return this;
         }
 
-        public Builder withCurrentlyReadingList(Set<Book> currentlyReading) {
+        public Builder withCurrentlyReadingList(List<Book> currentlyReading) {
             this.currentlyReading = currentlyReading;
             return this;
         }
 
-        public Builder withReadList(Set<Book> readList) {
+        public Builder withReadList(List<Book> readList) {
             this.readList = readList;
             return this;
         }
 
-        public Builder withToWatchList(Set<Object> toWatchList) {
+        public Builder withToWatchList(List<Object> toWatchList) {
             this.toWatchList = toWatchList;
             return this;
         }
 
-        public Builder withCurrentlyWatchingList(Set<Object> currentlyWatching) {
+        public Builder withCurrentlyWatchingList(List<Object> currentlyWatching) {
             this.currentlyWatching = currentlyWatching;
             return this;
         }
 
-        public Builder withWatchedList(Set<Object> watchedList) {
+        public Builder withWatchedList(List<Object> watchedList) {
             this.watchedList = watchedList;
             return this;
         }

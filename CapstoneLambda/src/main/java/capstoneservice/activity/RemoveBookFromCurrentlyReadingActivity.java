@@ -12,6 +12,7 @@ import capstoneservice.exceptions.UserNotFoundException;
 import capstoneservice.models.BookModel;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,12 +49,12 @@ public class RemoveBookFromCurrentlyReadingActivity {
         } catch (NullPointerException ex) {
             throw new BookNotFoundException("Book is not in our database.");
         }
-        Set<Book> bookList;
+        List<Book> bookList;
 
         if (user.getToReadList() == null) {
             throw new BookNotFoundException("This list has no books.");
         } else  {
-            bookList = new HashSet<>(user.getCurrentlyReading()) ;
+            bookList = new ArrayList<>(user.getCurrentlyReading()) ;
 
         }
         if (bookList.contains(book)) {

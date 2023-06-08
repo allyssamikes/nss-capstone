@@ -50,43 +50,42 @@ public class AddToWatchedListActivity {
             throw new UserNotFoundException("User does not exist.");
         }
 
-        TVShow tvShow;
+        TVShow tvShow = null;
+        Movie movie;
         try {
             tvShow = tvShowDao.getTVShow(title, director);
         } catch (NullPointerException ex) {
-            throw new TVShowNotFoundException("TVShow is not in our database.");
-        }
-
-        Movie movie;
-        try {
             movie = movieDao.getMovie(title, director);
-        } catch (NullPointerException ex) {
-            throw new MovieNotFoundException("This is a TV Show");
-            // can I use Optionals here?
         }
 
-        Set<Object> watchList;
+//        Movie movie;
+//        try {
+//            movie = movieDao.getMovie(title, director);
+//        } catch (NullPointerException ex) {
+//            throw new MovieNotFoundException("This is a TV Show");
+//            // can I use Optionals here?
+//        }
+
+        List<Object> watchList;
 
         if (theUser.getWatchedList() == null) {
-            watchList = new HashSet<>();
+            watchList = new ArrayList<>();
         } else  {
-            watchList = new HashSet<>(theUser.getWatchedList());
+            watchList = new ArrayList<>(theUser.getWatchedList());
         }
 
 
         List<Object> models = new ArrayList<>();
         for(Object o : watchList) {
             if(o.getClass().equals(tvShow.getClass())) {
-                TVShow show;
-                show = (TVShow) o;
-                watchList.add(show);
-                TVShowModel tVModel = new ModelConverter().toTVShowModel(show);
+                tvShow = (TVShow) o;
+                watchList.add(tvShow);
+                TVShowModel tVModel = new ModelConverter().toTVShowModel(tvShow);
                 models.add(tVModel);
             } else {
-                Movie theMovie;
-                theMovie = (Movie) o;
-                watchList.add(theMovie);
-                MovieModel movieModel = new ModelConverter().toMovieModel(theMovie);
+                movie = (Movie) o;
+                watchList.add(movie);
+                MovieModel movieModel = new ModelConverter().toMovieModel(movie);
                 models.add(movieModel);
             }
         }

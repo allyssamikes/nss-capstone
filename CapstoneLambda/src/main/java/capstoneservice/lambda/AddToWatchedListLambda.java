@@ -11,15 +11,14 @@ public class AddToWatchedListLambda
         implements RequestHandler<AuthenticatedLambdaRequest<AddToWatchedListRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<AddToWatchedListRequest> input, Context context) {
+        AddToWatchedListRequest unauthenticatedRequest = input.fromBody(AddToWatchedListRequest.class);
         return super.runActivity(
                 () -> {
-                    AddToWatchedListRequest unauthenticatedRequest = input.fromBody(AddToWatchedListRequest.class);
-                    return input.fromUserClaims(claims ->
-                            AddToWatchedListRequest.builder()
+                           return AddToWatchedListRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withTitle(unauthenticatedRequest.getTitle())
                                     .withDirector(unauthenticatedRequest.getDirector())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddToWatchedListActivity().handleRequest(request)

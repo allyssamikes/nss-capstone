@@ -1,14 +1,16 @@
 //package activity;
 //
-//import activity.request.AddToWatchedListRequest;
-//import activity.result.AddToWatchedListResult;
-//import converters.ModelConverter;
-//import dynamodb.MovieDao;
-//import dynamodb.TVShowDao;
-//import dynamodb.UserDao;
-//import dynamodb.models.Movie;
-//import dynamodb.models.User;
-//import models.MovieModel;
+//
+//import capstoneservice.activity.AddToWatchedListActivity;
+//import capstoneservice.activity.request.AddToWatchedListRequest;
+//import capstoneservice.activity.result.AddToWatchedListResult;
+//import capstoneservice.converters.ModelConverter;
+//import capstoneservice.dynamodb.MovieDao;
+//import capstoneservice.dynamodb.TVShowDao;
+//import capstoneservice.dynamodb.UserDao;
+//import capstoneservice.dynamodb.models.Movie;
+//import capstoneservice.dynamodb.models.User;
+//import capstoneservice.models.MovieModel;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.mockito.InjectMocks;
@@ -48,7 +50,7 @@
 //        // GIVEN
 //        User user = new User();
 //        user.setUserId("1234");
-//        Set<Object> list = new HashSet();
+//        List<Object> list = new HashSet();
 //        user.setWatchedList(list);
 //        when(userDao.getUser("1234")).thenReturn(user);
 //        Movie movie = new Movie();

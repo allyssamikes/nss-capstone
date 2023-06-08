@@ -7,10 +7,13 @@ import capstoneservice.dynamodb.UserDao;
 import capstoneservice.dynamodb.models.User;
 import capstoneservice.models.UserModel;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.inject.Inject;
 
 public class CreateUserActivity {
-
+    private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
 
     @Inject
@@ -19,7 +22,7 @@ public class CreateUserActivity {
     };
 
     public CreateUserResult handleRequest(final CreateUserRequest createUserRequest) {
-
+        log.info("Received CreateUserRequest {}", createUserRequest);
         User user = new User();
         user.setUserId(createUserRequest.getUserId());
         user.setName(createUserRequest.getName());

@@ -48,12 +48,12 @@ public class AddToCurrentlyReadingListActivity {
         } catch (NullPointerException ex) {
             throw new BookNotFoundException("Book is not in our database.");
         }
-        Set<Book> readList;
+        List<Book> readList;
 
         if (theUser.getCurrentlyReading() == null) {
-            readList = new HashSet<>();
+            readList = new ArrayList<>();
         } else  {
-            readList = new HashSet<>(theUser.getCurrentlyReading());
+            readList = new ArrayList<>(theUser.getCurrentlyReading());
         }
 
         readList.add(book);

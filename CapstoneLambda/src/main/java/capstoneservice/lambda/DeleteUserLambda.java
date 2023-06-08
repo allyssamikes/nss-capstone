@@ -11,13 +11,13 @@ public class DeleteUserLambda
         implements RequestHandler<AuthenticatedLambdaRequest<DeleteUserRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<DeleteUserRequest> input, Context context) {
+        DeleteUserRequest unauthenticatedRequest = input.fromBody(DeleteUserRequest.class);
         return super.runActivity(
                 () -> {
-                    DeleteUserRequest unauthenticatedRequest = input.fromBody(DeleteUserRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             DeleteUserRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideDeleteUserActivity().handleRequest(request)

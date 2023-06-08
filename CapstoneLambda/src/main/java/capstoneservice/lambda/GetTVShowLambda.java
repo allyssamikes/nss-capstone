@@ -16,6 +16,7 @@ public class GetTVShowLambda extends LambdaActivityRunner<GetTVShowRequest, GetT
                         input.fromPath(path ->
                         GetTVShowRequest.builder()
                                 .withTitle(path.get("title"))
+                                .withDirector(path.get("director"))
                                 .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetTVShowActivity().handleRequest(request)

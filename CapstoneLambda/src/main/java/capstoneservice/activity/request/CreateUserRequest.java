@@ -4,7 +4,9 @@ import capstoneservice.dynamodb.models.Book;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -13,14 +15,14 @@ public class CreateUserRequest {
 
     private final String userId;
     private final String name;
-    private final Set<Book> toReadList;
-    private final Set<Book> currentlyReading;
-    private final Set<Book> readList;
-    private final Set<Object> toWatchList;
-    private final Set<Object> currentlyWatching;
-    private final Set<Object> watchedList;
+    private final List<Book> toReadList;
+    private final List<Book> currentlyReading;
+    private final List<Book> readList;
+    private final List<Object> toWatchList;
+    private final List<Object> currentlyWatching;
+    private final List<Object> watchedList;
 
-    public CreateUserRequest(String userId, String name, Set<Book> toReadList, Set<Book> currentlyReading, Set<Book> readList, Set<Object> toWatchList, Set<Object> currentlyWatching, Set<Object> watchedList) {
+    public CreateUserRequest(String userId, String name, List<Book> toReadList, List<Book> currentlyReading, List<Book> readList, List<Object> toWatchList, List<Object> currentlyWatching, List<Object> watchedList) {
         this.userId = userId;
         this.name = name;
         this.toReadList = toReadList;
@@ -39,28 +41,28 @@ public class CreateUserRequest {
         return name;
     }
 
-    public Set<Book> getToReadList() {
-        return new HashSet<>();
+    public List<Book> getToReadList() {
+        return new ArrayList<>();
     }
 
-    public Set<Book> getCurrentlyReading() {
-        return new HashSet<>();
+    public List<Book> getCurrentlyReading() {
+        return new ArrayList<>();
     }
 
-    public Set<Book> getReadList() {
-        return new HashSet<>();
+    public List<Book> getReadList() {
+        return new ArrayList<>();
     }
 
-    public Set<Object> getToWatchList() {
-        return new HashSet<>();
+    public List<Object> getToWatchList() {
+        return new ArrayList<>();
     }
 
-    public Set<Object> getCurrentlyWatching() {
-        return new HashSet<>();
+    public List<Object> getCurrentlyWatching() {
+        return new ArrayList<>();
     }
 
-    public Set<Object> getWatchedList() {
-        return new HashSet<>();
+    public List<Object> getWatchedList() {
+        return new ArrayList<>();
     }
 
     @Override
@@ -86,12 +88,12 @@ public class CreateUserRequest {
     public static class Builder {
         private String userId;
         private String name;
-        private Set<Book> toReadList;
-        private Set<Book> currentlyReading;
-        private Set<Book> readList;
-        private Set<Object> toWatchList;
-        private Set<Object> currentlyWatching;
-        private Set<Object> watchedList;
+        private List<Book> toReadList;
+        private List<Book> currentlyReading;
+        private List<Book> readList;
+        private List<Object> toWatchList;
+        private List<Object> currentlyWatching;
+        private List<Object> watchedList;
 
         public Builder withUserId(String userId) {
             this.userId = userId;
@@ -103,32 +105,32 @@ public class CreateUserRequest {
             return this;
         }
 
-        public Builder withToReadList(Set<Book> toReadList) {
+        public Builder withToReadList(List<Book> toReadList) {
             this.toReadList = toReadList;
             return this;
         }
 
-        public Builder withCurrentlyReading(Set<Book> currentlyReading) {
+        public Builder withCurrentlyReading(List<Book> currentlyReading) {
             this.currentlyReading = currentlyReading;
             return this;
         }
 
-        public Builder withReadList(Set<Book> readList) {
+        public Builder withReadList(List<Book> readList) {
             this.readList = readList;
             return this;
         }
 
-        public Builder withToWatchList(Set<Object> toWatchList) {
+        public Builder withToWatchList(List<Object> toWatchList) {
             this.toWatchList = toWatchList;
             return this;
         }
 
-        public Builder withCurrentlyWatching(Set<Object> currentlyWatching) {
+        public Builder withCurrentlyWatching(List<Object> currentlyWatching) {
             this.currentlyWatching = currentlyWatching;
             return this;
         }
 
-        public Builder withWatchedList(Set<Object> watchedList) {
+        public Builder withWatchedList(List<Object> watchedList) {
             this.watchedList = watchedList;
             return this;
         }
