@@ -636,7 +636,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /tvshows/{title}/reviews
+            Path: /tvshows/{title}/{director}/reviews
             Method: post
 
   RemoveFromToReadListLambda:

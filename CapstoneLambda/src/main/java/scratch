@@ -3,7 +3,7 @@
 CREATE USER
 curl  -X POST http://localhost:3000/users \
     -H "Content-Type: application/json"  \
-    -d '{"userId":"allyssamikes","name":"Allyssa Mikes"}'
+    -d '{"userId":"allyssamikes"}'
     unable to deserialize
 
 DELETE USER
@@ -32,4 +32,4 @@ curl -X POST http://localhost:3000/reviews \
 
                curl -X POST http://localhost:3000/users/allyssamikes/toWatchList \
                           -H "Content-Type: application/json" \
-                          -d  '{"userId":"allyssamikes","title":"Friends","director":"James-Burrows"}'
+                          -d  '{"userId":"allyssamikes","title":"Friends","director":"James Burrows"}'
