@@ -22,7 +22,7 @@ import javax.inject.Inject;
 public class TVShowDao {
     private final DynamoDBMapper dynamoDbMapper;
     private final MetricsPublisher metricsPublisher;
-    public static final String GENRE_INDEX = "Genre Index";
+
 
     @Inject
     public TVShowDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {

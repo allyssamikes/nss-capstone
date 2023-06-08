@@ -84,18 +84,6 @@ public class TVShow {
     public String getUUIDAsString() {
         return UUIDAsString;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TVShow tvShow = (TVShow) o;
-        return Objects.equals(title, tvShow.title);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(title);
-    }
 
 
     @Override
@@ -112,5 +100,18 @@ public class TVShow {
                 ", uniqueId=" + uniqueId +
                 ", UUIDAsString='" + UUIDAsString + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TVShow tvShow = (TVShow) o;
+        return Objects.equals(title, tvShow.title) && Objects.equals(director, tvShow.director);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, director);
     }
 }
