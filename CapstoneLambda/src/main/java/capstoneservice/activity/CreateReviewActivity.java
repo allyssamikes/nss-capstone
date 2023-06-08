@@ -6,11 +6,14 @@ import capstoneservice.converters.ModelConverter;
 import capstoneservice.dynamodb.ReviewDao;
 import capstoneservice.dynamodb.models.Review;
 import capstoneservice.models.ReviewModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import javax.inject.Inject;
 
 public class CreateReviewActivity {
-
+    private final Logger log = LogManager.getLogger();
     private final ReviewDao reviewDao;
 
     @Inject
@@ -19,6 +22,7 @@ public class CreateReviewActivity {
     }
 
     public CreateReviewResult handleRequest(final CreateReviewRequest createReviewRequest) {
+        log.info("Received CreateReviewRequest {}", createReviewRequest);
 
         Review newReview = new Review();
         newReview.setUserId(createReviewRequest.getUserId());
