@@ -10,20 +10,19 @@ public class CreateUserLambda
         implements RequestHandler<AuthenticatedLambdaRequest<CreateUserRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<CreateUserRequest> input, Context context) {
+        CreateUserRequest unauthenticatedRequest = input.fromBody(CreateUserRequest.class);
         return super.runActivity(
                 () -> {
-                    CreateUserRequest unauthenticatedRequest = input.fromBody(CreateUserRequest.class);
-                    return input.fromUserClaims(claims ->
-                            CreateUserRequest.builder()
-                                    .withUserId(unauthenticatedRequest.getUserId())
-                                    .withName(unauthenticatedRequest.getName())
-                                    .withToReadList(unauthenticatedRequest.getToReadList())
-                                    .withToWatchList(unauthenticatedRequest.getToWatchList())
-                                    .withCurrentlyReading(unauthenticatedRequest.getCurrentlyReading())
-                                    .withCurrentlyWatching(unauthenticatedRequest.getCurrentlyWatching())
-                                    .withReadList(unauthenticatedRequest.getReadList())
-                                    .withWatchedList(unauthenticatedRequest.getWatchedList())
-                                    .build());
+                    return CreateUserRequest.builder()
+                            .withUserId(unauthenticatedRequest.getUserId())
+                            .withName(unauthenticatedRequest.getName())
+                            .withToReadList(unauthenticatedRequest.getToReadList())
+                            .withToWatchList(unauthenticatedRequest.getToWatchList())
+                            .withCurrentlyReading(unauthenticatedRequest.getCurrentlyReading())
+                            .withCurrentlyWatching(unauthenticatedRequest.getCurrentlyWatching())
+                            .withReadList(unauthenticatedRequest.getReadList())
+                            .withWatchedList(unauthenticatedRequest.getWatchedList())
+                            .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideCreateUserActivity().handleRequest(request)

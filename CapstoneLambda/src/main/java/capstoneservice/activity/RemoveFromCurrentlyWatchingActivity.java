@@ -15,6 +15,7 @@ import capstoneservice.exceptions.UserNotFoundException;
 
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -64,12 +65,12 @@ public class RemoveFromCurrentlyWatchingActivity {
             // can I use Optionals here?
         }
 
-        Set<Object> watchList;
+        List<Object> watchList;
 
         if (user.getCurrentlyWatching() == null) {
             throw new TVShowNotFoundException("This list is empty");
         } else  {
-            watchList = new HashSet<>(user.getCurrentlyWatching());
+            watchList = new ArrayList<>(user.getCurrentlyWatching());
 
         }
          if(watchList.contains(tvShow)) {

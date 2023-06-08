@@ -1,6 +1,5 @@
 package capstoneservice.dynamodb;
 
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import capstoneservice.dynamodb.models.User;
 import capstoneservice.exceptions.UserNotFoundException;

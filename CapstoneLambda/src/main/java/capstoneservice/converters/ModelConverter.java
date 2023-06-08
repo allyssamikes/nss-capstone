@@ -73,18 +73,16 @@ public class ModelConverter {
     }
 
 
-    public List<BookModel> toBookModelList(Set<Book> books) {
+    public List<BookModel> toBookModelList(List<Book> books) {
         List<BookModel> bookModels = new
                 ArrayList<>();
-
         for (Book b : books){
             bookModels.add(toBookModel(b));
         }
-
         return bookModels;
     }
 
-    public List<Object> toModelList(Set<Object> watchList) {
+    public List<Object> toModelList(List<Object> watchList) {
         List<Object> models = new ArrayList<>();
         TVShow tvShow = new TVShow();
 

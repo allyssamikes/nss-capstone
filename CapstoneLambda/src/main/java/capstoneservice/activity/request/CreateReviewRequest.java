@@ -11,7 +11,7 @@ public class CreateReviewRequest {
     private final Integer rating;
     private  final String UUIDOfEntity;
 
-    public CreateReviewRequest(String userId, String review, Integer rating, String UUIDOfEntity) {
+    private CreateReviewRequest(String userId, String review, Integer rating, String UUIDOfEntity) {
         this.userId = userId;
         this.review = review;
         this.rating = rating;

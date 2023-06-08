@@ -10,16 +10,15 @@ public class CreateReviewLambda
         implements RequestHandler<AuthenticatedLambdaRequest<CreateReviewRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<CreateReviewRequest> input, Context context) {
+        CreateReviewRequest unauthenticatedRequest = input.fromBody(CreateReviewRequest.class);
         return super.runActivity(
                 () -> {
-                    CreateReviewRequest unauthenticatedRequest = input.fromBody(CreateReviewRequest.class);
-                    return input.fromUserClaims(claims ->
-                            CreateReviewRequest.builder()
+                    return CreateReviewRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withReview(unauthenticatedRequest.getReview())
                                     .withRating(unauthenticatedRequest.getRating())
                                     .withUUID(unauthenticatedRequest.getUUIDOfEntity())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideCreateReviewActivity().handleRequest(request)

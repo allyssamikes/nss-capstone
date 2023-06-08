@@ -44,7 +44,7 @@
 //            tvShow.setTitle("Friends");
 //            TVShow show = new TVShow();
 //            show.setTitle("The Office");
-//            Set<Object> shows = new HashSet<>();
+//            List<Object> shows = new ArrayList<>();
 //            shows.add(tvShow);
 //            shows.add(show);
 //            user.setCurrentlyWatching(shows);

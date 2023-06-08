@@ -1,11 +1,11 @@
 package capstoneservice.utils;
 
-import java.util.UUID;
+import org.gradle.internal.impldep.org.apache.commons.lang.RandomStringUtils;
+
 
 public class UniqueId {
-
-    public String generate() {
-        return UUID.randomUUID().toString();
+    public static String generate() {
+        return RandomStringUtils.randomAlphanumeric(6);
     }
 }
 

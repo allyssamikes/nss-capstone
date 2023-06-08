@@ -13,6 +13,7 @@ import capstoneservice.exceptions.MovieNotFoundException;
 import capstoneservice.exceptions.TVShowNotFoundException;
 import capstoneservice.exceptions.UserNotFoundException;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,12 +63,12 @@ public class RemoveFromToWatchListActivity {
             // can I use Optionals here?
         }
 
-        Set<Object> watchList;
+        List<Object> watchList;
 
         if (user.getCurrentlyWatching() == null) {
             throw new TVShowNotFoundException("This list is empty");
         } else  {
-            watchList = new HashSet<>(user.getToWatchList());
+            watchList = new ArrayList<>(user.getToWatchList());
 
         }
         if(watchList.contains(tvShow)) {

@@ -2,18 +2,16 @@
 
 CREATE USER
 curl  -X POST http://localhost:3000/users \
-    -H "Content-Type: application/json"  \
-    -d '{"userId":"allyssamikes"}'
+-d '{"userId":"allyssaSmikes","name":"Allyssa S Mikes"}'
     unable to deserialize
 
 DELETE USER
-curl DELETE http://localhost:3000/users/allyssamikes
+curl -X  DELETE http://localhost:3000/users/allyssaSmikes
      missing aithentication
 
 CREATE REVIEW
 curl -X POST http://localhost:3000/reviews \
-     -H "Content-Type: application/json" \
-    -d '{"userId":"allyssamikes","review":"I really liked this. Great story telling","rating":10,"UUIDOfEntity":"64be5fd0-f21e-4dc8-92c0-ab360a84b67c"}'
+ -d '{"userId":"allyssaSmikes","review":"I really liked this. Great story telling","rating":10,"UUIDOfEntity":"6"}'
     unable to deserialize
 
 
@@ -22,8 +20,7 @@ curl -X POST http://localhost:3000/reviews \
 
     Update USER
     curl -X PUT http://localhost:3000/users/allyssamikes \
-     -H "Content-Type: application/json" \
-     -d  '{"name":"Allyssa S Mikes"}'
+     -d  '{"name":"Allyssa Mikes"}'
         unable to deserialize
 
          curl -X POST http://localhost:3000/users/allyssamikes/readList \

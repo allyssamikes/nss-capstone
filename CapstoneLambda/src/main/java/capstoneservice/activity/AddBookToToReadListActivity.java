@@ -49,12 +49,12 @@ public class AddBookToToReadListActivity {
         } catch (NullPointerException ex) {
             throw new BookNotFoundException("Book is not in our database.");
         }
-        Set<Book> readList;
+        List<Book> readList;
 
         if (theUser.getReadList() == null) {
-            readList = new HashSet<>();
+            readList = new ArrayList<>();
         } else  {
-            readList = new HashSet<>(theUser.getReadList());
+            readList = new ArrayList<>(theUser.getReadList());
         }
 
         readList.add(book);

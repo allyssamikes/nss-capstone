@@ -63,12 +63,12 @@ public class AddToToWatchListActivity {
             // can I use Optionals here?
         }
 
-        Set<Object> watchList;
+        List<Object> watchList;
 
         if (theUser.getToWatchList() == null) {
-            watchList = new HashSet<>();
+            watchList = new ArrayList<>();
         } else  {
-            watchList = new HashSet<>(theUser.getToWatchList());
+            watchList = new ArrayList<>(theUser.getToWatchList());
         }
 
 

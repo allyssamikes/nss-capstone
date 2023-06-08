@@ -50,7 +50,7 @@
 //        // GIVEN
 //        User user = new User();
 //        user.setUserId("1234");
-//        Set<Object> list = new HashSet();
+//        List<Object> list = new HashSet();
 //        user.setWatchedList(list);
 //        when(userDao.getUser("1234")).thenReturn(user);
 //        Movie movie = new Movie();

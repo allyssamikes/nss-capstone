@@ -64,12 +64,12 @@ public class AddToCurrentlyWatchingListActivity {
             // can I use Optionals here?
         }
 
-        Set<Object> watchList;
+        List<Object> watchList;
 
         if (theUser.getCurrentlyWatching()== null) {
-            watchList = new HashSet<>();
+            watchList = new ArrayList<>();
         } else  {
-            watchList = new HashSet<>(theUser.getCurrentlyWatching());
+            watchList = new ArrayList<>(theUser.getCurrentlyWatching());
         }
 
         List<Object> models = new ArrayList<>();
