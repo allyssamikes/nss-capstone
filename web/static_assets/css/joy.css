@@ -1,16 +1,16 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #cce6ff;
-    --secondary-color: #4da6ff;
-    --tertiary-color: #0039e6;
-    --error-color: #ff3377;
+    --primary-color: #272343;
+    --secondary-color: #ffffff;
+    --tertiary-color: #e3f6f5;;
+    --error-color: #bae8e8;;
 }
 
 .background {
     background-color: #f2f2f2;
     margin: 0;
     counter-reset: section;
-    font-family: "Arial Narrow",Arial,sans-serif;
+    font-family: "Georgia",Georiga,sans-serif;
 }
 
 .header {
