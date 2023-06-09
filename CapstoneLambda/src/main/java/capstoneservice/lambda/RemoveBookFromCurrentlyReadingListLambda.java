@@ -12,14 +12,14 @@ public class RemoveBookFromCurrentlyReadingListLambda
 
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<RemoveBookFromCurrentlyReadingRequest> input, Context context) {
+        RemoveBookFromCurrentlyReadingRequest unauthenticatedRequest = input.fromBody(RemoveBookFromCurrentlyReadingRequest.class);
         return super.runActivity(
                 () -> {
-                    RemoveBookFromCurrentlyReadingRequest unauthenticatedRequest = input.fromBody(RemoveBookFromCurrentlyReadingRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             RemoveBookFromCurrentlyReadingRequest.builder()
                                     .withIsbn(unauthenticatedRequest.getIsbn())
                                     .withUserId(unauthenticatedRequest.getUserId())
-                                    .build());
+                                    .build();
 
                 },
                 (request, serviceComponent) ->

@@ -67,6 +67,7 @@ public class Book {
     }
 
     @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "genre")
     public GENRE getGenre() {
         return genre;
     }

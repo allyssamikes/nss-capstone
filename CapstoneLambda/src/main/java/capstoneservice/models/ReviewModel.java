@@ -7,11 +7,11 @@ public class ReviewModel {
 
     private String userId;
     private String review;
-    private Integer rating;
+    private String rating;
     private String UUIDOfEntity;
 
 
-    public ReviewModel(String userId, String review, Integer rating, String UUIDOfEntity) {
+    public ReviewModel(String userId, String review, String rating, String UUIDOfEntity) {
         this.userId = userId;
         this.review = review;
         this.rating = rating;
@@ -26,7 +26,7 @@ public class ReviewModel {
         return review;
     }
 
-    public Integer getRating() {
+    public String getRating() {
         return rating;
     }
 
@@ -55,7 +55,7 @@ public class ReviewModel {
     public static class Builder {
         private String userId;
         private String review;
-        private Integer rating;
+        private String rating;
         private String UUIDOfEntity;
 
     public Builder withUserId(String userId) {
@@ -68,7 +68,7 @@ public class ReviewModel {
         return this;
     }
 
-    public Builder withRating(Integer rating) {
+    public Builder withRating(String rating) {
         this.rating = rating;
         return this;
     }

@@ -13,9 +13,7 @@ import capstoneservice.models.BookModel;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class AddBookToToReadListActivity {
 
@@ -51,14 +49,14 @@ public class AddBookToToReadListActivity {
         }
         List<Book> readList;
 
-        if (theUser.getReadList() == null) {
+        if (theUser.getToReadList() == null) {
             readList = new ArrayList<>();
         } else  {
-            readList = new ArrayList<>(theUser.getReadList());
+            readList = new ArrayList<>(theUser.getToReadList());
         }
 
         readList.add(book);
-        theUser.setReadList(readList);
+        theUser.setToReadList(readList);
         userDao.saveUser(theUser);
 
         List<BookModel> bookModels = new ArrayList<>();

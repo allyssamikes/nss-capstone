@@ -11,15 +11,15 @@ public class AddBookReviewLambda
         implements RequestHandler<AuthenticatedLambdaRequest<AddBookReviewRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<AddBookReviewRequest> input, Context context) {
+        AddBookReviewRequest unauthenticatedRequest = input.fromBody(AddBookReviewRequest.class);
         return super.runActivity(
                 () -> {
-                    AddBookReviewRequest unauthenticatedRequest = input.fromBody(AddBookReviewRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             AddBookReviewRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withUUID(unauthenticatedRequest.getUUIDOfEntity())
                                     .withIsbn(unauthenticatedRequest.getIsbn())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddBookReviewActivity().handleRequest(request)

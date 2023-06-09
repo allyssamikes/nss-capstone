@@ -7,7 +7,7 @@ public class Review {
 
     private String userId;
     private String review;
-    private Integer rating;
+    private String rating;
     private  String UUIDOfEntity;
 
 
@@ -31,11 +31,11 @@ public class Review {
     }
 
     @DynamoDBAttribute(attributeName = "rating")
-    public Integer getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
