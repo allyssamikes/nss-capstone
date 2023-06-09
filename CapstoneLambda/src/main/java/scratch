@@ -37,13 +37,13 @@ curl -X DELETE http://localhost:3000/users/allyssamikes
 
 CREATE REVIEW
 curl -X POST http://localhost:3000/reviews \
- -d '{"userId":"allyssamikes","review":"I really liked this. Great story telling","rating":10,"UUIDOfEntity":"6"}'
+ -d '{"userId":"allyssamikes","review":"I really liked this. Great story telling","rating":"10","UUIDOfEntity":"6"}'
     unable to deserialize
 
 GET BOOK BY GENRE
     curl http://localhost:3000/books/search \
         -d '{"genre":"FICTION"}'
-        missingauthentication token
+        missing authentication token
 
 REMOVE FROM
 
