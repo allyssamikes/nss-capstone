@@ -1,4 +1,4 @@
-import CAPSTONECLIENT from '../api/CAPSTONECLIENT';
+import CapstoneClient from '../api/CAPSTONECLIENT';
 import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
@@ -19,7 +19,7 @@ class CreateUser extends BindingClass {
 
         this.header.addHeaderToPage();
 
-        this.client = new CAPSTONECLIENT();
+        this.client = new CapstoneClient();
     }
         /**
          * Method to run when the create activity submit button is pressed. Call the MusicPlaylistService to create the
@@ -48,13 +48,14 @@ class CreateUser extends BindingClass {
             createButton.innerText = 'Complete';
             createButton.innerText = 'Create New User';
         }
+        }
 
 /**
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
     const createUser = new CreateUser();
-    createActivity.mount();
+    createUser.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

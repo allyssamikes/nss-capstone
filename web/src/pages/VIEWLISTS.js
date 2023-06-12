@@ -25,7 +25,7 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
          document.getElementById('search-itineraries').addEventListener('click', this.submitItinerarySearch);
          this.header.addHeaderToPage();
 
-         this.client = new MusicPlaylistClient();
+         this.client = new CapstoneClient();
      }
          /**
           * Method to run when the submit button is pressed. Call the VacanzaService to see the

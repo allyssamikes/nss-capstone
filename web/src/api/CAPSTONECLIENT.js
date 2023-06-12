@@ -16,8 +16,8 @@ export default class CapstoneClient extends BindingClass {
         super();
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
-        'getBook', 'getTVShow', 'getMovie', 'getItineraryActivities', 'createReview',
-        'search', 'createUser, 'addActivityToItinerary', 'removeActivityFromItinerary','searchBooks'];
+        'getBook', 'getTVShow', 'getMovie', 'getItineraryActivities', 'writeReview',
+        'createUser', 'updateUser', 'deleteUser', 'addActivityToItinerary', 'removeActivityFromItinerary'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -25,6 +25,7 @@ export default class CapstoneClient extends BindingClass {
         axios.defaults.baseURL = process.env.API_BASE_URL;
         this.axiosClient = axios;
         this.clientLoaded();
+        console.log("constructor");
     }
 
     /**
@@ -135,10 +136,10 @@ export default class CapstoneClient extends BindingClass {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create reviews.");
             const response = await this.axiosClient.post(`reviews`, {
-                userId: userId;
-                rating: rating;
-                review: review;
-               UUIDOfEntity: UUIDOfEntity;,
+                userId: userId,
+                rating: rating,
+                review: review,
+               UUIDOfEntity: UUIDOfEntity,
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -156,7 +157,7 @@ export default class CapstoneClient extends BindingClass {
                 const token = await this.getTokenOrThrow("Only authenticated users can create users.");
 
                 const response = await this.axiosClient.post(`users`, {
-                    userId: userId;,
+                    userId: userId,
                     name: name,
                 }, {
                     headers: {
@@ -174,7 +175,7 @@ export default class CapstoneClient extends BindingClass {
                 const token = await this.getTokenOrThrow("Only authenticated users can update users.");
 
                 const response = await this.axiosClient.put(`users/${userId}`, {
-                    userId: userId;,
+                    userId: userId,
                     name: name,
                 }, {
                     headers: {
@@ -187,12 +188,12 @@ export default class CapstoneClient extends BindingClass {
             }
         }
 
-               async deleteUser(userId, errorCallback) {
+  async deleteUser(userId, errorCallback) {
                     try {
                         const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
 
                         const response = await this.axiosClient.delete(`users/${userId}`, {
-                            userId: userId;,
+                            userId: userId,
                         }, {
                             headers: {
                                 Authorization: `Bearer ${token}`
@@ -251,15 +252,14 @@ export default class CapstoneClient extends BindingClass {
         }
 
 
-    }
-    async searchBooks(genre, errorCallback) {
-        try{
-            const response = await this.axiosClient.get(`books/search?genre=${genre}`);
-            return response.data.bookModelsList;
-        } catch (error) {
-            this.handleError(error, errorCallback);
-        }
-    }
+//    async searchBooks(genre, errorCallback) {
+//        try{
+//            const response = await this.axiosClient.get(`books/search?genre=${genre}`);
+//            return response.data.bookModelsList;
+//        } catch (error) {
+//            this.handleError(error, errorCallback);
+//        }
+//    }
 
     /**
      * Helper method to log the error and run any error functions.

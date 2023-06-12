@@ -14,6 +14,10 @@ GET LISTS
 GET ENTITY
 
 
+DELETE USER
+curl -X DELETE http://localhost:3000/users/allyssamikes \
+ -d '{"userId":"allyssamikes"}'
+
 
 
 
@@ -32,8 +36,9 @@ ADD TO TO WATCH LIST
 ADD TO WATCHED LIST
 
 DELETE USER
-curl -X DELETE http://localhost:3000/users/allyssamikes
-     missing aithentication ? illegal arguement
+curl -X DELETE http://localhost:3000/users/allyssamikes \
+ -d '{"userId":"allyssamikes"}'
+
 
 CREATE REVIEW
 curl -X POST http://localhost:3000/reviews \

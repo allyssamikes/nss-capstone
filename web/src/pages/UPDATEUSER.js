@@ -1,4 +1,4 @@
-import CAPSTONECLIENT from '../api/CAPSTONECLIENT';
+import CapstoneClient from '../api/CAPSTONECLIENT';
 import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
@@ -15,11 +15,12 @@ class UpdateUser extends BindingClass {
     }
 
     mount() {
-        document.getElementById('update-user').addEventListener('click', this.updaye);
+        document.getElementById('update-user').addEventListener('click', this.update);
+        document.getElementById('delete-user').addEventListener('click', this.delete);
 
         this.header.addHeaderToPage();
 
-        this.client = new CAPSTONECLIENT();
+        this.client = new CapstoneClient();
     }
 
         async update(evt) {
@@ -46,7 +47,7 @@ class UpdateUser extends BindingClass {
             updateButton.innerText = 'Update User';
         }
 
-                async delete(evt) {
+    async delete(evt) {
                     evt.preventDefault();
 
                     const errorMessageDisplay = document.getElementById('error-message');
@@ -67,12 +68,13 @@ class UpdateUser extends BindingClass {
 
                 }
 
+}
 /**
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const createUser = new CreateUser();
-    createActivity.mount();
+    const updateUser = new UpdateUser();
+    updateUser.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

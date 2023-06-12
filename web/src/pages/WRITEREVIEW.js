@@ -1,4 +1,4 @@
-import CAPSTONECLIENT from '../api/CAPSTONECLIENT';
+import CapstoneClient from '../api/CAPSTONECLIENT';
 import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
@@ -19,7 +19,7 @@ class WriteReview extends BindingClass {
 
         this.header.addHeaderToPage();
 
-        this.client = new CAPSTONECLIENT();
+        this.client = new CapstoneClient();
     }
 
         async clientLoaded() {
@@ -56,7 +56,6 @@ class WriteReview extends BindingClass {
             const rating = document.getElementById('review-rating').value;
             const review = document.getElementById('review-review').value;
             const UUIDOfEntity = tvShow.UUIDOfEntity;
-               const UUIDOfEntity = movie.UUIDOfEntity;
 
             const user = await this.client.writeReview(userId, rating, review, UUIDOfEntity);
             createButton.innerText = origButtonText;
@@ -68,6 +67,7 @@ class WriteReview extends BindingClass {
             createButton.innerText = 'Write Review';
         }
 
+}
 /**
  * Main method to run when the page contents have loaded.
  */

@@ -1,4 +1,4 @@
-import CapstoneClient from '../api/capstoneClient';
+import CapstoneClient from '../api/CAPSTONECLIENT';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -16,17 +16,17 @@ The "KEY" constants will be reused a few times below.
 */
 
 const SEARCH_CRITERIA_ISBN = 'isbn';
-const SEARCH_CRITERIA_TRIP_TITLE = 'title';
-const SEARCH_CRITERIA_TRIP_DIRECTOR= 'director';
-const SEARCH_CRITERIA_TRIP_TITLEM = 'titleM';
-const SEARCH_CRITERIA_TRIP_DIRECTORM = 'directorM';
+const SEARCH_CRITERIA_TITLE = 'title';
+const SEARCH_CRITERIA_DIRECTOR= 'director';
+const SEARCH_CRITERIA_TITLEM = 'titleM';
+const SEARCH_CRITERIA_DIRECTORM = 'directorM';
 const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
     [SEARCH_CRITERIA_ISBN]: '',
-        [SEARCH_CRITERIA_TRIP_TITLE]: '',
-            [SEARCH_CRITERIA_TRIP_DIRECTOR]: '',
-                [SEARCH_CRITERIA_TRIP_TITLEM]: '',
-                    [SEARCH_CRITERIA_TRIP_DIRECTORM]: '',
+        [SEARCH_CRITERIA_TITLE]: '',
+            [SEARCH_CRITERIA_DIRECTOR]: '',
+                [SEARCH_CRITERIA_TITLEM]: '',
+                    [SEARCH_CRITERIA_DIRECTORM]: '',
    [SEARCH_RESULTS_KEY]: '',
 };
 
@@ -37,7 +37,7 @@ class GetItems extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['mount', 'getBook', 'getTVShow', 'getMovie', 'displaySearchResults', 'getHTMLForSearchResults'], this);
+        this.bindClassMethods(['mount', 'getBook', 'getTVShow', 'getMovie',  'displaySearchResults', 'getHTMLForSearchResults'], this);
 
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
@@ -129,25 +129,29 @@ class GetItems extends BindingClass {
      * Pulls search results from the datastore and displays them on the html page.
      */
     async displaySearchResults() {
-        const email = await this.dataStore.get(SEARCH_CRITERIA_EMAIL);
-        const tripName = await this.dataStore.get(SEARCH_CRITERIA_TRIP_NAME);
+        const isbn = await this.dataStore.get(SEARCH_CRITERIA_ISBN);
+        const title = await this.dataStore.get(SEARCH_CRITERIA_TITLE);
+        const director = await this.dataStore.get(SEARCH_CRITERIA_DIRECTOR);
+        const titleM = await this.dataStore.get(SEARCH_CRITERIA_TITLEM);
+        const directorM = await this.dateStore.get(SEARCH_CRITERIA_DIRECTORM);
         const searchResult = await this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
         const searchResultsDisplay = document.getElementById('search-results-display');
 
-        if (email === '' && tripName === '') {
+        if (title === '' || isbn === "") {
             searchResultsContainer.classList.add('hidden');
             searchCriteriaDisplay.innerHTML = '';
             searchResultsDisplay.innerHTML = '';
         } else {
             searchResultsContainer.classList.remove('hidden');
-            searchCriteriaDisplay.innerHTML = `"${email}"`;
-            searchCriteriaDisplay.innerHTML = `"${tripName}"`;
+            searchCriteriaDisplay.innerHTML = `"${title}"`;
             searchResultsDisplay.innerHTML = await this.getHTMLForSearchResults(searchResult);
         }
-        document.getElementById("search-itineraries-form").reset();
+        document.getElementById("search-books-form").reset();
+       document.getElementById("search-tvshows-form").reset();
+      document.getElementById("search-movies-form").reset();
     }
 
     /**
@@ -161,17 +165,15 @@ class GetItems extends BindingClass {
              }
 
      let html = '<table><tr><th>Title</th></tr>';
-                if ((searchResult.title != title)  {
+                                 {
                                     html += `
                                     <tr>
-                                        <p> Click on Title to View Details </p>
                                         <td>
                                             <a ${searchResult.title}</a>
                                         </td>
                                           </tr>`;
                                 }
                                 html += '</table>';
-
                                 return html;
                 }
                             }
