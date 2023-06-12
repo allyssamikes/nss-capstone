@@ -10,24 +10,30 @@
 <header class="header" id="header"></header>
 
 <div class="card">
-    <h2>Create User</h2>
+    <h2>Write Review</h2>
     <form class="card-content" id="create-user-form">
         <p class="hidden error" id="error-message"> </p>
         <p class="form-field">
             <label>User ID</label>
-            <input type="text" required class="validated-field" id="user-userId"
+            <input type="text" required class="validated-field" id="review-userId"
                    autofocus>
         </p>
         <p class="form-field">
-            <label>Name</label>
-            <input type="text" id="user-name" class="name" >
+            <label>Review</label>
+            <input type="text" id="review-review" class="name" >
+        </p>
+        <p class="form-field">
+            <label>Rating</label>
+            <input type="text" id="review-rating" class="name" >
+        </p>
+        <p class="form-field">
+            <label>Unique ID of Entity</label>
+            <input type="text" id="review-UUIDOfEntity" class="name" >
         </p>
         <p>
-            <a href="#" class="button" id="create-user">Create User</a>
+            <a href="#" class="button" id="create-user">Write Review</a>
         </p>
     </form>
 </div>
 </body>
-
-
 </html>

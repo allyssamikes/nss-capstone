@@ -131,13 +131,14 @@ export default class CapstoneClient extends BindingClass {
          * @param errorCallback (Optional) A function to execute if the call fails.
          * @returns The itinerary that has been created.
          */
-    async createReview(userId, UUIDOfEntity, errorCallback) {
-
+    async writeReview(userId, rating, review, UUIDOfEntity, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create reviews.");
             const response = await this.axiosClient.post(`reviews`, {
                 userId: userId;
-                UUIDOfEntity: UUIDOfEntity;,
+                rating: rating;
+                review: review;
+               UUIDOfEntity: UUIDOfEntity;,
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -148,8 +149,9 @@ export default class CapstoneClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
-        async createUser(userId, name, errorCallback) {
 
+
+        async createUser(userId, name, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can create users.");
 
@@ -166,6 +168,41 @@ export default class CapstoneClient extends BindingClass {
                 this.handleError(error, errorCallback)
             }
         }
+
+       async updateUser(userId, name, errorCallback) {
+            try {
+                const token = await this.getTokenOrThrow("Only authenticated users can update users.");
+
+                const response = await this.axiosClient.put(`users/${userId}`, {
+                    userId: userId;,
+                    name: name,
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                return response.data.user;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
+
+               async deleteUser(userId, errorCallback) {
+                    try {
+                        const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
+
+                        const response = await this.axiosClient.delete(`users/${userId}`, {
+                            userId: userId;,
+                        }, {
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            }
+                        });
+                        return response.data.user;
+                    } catch (error) {
+                        this.handleError(error, errorCallback)
+                    }
+                }
 
         /**
          * Adds requested activity to requested itinerary's list of activities.

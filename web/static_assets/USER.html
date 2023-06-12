@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="pages/CREATEUSER.js"></script>
+    <script type="text/javascript" src="pages/UPDATEUSER.js">
+    </script>
     <link rel="stylesheet" type="text/css" href="css/joy.css">
 </head>
 
@@ -10,20 +11,25 @@
 <header class="header" id="header"></header>
 
 <div class="card">
-    <h2>Create User</h2>
+    <h2>Update User</h2>
     <form class="card-content" id="create-user-form">
         <p class="hidden error" id="error-message"> </p>
         <p class="form-field">
-            <label>User ID</label>
+            <label>User Id</label>
             <input type="text" required class="validated-field" id="user-userId"
                    autofocus>
         </p>
         <p class="form-field">
-            <label>Name</label>
-            <input type="text" id="user-name" class="name" >
+            <label>New Name</label>
+            <input type="text" required class="validated-field" id="user-name" placeholder="Enter new name for User"
+                   autofocus>
         </p>
         <p>
-            <a href="#" class="button" id="create-user">Create User</a>
+            <a href="#" class="button" id="update-user">Update User</a>
+        </p>
+        <p>
+        <h2>Delete User</h2>
+            <a href="#" class="button" id="delete-user">Delete User</a>
         </p>
     </form>
 </div>
