@@ -10,15 +10,14 @@ public class AddToCurrentlyWatchingListLambda
         implements RequestHandler<AuthenticatedLambdaRequest<AddToCurrentlyWatchingListRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<AddToCurrentlyWatchingListRequest> input, Context context) {
-        return super.runActivity(
+        AddToCurrentlyWatchingListRequest unauthenticatedRequest = input.fromBody(AddToCurrentlyWatchingListRequest.class);
+     return super.runActivity(
                 () -> {
-                    AddToCurrentlyWatchingListRequest unauthenticatedRequest = input.fromBody(AddToCurrentlyWatchingListRequest.class);
-                    return input.fromUserClaims(claims ->
-                            AddToCurrentlyWatchingListRequest.builder()
+                    return AddToCurrentlyWatchingListRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withTitle(unauthenticatedRequest.getTitle())
                                     .withDirector(unauthenticatedRequest.getDirector())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddToCurrentlyWatchingListActivity().handleRequest(request)

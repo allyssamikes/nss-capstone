@@ -10,14 +10,14 @@ public class AddToCurrentlyReadingListLambda
         implements RequestHandler<AuthenticatedLambdaRequest<AddToCurrentlyReadingListRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<AddToCurrentlyReadingListRequest> input, Context context) {
+        AddToCurrentlyReadingListRequest unauthenticatedRequest = input.fromBody(AddToCurrentlyReadingListRequest.class);
         return super.runActivity(
                 () -> {
-                    AddToCurrentlyReadingListRequest unauthenticatedRequest = input.fromBody(AddToCurrentlyReadingListRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             AddToCurrentlyReadingListRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withIsbn(unauthenticatedRequest.getIsbn())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddToCurrentlyReadingListActivity().handleRequest(request)

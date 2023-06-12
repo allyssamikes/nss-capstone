@@ -9,6 +9,7 @@ public class AddBookReviewRequest {
 
     private final String userId;
 
+
     private final String UUIDOfEntity;
 
     public AddBookReviewRequest(String isbn, String userId, String UUIDOfEntity) {
@@ -25,9 +26,11 @@ public class AddBookReviewRequest {
         return userId;
     }
 
+
     public String getUUIDOfEntity() {
         return UUIDOfEntity;
     }
+
 
     @Override
     public String toString() {
@@ -37,6 +40,7 @@ public class AddBookReviewRequest {
                 ", UUIDOfEntity='" + UUIDOfEntity + '\'' +
                 '}';
     }
+
 
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {

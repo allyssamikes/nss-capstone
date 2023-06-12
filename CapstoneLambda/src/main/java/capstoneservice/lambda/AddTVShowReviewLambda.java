@@ -11,15 +11,16 @@ public class AddTVShowReviewLambda
         implements RequestHandler<AuthenticatedLambdaRequest<AddTVShowReviewRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<AddTVShowReviewRequest> input, Context context) {
+        AddTVShowReviewRequest unauthenticatedRequest = input.fromBody(AddTVShowReviewRequest.class);
         return super.runActivity(
                 () -> {
-                    AddTVShowReviewRequest unauthenticatedRequest = input.fromBody(AddTVShowReviewRequest.class);
-                    return input.fromUserClaims(claims ->
+
+                    return
                             AddTVShowReviewRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withUUID(unauthenticatedRequest.getUUIDOfEntity())
                                     .withTitle(unauthenticatedRequest.getTitle())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddTVShowReviewActivity().handleRequest(request)

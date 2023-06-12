@@ -11,16 +11,16 @@ public class AddMovieReviewLambda
         implements RequestHandler<AuthenticatedLambdaRequest<AddMovieReviewRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<AddMovieReviewRequest> input, Context context) {
+        AddMovieReviewRequest unauthenticatedRequest = input.fromBody(AddMovieReviewRequest.class);
         return super.runActivity(
                 () -> {
-                    AddMovieReviewRequest unauthenticatedRequest = input.fromBody(AddMovieReviewRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             AddMovieReviewRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withUUID(unauthenticatedRequest.getUUIDOfEntity())
                                     .withTitle(unauthenticatedRequest.getTitle())
                                     .withDirector(unauthenticatedRequest.getDirector())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddMovieReviewActivity().handleRequest(request)

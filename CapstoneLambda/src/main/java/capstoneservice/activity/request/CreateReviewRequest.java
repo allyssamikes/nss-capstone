@@ -8,10 +8,10 @@ public class CreateReviewRequest {
 
     private final String userId;
     private final String review;
-    private final Integer rating;
+    private final String rating;
     private  final String UUIDOfEntity;
 
-    private CreateReviewRequest(String userId, String review, Integer rating, String UUIDOfEntity) {
+    private CreateReviewRequest(String userId, String review, String rating, String UUIDOfEntity) {
         this.userId = userId;
         this.review = review;
         this.rating = rating;
@@ -26,7 +26,7 @@ public class CreateReviewRequest {
         return review;
     }
 
-    public Integer getRating() {
+    public String getRating() {
         return rating;
     }
 
@@ -43,7 +43,7 @@ public class CreateReviewRequest {
     public static class Builder {
         private String userId;
         private String review;
-        private Integer rating;
+        private String rating;
         private String UUIDOfEntity;
 
         public Builder withUserId(String userId) {
@@ -56,7 +56,7 @@ public class CreateReviewRequest {
             return this;
         }
 
-        public Builder withRating(Integer rating) {
+        public Builder withRating(String rating) {
             this.rating = rating;
             return this;
         }

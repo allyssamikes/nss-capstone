@@ -766,7 +766,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /books
+            Path: /books/search
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -788,7 +788,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /tvshows
+            Path: /tvshows/search
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -810,7 +810,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /movies
+            Path: /movies/search
             Method: get
             Auth:
               Authorizer: 'NONE'

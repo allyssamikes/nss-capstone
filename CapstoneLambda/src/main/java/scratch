@@ -1,32 +1,72 @@
 
-
+WORKING
 CREATE USER
 curl  -X POST http://localhost:3000/users \
--d '{"userId":"allyssaSmikes","name":"Allyssa S Mikes"}'
-    unable to deserialize
+-d '{"userId":"allyssamikes","name":"Allyssa Mikes"}'
+
+UPDATE USER
+    curl -X PUT http://localhost:3000/users/allyssamikes \
+     -d  '{"userId":"allyssamikes","name":"Allyssa"}'
+        unable to deserialize
+
+GET LISTS
+
+GET ENTITY
+
 
 DELETE USER
-curl -X  DELETE http://localhost:3000/users/allyssaSmikes
-     missing aithentication
+curl -X DELETE http://localhost:3000/users/allyssamikes \
+ -d '{"userId":"allyssamikes"}'
+
+
+
+
+NOT WORKING
+
+ADD TO CURRENTLY READING LIST
+
+ADD TO CURRENTLY WATCHING LIST
+
+
+ADD TO READ LIST
+ADD TO TO READ LIST
+
+ADD TO TO WATCH LIST
+
+ADD TO WATCHED LIST
+
+DELETE USER
+curl -X DELETE http://localhost:3000/users/allyssamikes \
+ -d '{"userId":"allyssamikes"}'
+
 
 CREATE REVIEW
 curl -X POST http://localhost:3000/reviews \
- -d '{"userId":"allyssaSmikes","review":"I really liked this. Great story telling","rating":10,"UUIDOfEntity":"6"}'
+ -d '{"userId":"allyssamikes","review":"I really liked this. Great story telling","rating":"10","UUIDOfEntity":"6"}'
     unable to deserialize
 
+GET BOOK BY GENRE
+    curl http://localhost:3000/books/search \
+        -d '{"genre":"FICTION"}'
+        missing authentication token
 
-    curl http://localhost:3000/users/allyssamikes/currentlyReading
+REMOVE FROM
 
 
-    Update USER
-    curl -X PUT http://localhost:3000/users/allyssamikes \
-     -d  '{"name":"Allyssa Mikes"}'
-        unable to deserialize
 
-         curl -X POST http://localhost:3000/users/allyssamikes/readList \
-             -H "Content-Type: application/json" \
-             -d  '{"isbn":"978-0-525-55948-1","title":"The Midnight Library"}'
+
+
+
+ curl -X POST  http://localhost:3000/books/6/reviews \
+             -d  '{"userId":"allyssamikes","UUIDOfEntity":"abcdef"}'
+
+    curl -X POST  http://localhost:3000/users/allyssamikes/currentlyReading \
+             -d  '{"userId":"allyssamikes","isbn":"6","title":"New Book"}'
+
+
+
+         curl -X POST http://localhost:3000/users/allyssaSmikes/readList \
+             -d  '{"userId":"allyssamikes","isbn":"6","title":"New Book"}'
 
                curl -X POST http://localhost:3000/users/allyssamikes/toWatchList \
-                          -H "Content-Type: application/json" \
                           -d  '{"userId":"allyssamikes","title":"Friends","director":"James Burrows"}'

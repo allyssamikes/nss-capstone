@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/VIEWLISTS.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/joy.css">
+
+</head>
+
+<body class="background">
+<header class="header" id="header"></header>
+<nav>
+    <div class="navbar">
+        <div class="center">
+            <ul>
+                <tr>
+                    <a href="index.html"> Home | </a>
+                </tr>
+                <tr>
+                    <a href="CREATEUSER.html"> Create User | </a>
+                </tr>
+                <tr>
+                    <a href="WRITEREVIEW.html"> Write Review | </a>
+                </tr>
+                <tr> <a href="VIEWLISTS.html"> View Lists | </a>
+                </tr>
+                <tr> <a href="USER.html"> User </a>
+                </tr>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="card">
+    <h2>View User's Lists</h2>
+    <form class="card-content" id="view-lists-form">
+        <p class="hidden error" id="error-message"> </p>
+        <p class="form-field">
+            <label>Enter User's UserId</label>
+            <input type="text" class="userId" id="userId" placeholder="" autofocus>
+        </p>
+    </form>
+    <p class="button-group">
+        <a href="#" class="button" id="lists">View </a>
+    </p>
+
+</div>
+><div class="card hidden" id='activities-container'>
+    <h3>Activities </h3>
+    <h2 class="itinerary-name"></h2>
+    <div class="activities" id="activities"></div>
+</div>
+<div class="card hidden" id='activities-table-container'>
+    <h3>Activities Table</h3>
+    <h2 class="itinerary-name"></h2>
+    <div class="activities" id="activities-table-div"></div>
+    <ol id="activities-table"></ol>
+    <div class="activities" id="activitieslist"></div>
+    <ol class="activities" id ="activity"></ol>
+</div>
+<div class="card hidden" id='submit-results-container'>
+
+    <h2 class="itinerary-name"></h2>
+    <h4>Cities <span id="cities-title-display"></span></h4>
+    <div id="city-results-display"></div>
+    <h4>Tags <span id="tags-title-display"></span></h4>
+    <div id="tags-results-display"></div>
+    <h4>Users </h4>
+    <div id="users-display"></div>
+    <ol class="users" id ="user"></ol>
+
+</div>
+
+<div class="card hidden" id='search-results-container'>
+    <h3>Itineraries </h3>
+    <div class="itineraries" id="itineraries"></div>
+</div>
+
+</div>
+</body>
+
+</html>

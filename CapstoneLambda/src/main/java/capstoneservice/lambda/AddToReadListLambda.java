@@ -10,14 +10,14 @@ public class AddToReadListLambda
         implements RequestHandler<AuthenticatedLambdaRequest<AddBookToReadListRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<AddBookToReadListRequest> input, Context context) {
+        AddBookToReadListRequest unauthenticatedRequest = input.fromBody(AddBookToReadListRequest.class);
         return super.runActivity(
                 () -> {
-                    AddBookToReadListRequest unauthenticatedRequest = input.fromBody(AddBookToReadListRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             AddBookToReadListRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withIsbn(unauthenticatedRequest.getIsbn())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddBookToReadListActivity().handleRequest(request)

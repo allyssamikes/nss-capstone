@@ -29,6 +29,12 @@ module.exports = {
     getItineraryActivities: path.resolve(__dirname, 'src','pages', 'getItineraryActivities.js'),
     searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
     viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
+    GETITEMS: path.resolve(__dirname, 'src', 'pages', 'GETITEMS.js'),
+    CREATEUSER: path.resolve(__dirname, 'src', 'pages', 'CREATEUSER.js'),
+    UPDATEUSER: path.resolve(__dirname, 'src', 'pages', 'UPDATEUSER.js'),
+    VIEWLISTS: path.resolve(__dirname, 'src', 'pages', 'VIEWLISTS.js'),
+    WRITEREVIEW: path.resolve(__dirname, 'src', 'pages', 'WRITEREVIEW.js'),
+
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

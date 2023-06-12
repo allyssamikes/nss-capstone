@@ -12,15 +12,15 @@ public class RemoveFromCurrentlyWatchingListLambda
 
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<RemoveFromCurrentlyWatchingRequest> input, Context context) {
+        RemoveFromCurrentlyWatchingRequest unauthenticatedRequest = input.fromBody(RemoveFromCurrentlyWatchingRequest.class);
         return super.runActivity(
                 () -> {
-                    RemoveFromCurrentlyWatchingRequest unauthenticatedRequest = input.fromBody(RemoveFromCurrentlyWatchingRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             RemoveFromCurrentlyWatchingRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withTitle(unauthenticatedRequest.getTitle())
                                     .withDirector(unauthenticatedRequest.getDirector())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideRemoveFromCurrentlyWatchingActivity().handleRequest(request)

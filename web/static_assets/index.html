@@ -2,14 +2,12 @@
 <html>
 
 <head>
-         <script type="text/javascript" src="assets/searchItineraries.js"></script>
-         <link rel="stylesheet" type="text/css" href="css/vacanza.css">
+         <script type="text/javascript" src="assets/GETITEMS.js"></script>
+         <link rel="stylesheet" type="text/css" href="css/joy.css">
 </head>
-
 <body class="background">
 
-
-<header class="header"> <img src="images/header.jpg" width=99% length=99% align=left/></header>
+<header class="header"> <img src="images/joybanner.jpg" width=99% length=99% align=left/></header>
 <nav>
     <div class="navbar">
         <div class="center">
@@ -18,37 +16,50 @@
                     <a href="index.html"> Home | </a>
                 </tr>
                 <tr>
-                    <a href="createItinerary.html"> Create Itinerary | </a>
+                    <a href="CREATEUSER.html"> Create User | </a>
                 </tr>
                 <tr>
-                    <a href="createActivity.html"> Create Activity | </a>
+                    <a href="WRITEREVIEW.html"> Write Review | </a>
                 </tr>
-                <tr> <a href="getItineraryActivities.html"> Itinerary Details | </a>
+                <tr> <a href="VIEWLISTS.html"> View Lists | </a>
                 </tr>
-                <tr> <a href="addActivityToItinerary.html"> Itinerary Activities | </a>
-                </tr>
-                <tr>
-                    <a href="aboutUs.html"> About Us </a>
+                <tr> <a href="USER.html"> User </a>
                 </tr>
             </ul>
         </div>
     </div>
 </nav>
         <div class="card">
-              <h2>Find Itinerary</h2>
-             <form class="card-content" id="search-itineraries-form">
+              <h2>Find A Book</h2>
+             <form class="card-content" id="search-books-form">
                    <p class="form-field">
-                        <label>Enter User's Email</label>
-                         <input type="text" class="validated-field" id="email" placeholder="" autofocus>
-                </p><p class="form-field">
-               <label>Enter Trip Name</label>
-               <input type="text" class="validated-field" id="tripName" placeholder="" autofocus>
-              </p>
+                        <label>Enter ISBN</label>
+                         <input type="text" class="validated-field" id="isbn" placeholder="" autofocus>
+                </p>  <p class="button-group">
+                 <a href="" class="button" id="book-button">Search </a>
+             </p>
+                 <h2>Find A Movie</h2>
              </form>
-             <p class="button-group">
-                    <a href="" class="button" id="search-button">Search </a>
+            <form class="card-content" id="search-movies-form">
+                <p class="form-field">
+                    <label>Enter Title</label>
+                    <input type="text" class="validated-field" id="titleM" placeholder="" autofocus>
+                    <label>Enter Director</label>
+                    <input type="text" class="validated-field" id="directorM" placeholder="" autofocus>
+                </p>  <p class="button-group">
+                <a href="" class="button" id="movie-button">Search </a>
             </p>
+                <h2>Find A TVShow</h2>
+            </form>    <form class="card-content" id="search-tvshows-form">
+            <p class="form-field">
+                <label>Enter Title</label>
+                <input type="text" class="validated-field" id="title" placeholder="" autofocus>
+                <label>Enter Director</label>
+                <input type="text" class="validated-field" id="director" placeholder="" autofocus>
+            </p>  <p class="button-group">
+            <a href="" class="button" id="tvshow-button">Search </a>
         </p>
+        </form>
     </div>
     <div class="card hidden" id='search-results-container'>
         <h3>Results for <span id="search-criteria-display"></span></h3>
@@ -56,13 +67,5 @@
         </div>
     </div>
 </body>
-<footer>
-    <div class= "footer">
-        <div class= "center">
-            <h4> NSS SE Cohort 2 MidStone Project</h4>
-            <h6> GitHub Repository <a href= "https://www.github.com"> here</a> </h6>
-        </div>
-    </div>
-</footer>
 
 </html>

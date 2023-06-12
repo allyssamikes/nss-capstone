@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/WRITEREVIEW.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/joy.css">
+</head>
+
+<body class="background">
+<header class="header" id="header"></header>
+<nav>
+    <div class="navbar">
+        <div class="center">
+            <ul>
+                <tr>
+                    <a href="index.html"> Home | </a>
+                </tr>
+                <tr>
+                    <a href="CREATEUSER.html"> Create User | </a>
+                </tr>
+                <tr>
+                    <a href="WRITEREVIEW.html"> Write Review | </a>
+                </tr>
+                <tr> <a href="VIEWLISTS.html"> View Lists | </a>
+                </tr>
+                <tr> <a href="USER.html"> User </a>
+                </tr>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="card">
+    <h2>Write Review</h2>
+    <form class="card-content" id="create-user-form">
+        <p class="hidden error" id="error-message"> </p>
+        <p class="form-field">
+            <label>User ID</label>
+            <input type="text" required class="validated-field" id="review-userId"
+                   autofocus>
+        </p>
+        <p class="form-field">
+            <label>Review</label>
+            <input type="text" id="review-review" class="name" >
+        </p>
+        <p class="form-field">
+            <label>Rating</label>
+            <input type="text" id="review-rating" class="name" >
+        </p>
+        <p class="form-field">
+            <label>Unique ID of Entity</label>
+            <input type="text" id="review-UUIDOfEntity" class="name" >
+        </p>
+        <p>
+            <a href="#" class="button" id="create-user">Write Review</a>
+        </p>
+    </form>
+</div>
+</body>
+</html>

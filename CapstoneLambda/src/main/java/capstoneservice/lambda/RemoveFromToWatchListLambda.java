@@ -11,15 +11,15 @@ public class RemoveFromToWatchListLambda
 
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<RemoveFromToWatchListRequest> input, Context context) {
+        RemoveFromToWatchListRequest unauthenticatedRequest = input.fromBody(RemoveFromToWatchListRequest.class);
         return super.runActivity(
                 () -> {
-                    RemoveFromToWatchListRequest unauthenticatedRequest = input.fromBody(RemoveFromToWatchListRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             RemoveFromToWatchListRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withTitle(unauthenticatedRequest.getTitle())
                                     .withDirector(unauthenticatedRequest.getDirector())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideRemoveFromToWatchListActivity().handleRequest(request)

@@ -11,14 +11,14 @@ public class UpdateUserLambda
         implements RequestHandler<AuthenticatedLambdaRequest<UpdateUserRequest>, LambdaResponse> {
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<UpdateUserRequest> input, Context context) {
+        UpdateUserRequest unauthenticatedRequest = input.fromBody(UpdateUserRequest.class);
         return super.runActivity(
                 () -> {
-                    UpdateUserRequest unauthenticatedRequest = input.fromBody(UpdateUserRequest.class);
-                    return input.fromUserClaims(claims ->
+                    return
                             UpdateUserRequest.builder()
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withName(unauthenticatedRequest.getName())
-                                    .build());
+                                    .build();
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideUpdateUserActivity().handleRequest(request)

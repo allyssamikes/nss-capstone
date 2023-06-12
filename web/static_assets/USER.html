@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/UPDATEUSER.js">
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/joy.css">
+</head>
+
+<body class="background">
+<header class="header" id="header"></header>
+<nav>
+    <div class="navbar">
+        <div class="center">
+            <ul>
+                <tr>
+                    <a href="index.html"> Home | </a>
+                </tr>
+                <tr>
+                    <a href="CREATEUSER.html"> Create User | </a>
+                </tr>
+                <tr>
+                    <a href="WRITEREVIEW.html"> Write Review | </a>
+                </tr>
+                <tr> <a href="VIEWLISTS.html"> View Lists | </a>
+                </tr>
+                <tr> <a href="USER.html"> User </a>
+                </tr>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="card">
+    <h2>Update User</h2>
+    <form class="card-content" id="create-user-form">
+        <p class="hidden error" id="error-message"> </p>
+        <p class="form-field">
+            <label>User Id</label>
+            <input type="text" required class="validated-field" id="user-userId"
+                   autofocus>
+        </p>
+        <p class="form-field">
+            <label>New Name</label>
+            <input type="text" required class="validated-field" id="user-name" placeholder="Enter new name for User"
+                   autofocus>
+        </p>
+        <p>
+            <a href="#" class="button" id="update-user">Update User</a>
+        </p>
+        <p>
+        <h2>Delete User</h2>
+        <p class="form-field">
+            <label>User Id</label>
+            <input type="text" required class="validated-field" id="user-userId"
+                   autofocus>
+        </p>
+            <a href="#" class="button" id="delete-user">Delete User</a>
+        </p>
+    </form>
+</div>
+</body>
+
+
+</html>
