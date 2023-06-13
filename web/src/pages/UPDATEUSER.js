@@ -9,7 +9,7 @@ import DataStore from '../util/DataStore';
 class UpdateUser extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'update'], this);
+        this.bindClassMethods(['mount', 'update', 'delete'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
     }
@@ -37,14 +37,17 @@ class UpdateUser extends BindingClass {
             const userId = document.getElementById('user-userId').value;
             const name = document.getElementById('user-name').value;
 
-            const user = await this.client.updateUser(userId, name);
+            const user = await this.client.updateUser(userId, name, (error) => {
             updateButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
+            });
 
             this.dataStore.set('user', user);
             updateButton.innerText = 'Complete';
             updateButton.innerText = 'Update User';
+
+             document.getElementById("update-user-form").reset();
         }
 
     async delete(evt) {
@@ -61,10 +64,13 @@ class UpdateUser extends BindingClass {
                     const userId = document.getElementById('user-userId').value;
                     const name = document.getElementById('user-name').value;
 
-                    const user = await this.client.deleteUser(userId);
+                    const user = await this.client.deleteUser(userId, (error) => {
                     deleteButton.innerText = origButtonText;
                     errorMessageDisplay.innerText = `Error: ${error.message}`;
                     errorMessageDisplay.classList.remove('hidden');
+                    });
+
+                       document.getElementById("delete-user").reset();
 
                 }
 

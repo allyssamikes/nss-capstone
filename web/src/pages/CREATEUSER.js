@@ -39,14 +39,13 @@ class CreateUser extends BindingClass {
             const userId = document.getElementById('user-userId').value;
             const name = document.getElementById('user-name').value;
 
-            const user = await this.client.createUser(userId, name);
+            const user = await this.client.createUser(userId, name, (error) => {
             createButton.innerText = origButtonText;
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
+            });
 
             this.dataStore.set('user', user);
-            createButton.innerText = 'Complete';
-            createButton.innerText = 'Create New User';
         }
         }
 

@@ -126,7 +126,7 @@ Resources:
     Properties:
       DistributionConfig:
         Comment: "Cloudfront distribution for serverless website"
-        DefaultRootObject: "vacanzaindex.html"
+        DefaultRootObject: "index.html"
         Enabled: true
         HttpVersion: http2
         PriceClass: PriceClass_100
@@ -201,21 +201,45 @@ Resources:
                   - logs:PutLogEvents
                   - cloudwatch:PutMetricData
                 Resource: '*'
-        - PolicyName: 'AccessPlaylistsTable'
+        - PolicyName: 'AccessUsersTable'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
               - Effect: Allow
                 Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/playlists"
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/users"
 
-        - PolicyName: 'AccessAlbumTracksTable'
+        - PolicyName: 'AccessBooksTable'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
               - Effect: Allow
                 Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/album_tracks"
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/books"
+
+        - PolicyName: 'AccessTVShowsTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/tvshows"
+
+        - PolicyName: 'AccessMoviesTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/movies"
+
+        - PolicyName: 'AccessReviewsTable'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/reviews"
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -460,8 +484,6 @@ Resources:
           Properties:
             Path: /users/{userId}
             Method: put
-            Auth:
-              Authorizer: 'NONE'
 
   AddToCurrentlyReadingListLambda:
     Type: AWS::Serverless::Function
@@ -834,8 +856,7 @@ Resources:
           Properties:
             Path: /users
             Method: post
-            Auth:
-              Authorizer: 'NONE'
+
 
   DeleteUserLambda:
     Type: AWS::Serverless::Function
@@ -856,8 +877,6 @@ Resources:
           Properties:
             Path: /users/{userId}
             Method: delete
-            Auth:
-              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration

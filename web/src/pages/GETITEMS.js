@@ -150,8 +150,8 @@ class GetItems extends BindingClass {
             searchResultsDisplay.innerHTML = await this.getHTMLForSearchResults(searchResult);
         }
         document.getElementById("search-books-form").reset();
-       document.getElementById("search-tvshows-form").reset();
-      document.getElementById("search-movies-form").reset();
+        document.getElementById("search-tvshows-form").reset();
+       document.getElementById("search-movies-form").reset();
     }
 
     /**

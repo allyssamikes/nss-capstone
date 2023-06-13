@@ -155,6 +155,7 @@ export default class CapstoneClient extends BindingClass {
         async createUser(userId, name, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can create users.");
+                console.log("cs 158");
 
                 const response = await this.axiosClient.post(`users`, {
                     userId: userId,
@@ -164,6 +165,7 @@ export default class CapstoneClient extends BindingClass {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                console.log("cs168");
                 return response.data.user;
             } catch (error) {
                 this.handleError(error, errorCallback)
@@ -173,7 +175,7 @@ export default class CapstoneClient extends BindingClass {
        async updateUser(userId, name, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can update users.");
-
+            console.log("update 178")
                 const response = await this.axiosClient.put(`users/${userId}`, {
                     userId: userId,
                     name: name,
@@ -191,7 +193,7 @@ export default class CapstoneClient extends BindingClass {
   async deleteUser(userId, errorCallback) {
                     try {
                         const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
-
+                        console.log("delete196")
                         const response = await this.axiosClient.delete(`users/${userId}`, {
                             userId: userId,
                         }, {

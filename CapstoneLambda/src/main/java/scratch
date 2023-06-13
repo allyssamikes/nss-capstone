@@ -36,8 +36,8 @@ ADD TO TO WATCH LIST
 ADD TO WATCHED LIST
 
 DELETE USER
-curl -X DELETE http://localhost:3000/users/allyssamikes \
- -d '{"userId":"allyssamikes"}'
+curl -X DELETE https://d694bbtpbb0j0.cloudfront.net/users/amikes \
+ -d '{"userId":"amikes"}'
 
 
 CREATE REVIEW
@@ -70,3 +70,40 @@ REMOVE FROM
 
                curl -X POST http://localhost:3000/users/allyssamikes/toWatchList \
                           -d  '{"userId":"allyssamikes","title":"Friends","director":"James Burrows"}'
+
+
+                          -------------------------------------------------------------------------------------------------
+Key                 CognitoUserPoolClientId
+Description         The Cognito User Pool Client ID (COGNITO_USER_POOL_CLIENT_ID).
+Value               1jfat8r3ihj3akrch5vdh2tkil
+
+Key                 ApiBaseUrl
+Description         API Gateway endpoint base URL for Prod stage (API_BASE_URL).
+Value               https://geukev6xv3.execute-api.us-east-2.amazonaws.com/Prod/
+
+Key                 CognitoUserPoolId
+Description         The Cognito User Pool ID (COGNITO_USER_POOL_ID).
+Value               us-east-2_uiSxTGJQH
+
+Key                 CognitoRedirectSignin
+Description         The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNIN).
+Value               https://d694bbtpbb0j0.cloudfront.net
+
+Key                 CognitoRedirectSignout
+Description         The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNOUT).
+Value               https://d694bbtpbb0j0.cloudfront.net
+
+Key                 CognitoDomain
+Description         The Cognito Domain (COGNITO_DOMAIN).
+Value               capstone-allyssamikes.auth.us-east-2.amazoncognito.com
+
+aws s3 cp \
+  build \
+  s3://nss-s3-c02-capstone-allyssamikes/static/ \
+  --recursive
+
+
+
+sam deploy --s3-bucket nss-s3-c02-capstone-allyssamikes \
+--parameter-overrides S3Bucket=nss-s3-c02-capstone-allyssamikes \
+CognitoDomain=capstone-allyssamikes
