@@ -30,6 +30,7 @@ module.exports = {
     UPDATEUSER: path.resolve(__dirname, 'src', 'pages', 'UPDATEUSER.js'),
     VIEWLISTS: path.resolve(__dirname, 'src', 'pages', 'VIEWLISTS.js'),
     WRITEREVIEW: path.resolve(__dirname, 'src', 'pages', 'WRITEREVIEW.js'),
+    ADDBOOKTOLIST: path.resolve(__dirname, 'src', 'pages', 'ADDBOOKTOLIST.js'),
 
   },
   output: {

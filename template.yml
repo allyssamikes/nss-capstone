@@ -504,8 +504,6 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyReading
             Method: post
-            Auth:
-              Authorizer: 'NONE'
 
   AddToCurrentlyWatchingListLambda:
     Type: AWS::Serverless::Function
@@ -548,8 +546,6 @@ Resources:
           Properties:
             Path: /users/{userId}/toReadList
             Method: post
-            Auth:
-              Authorizer: 'NONE'
 
   AddToToWatchListLambda:
     Type: AWS::Serverless::Function
@@ -614,8 +610,6 @@ Resources:
           Properties:
             Path: /users/{userId}/readList
             Method: post
-            Auth:
-              Authorizer: 'NONE'
 
   AddBookReviewLambda:
     Type: AWS::Serverless::Function

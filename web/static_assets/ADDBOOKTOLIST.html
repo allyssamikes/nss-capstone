@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="assets/ADDBOOKTOLIST.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/joy.css"></head>
+
+<body class="background">
+<header class="header" id="header"></header>
+
+<div class="card">
+    <h2>Add Book to List</h2>
+    <form class="card-content" id="add-book-form">
+        <p class="hidden error" id="error-message"> </p>
+
+        <p class="form-field">
+            <label> UserId</label>
+            <input type="text" id="userId" required class="validated-field"
+                   data-tip="Enter the User Id for your user">
+        </p>
+        <p class="form-field">
+            <label>Which List?</label>
+            <select name="list-type" id="list-type" class="type">
+                 <option value="toReadList"> To Read List</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="readList"> Read List </option>
+            </select>
+            <a href="#" class="button" id="add-book">Add Book</a>
+        </p>
+    </form>
+
+</div>
+</body>
+
+
+</html>
+

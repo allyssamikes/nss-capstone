@@ -14,6 +14,11 @@ GET LISTS
 GET ENTITY
 
 
+ADD TO READ LIST
+ADD TO TO READ LIST
+ADD TO CURRENTLY READING LIST
+
+
 DELETE USER
 curl -X DELETE http://localhost:3000/users/allyssamikes \
  -d '{"userId":"allyssamikes"}'
@@ -22,12 +27,19 @@ curl -X DELETE http://localhost:3000/users/allyssamikes \
 
 curl http://localhost:3000/movies/The-Parent-Trap/Nancy-Meyers
 
+
+
+curl -X PUT http://localhost:3000/users/amikes/currentlyReading \
+    -d '{"userId":"amikes","isbn":"85"}'
+
+
+
 NOT WORKING
 
 ADD TO CURRENTLY READING LIST
 
-curl  -X POST http://localhost:3000/users/amikes/currentlyReading \
--d '{"userId":"amikes","isbn":"85"}'
+curl  -X POST http://localhost:3000/users/amikes/watchedList \
+-d '{"userId":"amikes","title":"Friends", "director":"James"}'
 
 ADD TO CURRENTLY WATCHING LIST
 

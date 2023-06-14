@@ -3,16 +3,6 @@ import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
-/*
-The code below this comment is equivalent to...
-const EMPTY_DATASTORE_STATE = {
-    'search-criteria': '',
-    'search-results': [],
-};
-
-...but uses the "KEY" constants instead of "magic strings".
-The "KEY" constants will be reused a few times below.
-*/
 
 const SEARCH_CRITERIA_KEY = 'search-criteria';
 const SEARCH_RESULTS_KEY = 'search-results';
@@ -108,7 +98,7 @@ class SearchBooks extends BindingClass {
      * @returns A string of HTML suitable for being dropped on the page.
      */
     getHTMLForSearchResults(searchResults) {
-        if (searchResults.length === 0) {
+        if (searchResults === undefined) {
             return '<h4>No results found</h4>';
         }
 
@@ -116,7 +106,8 @@ class SearchBooks extends BindingClass {
         for (const res of searchResults) {
             html += `
             <tr>
-                <td>${res.title}</td>
+                 <p> Click on Title to Add To A List </p>
+                    <a href="ADDBOOKTOLIST.html?isbn=${searchResult.isbn}">${res.title}</a>
                 <td>${res.author}</td>
                 <td>${res.isbn}</td>
             </tr>`;

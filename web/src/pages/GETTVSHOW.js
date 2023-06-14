@@ -94,8 +94,7 @@ class GetTVShow extends BindingClass {
             searchResultsDisplay.innerHTML = '';
         } else {
             searchResultsContainer.classList.remove('hidden');
-            searchCriteriaDisplay.innerHTML = `"${title}"`;
-            searchCriteriaDisplay.innerHTML = `"${director}"`;
+             searchCriteriaDisplay.innerHTML = `"${title}" + "${director}"`;
             searchResultsDisplay.innerHTML = await this.getHTMLForSearchResults(searchResult);
         }
         document.getElementById("search-tvshows-form").reset();

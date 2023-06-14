@@ -19,7 +19,14 @@ public class Review {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    @DynamoDBRangeKey(attributeName = "UUIDOfEntity")
+    public String getUUIDOfEntity() {
+        return UUIDOfEntity;
+    }
 
+    public void setUUIDOfEntity(String UUIDOfEntity) {
+        this.UUIDOfEntity = UUIDOfEntity;
+    }
 
     @DynamoDBAttribute(attributeName = "review")
     public String getReview() {
@@ -39,15 +46,6 @@ public class Review {
         this.rating = rating;
     }
 
-
-    @DynamoDBRangeKey(attributeName = "UUIDOfEntity")
-    public String getUUIDOfEntity() {
-        return UUIDOfEntity;
-    }
-
-    public void setUUIDOfEntity(String UUIDOfEntity) {
-        this.UUIDOfEntity = UUIDOfEntity;
-    }
 
     @Override
     public String toString() {
