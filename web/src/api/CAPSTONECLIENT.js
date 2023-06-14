@@ -17,7 +17,7 @@ export default class CapstoneClient extends BindingClass {
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
         'getBook', 'getTVShow', 'getMovie', 'getItineraryActivities', 'writeReview',
-        'createUser', 'updateUser', 'deleteUser', 'addActivityToItinerary', 'removeActivityFromItinerary'];
+        'createUser', 'updateUser', 'deleteUser', 'addActivityToItinerary', 'removeActivityFromItinerary', 'searchBooks'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -254,14 +254,17 @@ export default class CapstoneClient extends BindingClass {
         }
 
 
-//    async searchBooks(genre, errorCallback) {
-//        try{
-//            const response = await this.axiosClient.get(`books/search?genre=${genre}`);
-//            return response.data.bookModelsList;
-//        } catch (error) {
-//            this.handleError(error, errorCallback);
-//        }
-//    }
+    async searchBooks(criteria, errorCallback) {
+        try{
+         const queryParams = new URLSearchParams({ q: criteria })
+         const queryString = queryParams.toString();
+
+            const response = await this.axiosClient.get(`books/search?genre=${queryString}`);
+            return response.data.books;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
 
     /**
      * Helper method to log the error and run any error functions.

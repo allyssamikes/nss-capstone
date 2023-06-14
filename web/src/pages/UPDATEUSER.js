@@ -69,8 +69,7 @@ class UpdateUser extends BindingClass {
                     errorMessageDisplay.innerText = `Error: ${error.message}`;
                     errorMessageDisplay.classList.remove('hidden');
                     });
-
-                       document.getElementById("delete-user").reset();
+                       document.getElementById("delete-user-form").reset();
 
                 }
 

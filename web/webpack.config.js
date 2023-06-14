@@ -23,7 +23,9 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    GETITEMS: path.resolve(__dirname, 'src', 'pages', 'GETITEMS.js'),
+    GETMOVIE: path.resolve(__dirname, 'src', 'pages', 'GETMOVIE.js'),
+    GETTVSHOW: path.resolve(__dirname, 'src', 'pages', 'GETTVSHOW.js'),
+    SEARCHBOOKS: path.resolve(__dirname, 'src', 'pages', 'SEARCHBOOKS.js'),
     CREATEUSER: path.resolve(__dirname, 'src', 'pages', 'CREATEUSER.js'),
     UPDATEUSER: path.resolve(__dirname, 'src', 'pages', 'UPDATEUSER.js'),
     VIEWLISTS: path.resolve(__dirname, 'src', 'pages', 'VIEWLISTS.js'),
