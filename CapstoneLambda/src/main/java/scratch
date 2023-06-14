@@ -20,10 +20,14 @@ curl -X DELETE http://localhost:3000/users/allyssamikes \
 
 
 
+curl http://localhost:3000/movies/The-Parent-Trap/Nancy-Meyers
 
 NOT WORKING
 
 ADD TO CURRENTLY READING LIST
+
+curl  -X POST http://localhost:3000/users/amikes/currentlyReading \
+-d '{"userId":"amikes","isbn":"85"}'
 
 ADD TO CURRENTLY WATCHING LIST
 

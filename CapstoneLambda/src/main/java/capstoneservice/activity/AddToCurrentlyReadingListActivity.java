@@ -55,7 +55,7 @@ public class AddToCurrentlyReadingListActivity {
         }
 
         readList.add(book);
-        theUser.setReadList(readList);
+        theUser.setCurrentlyReading(readList);
         userDao.saveUser(theUser);
 
         List<BookModel> bookModels = new ArrayList<>();
