@@ -23,17 +23,14 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    addActivityToItinerary: path.resolve(__dirname, 'src', 'pages', 'addActivityToItinerary.js'),
-    createActivity: path.resolve(__dirname, 'src', 'pages', 'createActivity.js'),
-    createItinerary: path.resolve(__dirname, 'src','pages', 'createItinerary.js'),
-    getItineraryActivities: path.resolve(__dirname, 'src','pages', 'getItineraryActivities.js'),
-    searchItineraries: path.resolve(__dirname, 'src', 'pages', 'searchItineraries.js'),
-    viewItinerary: path.resolve(__dirname, 'src', 'pages', 'viewItinerary.js'),
-    GETITEMS: path.resolve(__dirname, 'src', 'pages', 'GETITEMS.js'),
+    GETMOVIE: path.resolve(__dirname, 'src', 'pages', 'GETMOVIE.js'),
+    GETTVSHOW: path.resolve(__dirname, 'src', 'pages', 'GETTVSHOW.js'),
+    SEARCHBOOKS: path.resolve(__dirname, 'src', 'pages', 'SEARCHBOOKS.js'),
     CREATEUSER: path.resolve(__dirname, 'src', 'pages', 'CREATEUSER.js'),
     UPDATEUSER: path.resolve(__dirname, 'src', 'pages', 'UPDATEUSER.js'),
     VIEWLISTS: path.resolve(__dirname, 'src', 'pages', 'VIEWLISTS.js'),
     WRITEREVIEW: path.resolve(__dirname, 'src', 'pages', 'WRITEREVIEW.js'),
+    ADDBOOKTOLIST: path.resolve(__dirname, 'src', 'pages', 'ADDBOOKTOLIST.js'),
 
   },
   output: {

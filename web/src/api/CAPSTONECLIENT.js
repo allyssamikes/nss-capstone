@@ -17,7 +17,7 @@ export default class CapstoneClient extends BindingClass {
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
         'getBook', 'getTVShow', 'getMovie', 'getItineraryActivities', 'writeReview',
-        'createUser', 'updateUser', 'deleteUser', 'addActivityToItinerary', 'removeActivityFromItinerary'];
+        'createUser', 'updateUser', 'deleteUser', 'addBookToCurrentlyReading', 'addBookToToReadList', 'addBookToReadList', 'removeActivityFromItinerary', 'searchBooks'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -25,7 +25,6 @@ export default class CapstoneClient extends BindingClass {
         axios.defaults.baseURL = process.env.API_BASE_URL;
         this.axiosClient = axios;
         this.clientLoaded();
-        console.log("constructor");
     }
 
     /**
@@ -155,6 +154,7 @@ export default class CapstoneClient extends BindingClass {
         async createUser(userId, name, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can create users.");
+                console.log("cs 158");
 
                 const response = await this.axiosClient.post(`users`, {
                     userId: userId,
@@ -164,6 +164,7 @@ export default class CapstoneClient extends BindingClass {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                console.log("cs168");
                 return response.data.user;
             } catch (error) {
                 this.handleError(error, errorCallback)
@@ -173,7 +174,7 @@ export default class CapstoneClient extends BindingClass {
        async updateUser(userId, name, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can update users.");
-
+            console.log("update 178")
                 const response = await this.axiosClient.put(`users/${userId}`, {
                     userId: userId,
                     name: name,
@@ -191,7 +192,7 @@ export default class CapstoneClient extends BindingClass {
   async deleteUser(userId, errorCallback) {
                     try {
                         const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
-
+                        console.log("delete196")
                         const response = await this.axiosClient.delete(`users/${userId}`, {
                             userId: userId,
                         }, {
@@ -214,24 +215,60 @@ export default class CapstoneClient extends BindingClass {
          * @param errorCallback (Optional) A function to execute if the call fails.
          * @returns The list of activities that have been updated in the itinerary.
          */
-    async addActivityToItinerary(email, tripName, cityCountry, name, errorCallback) {
+    async addBookToCurrentlyReading(userId, isbn, errorCallback) {
             try {
-                const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
-                const response = await this.axiosClient.post(`itineraries/${email}/${tripName}/activities`, {
-                    email: email,
-                    tripName: tripName,
-                    cityCountry: cityCountry,
-                    name: name
+                const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
+                const response = await this.axiosClient.post(`users/${userId}/currentlyReading`, {
+                    userId: userId,
+                    isbn: isbn,
               }, {
                   headers: {
                       Authorization: `Bearer ${token}`
                   }
               });
-                return response.data.activityList;
+                return response.data.currentlyReading;
             } catch (error) {
                 this.handleError(error, errorCallback)
             }
         }
+
+            async addBookToToReadList(userId, isbn, errorCallback) {
+                    try {
+                        const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
+                        const response = await this.axiosClient.post(`users/${userId}/toReadList`, {
+                            userId: userId,
+                            isbn: isbn,
+                      }, {
+                          headers: {
+                              Authorization: `Bearer ${token}`
+                          }
+                      });
+                        return response.data.toReadList;
+                    } catch (error) {
+                        this.handleError(error, errorCallback)
+                    }
+                }
+
+
+                    async addBookToReadList(userId, isbn, errorCallback) {
+                            try {
+                                const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
+                                const response = await this.axiosClient.post(`users/${userId}/readList`, {
+                                    userId: userId,
+                                    isbn: isbn,
+                              }, {
+                                  headers: {
+                                      Authorization: `Bearer ${token}`
+                                  }
+                              });
+                                return response.data.readList;
+                            } catch (error) {
+                                this.handleError(error, errorCallback)
+                            }
+                        }
+
+
+
     async removeActivityFromItinerary(email, tripName, cityCountry, name, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
@@ -252,14 +289,17 @@ export default class CapstoneClient extends BindingClass {
         }
 
 
-//    async searchBooks(genre, errorCallback) {
-//        try{
-//            const response = await this.axiosClient.get(`books/search?genre=${genre}`);
-//            return response.data.bookModelsList;
-//        } catch (error) {
-//            this.handleError(error, errorCallback);
-//        }
-//    }
+    async searchBooks(criteria, errorCallback) {
+        try{
+         const queryParams = new URLSearchParams({ q: criteria })
+         const queryString = queryParams.toString();
+
+          const response = await this.axiosClient.get(`books/search?${queryString}`);
+          return response.data.books;
+        } catch (error) {
+            this.handleError(error, errorCallback);
+        }
+    }
 
     /**
      * Helper method to log the error and run any error functions.

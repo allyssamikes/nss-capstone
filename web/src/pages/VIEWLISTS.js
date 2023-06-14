@@ -130,29 +130,7 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
 
                   document.getElementById('view-itinerary-activities-form').reset;
              }
-             async submitItinerarySearch(evt) {
-                         evt.preventDefault();
 
-                         const errorMessageDisplay = document.getElementById('search-error-message');
-                         errorMessageDisplay.innerText = ``;
-                         errorMessageDisplay.classList.add('hidden');
-
-                         const getButton = document.getElementById('search-itineraries');
-                         const origButtonText = getButton.innerText;
-                         getButton.innerText = 'Loading...';
-                         //user input
-
-                         const email = document.getElementById('email-search').value;
-                         //get itinerary from database
-                         const itinerariesFound = await this.client.search(email, (error) => {
-                             getButton.innerText = origButtonText;
-                             const errorMessageDisplay = document.getElementById('search-error-message');
-                             errorMessageDisplay.innerText = `Error: ${error.message}`;
-                             errorMessageDisplay.classList.remove('hidden');
-                         });
-                         this.dataStoreSearch.set('itineraries', itinerariesFound);
- console.log(itinerariesFound);
-                         }
  addItinerariesToPage() {
             const itineraries = this.dataStoreSearch.get('itineraries');
  console.log(itineraries);

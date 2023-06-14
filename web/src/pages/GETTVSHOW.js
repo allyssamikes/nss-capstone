@@ -2,7 +2,7 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
-import Authenticator from "../api/authenticator";
+
 
 /*
 The code below this comment is equivalent to...
@@ -15,29 +15,23 @@ const EMPTY_DATASTORE_STATE = {
 The "KEY" constants will be reused a few times below.
 */
 
-const SEARCH_CRITERIA_ISBN = 'isbn';
 const SEARCH_CRITERIA_TITLE = 'title';
-const SEARCH_CRITERIA_DIRECTOR= 'director';
-const SEARCH_CRITERIA_TITLEM = 'titleM';
-const SEARCH_CRITERIA_DIRECTORM = 'directorM';
+const SEARCH_CRITERIA_DIRECTOR = 'director';
 const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
-    [SEARCH_CRITERIA_ISBN]: '',
-        [SEARCH_CRITERIA_TITLE]: '',
-            [SEARCH_CRITERIA_DIRECTOR]: '',
-                [SEARCH_CRITERIA_TITLEM]: '',
-                    [SEARCH_CRITERIA_DIRECTORM]: '',
+    [SEARCH_CRITERIA_TITLE]: '',
+    [SEARCH_CRITERIA_DIRECTOR]: '',
    [SEARCH_RESULTS_KEY]: '',
 };
 
 /**
  * Logic needed for the view itinerary page of the website.
  */
-class GetItems extends BindingClass {
+class GetTVShow extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['mount', 'getBook', 'getTVShow', 'getMovie',  'displaySearchResults', 'getHTMLForSearchResults'], this);
+        this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults'], this);
 
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
@@ -50,14 +44,8 @@ class GetItems extends BindingClass {
      */
     mount() {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
-        document.getElementById('search-books-form').addEventListener('submit', this.getBook);
-        document.getElementById('book-button').addEventListener('click', this.getBook);
-
-        document.getElementById('search-tvshows-form').addEventListener('submit', this.getTVShow);
-        document.getElementById('tvshow-button').addEventListener('click', this.getTVShow);
-
-        document.getElementById('search-movies-form').addEventListener('submit', this.getMovie);
-        document.getElementById('movie-button').addEventListener('click', this.getMovie);
+        document.getElementById('search-tvshows-form').addEventListener('submit', this.search);
+        document.getElementById('tvshow-button').addEventListener('click', this.search);
 
         this.header.addHeaderToPage();
 
@@ -69,16 +57,18 @@ class GetItems extends BindingClass {
      * then updates the datastore with the criteria and results.
      * @param evt The "event" object representing the user-initiated event that triggered this method.
      */
-    async getBook(evt) {
+    async search(evt) {
         // Prevent submitting the form from reloading the page.
         evt.preventDefault();
 
-        const isbn = document.getElementById('isbn').value;
+        const title = document.getElementById('title').value;
+        const director = document.getElementById('director').value;
 
-        if (isbn) {
-            const results = await this.client.getBook(isbn);
+        if (title && director) {
+            const results = await this.client.getTVShow(title, director);
             this.dataStore.setState({
-                [SEARCH_CRITERIA_ISBN]: isbn,
+                [SEARCH_CRITERIA_TITLE]: title,
+                  [SEARCH_CRITERIA_DIRECTOR]: director,
                 [SEARCH_RESULTS_KEY]: results,
             });
         } else {
@@ -86,72 +76,28 @@ class GetItems extends BindingClass {
         }
     }
 
-        async getTVShow(evt) {
-            // Prevent submitting the form from reloading the page.
-            evt.preventDefault();
-
-            const title = document.getElementById('title').value;
-            const director = document.getElementById('director').value;
-
-            if (isbn) {
-                const results = await this.client.getTVShow(title, director);
-                this.dataStore.setState({
-                    [SEARCH_CRITERIA_TRIP_TITLE]: title,
-                       [SEARCH_CRITERIA_TRIP_DIRECTOR]: director,
-                    [SEARCH_RESULTS_KEY]: results,
-                });
-            } else {
-                this.dataStore.setState(EMPTY_DATASTORE_STATE);
-            }
-        }
-
-     async getMovie(evt) {
-            // Prevent submitting the form from reloading the page.
-            evt.preventDefault();
-
-            const titleM = document.getElementById('titleM').value;
-            const directorM = document.getElementById('directorM').value;
-
-            if (isbn) {
-                const results = await this.client.getMovie(title, director);
-                this.dataStore.setState({
-                    [SEARCH_CRITERIA_TRIP_TITLEM]: titleM,
-                       [SEARCH_CRITERIA_TRIP_DIRECTORM]: directorM,
-                    [SEARCH_RESULTS_KEY]: results,
-                });
-            } else {
-                this.dataStore.setState(EMPTY_DATASTORE_STATE);
-            }
-        }
-
-
     /**
      * Pulls search results from the datastore and displays them on the html page.
      */
     async displaySearchResults() {
-        const isbn = await this.dataStore.get(SEARCH_CRITERIA_ISBN);
         const title = await this.dataStore.get(SEARCH_CRITERIA_TITLE);
         const director = await this.dataStore.get(SEARCH_CRITERIA_DIRECTOR);
-        const titleM = await this.dataStore.get(SEARCH_CRITERIA_TITLEM);
-        const directorM = await this.dateStore.get(SEARCH_CRITERIA_DIRECTORM);
         const searchResult = await this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
         const searchResultsDisplay = document.getElementById('search-results-display');
 
-        if (title === '' || isbn === "") {
+        if (title === '' && director === '') {
             searchResultsContainer.classList.add('hidden');
             searchCriteriaDisplay.innerHTML = '';
             searchResultsDisplay.innerHTML = '';
         } else {
             searchResultsContainer.classList.remove('hidden');
-            searchCriteriaDisplay.innerHTML = `"${title}"`;
+             searchCriteriaDisplay.innerHTML = `"${title}" + "${director}"`;
             searchResultsDisplay.innerHTML = await this.getHTMLForSearchResults(searchResult);
         }
-        document.getElementById("search-books-form").reset();
-       document.getElementById("search-tvshows-form").reset();
-      document.getElementById("search-movies-form").reset();
+        document.getElementById("search-tvshows-form").reset();
     }
 
     /**
@@ -164,16 +110,19 @@ class GetItems extends BindingClass {
                          return '<h4>No results found</h4>';
              }
 
-     let html = '<table><tr><th>Title</th></tr>';
-                                 {
+     let html = '<table><tr><th>Title</th><th>Director</th></tr>';
+                if ((searchResult.title != title) || (searchResult.director != director)) {
                                     html += `
                                     <tr>
+                                        <p> Click on Trip Name to Write Review</p>
                                         <td>
-                                            <a ${searchResult.title}</a>
+                                            <a href="WRITEREVIEW.html?title=${searchResult.title}&director=${searchResult.director}&UUIDOfEntity=${searchResult.UUIDOfEntity}">${searchResult.title}</a>
                                         </td>
+                                         <td>${searchResult.director}</td>
                                           </tr>`;
                                 }
                                 html += '</table>';
+
                                 return html;
                 }
                             }
@@ -182,8 +131,8 @@ class GetItems extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const getItems = new GetItems();
-    getItems.mount();
+    const getTVShow = new GetTVShow();
+    getTVShow.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
