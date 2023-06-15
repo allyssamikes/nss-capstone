@@ -765,12 +765,12 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
-  GetBookByGenreLambda:
+  GetBookByAuthorLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetBookByGenreLambda::handleRequest
+      Handler: capstoneservice.lambda.GetBookByAuthorLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64

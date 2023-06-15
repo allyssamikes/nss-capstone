@@ -5,10 +5,10 @@ import capstoneservice.models.BookModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetBookByGenreResult {
+public class GetBookByAuthorResult {
     private final List<BookModel> models;
 
-    public GetBookByGenreResult(List<BookModel> models) {
+    public GetBookByAuthorResult(List<BookModel> models) {
         this.models = models;
     }
 
@@ -18,7 +18,7 @@ public class GetBookByGenreResult {
 
     @Override
     public String toString() {
-        return "GetBookByGenreResult{" +
+        return "GetBookByAuthorResult{" +
                 "models=" + models +
                 '}';
     }
@@ -35,8 +35,8 @@ public class GetBookByGenreResult {
             this.models = new ArrayList<>(models);
             return this;
         }
-        public GetBookByGenreResult build() {
-            return new GetBookByGenreResult(models);
+        public GetBookByAuthorResult build() {
+            return new GetBookByAuthorResult(models);
         }
     }
 }

@@ -17,6 +17,8 @@ import javax.inject.Singleton;
 
 import javax.inject.Inject;
 
+import static capstoneservice.dynamodb.models.Book.AUTHOR_INDEX;
+
 @Singleton
 public class BookDao {
     private final DynamoDBMapper dynamoDbMapper;
@@ -44,12 +46,14 @@ public class BookDao {
         return book;
     }
 
-    public List<Book> getBooksByGenre(String genre) {
-        Book book = new Book();
-        book.setGenre(genre);
-        
+    public List<Book> getBooksByAuthor(String author) {
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":author", new AttributeValue().withS("author"));
         DynamoDBQueryExpression<Book> queryExpression = new DynamoDBQueryExpression<Book>()
-                .withHashKeyValues(book);
+                .withIndexName(AUTHOR_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("author = :author")
+                .withExpressionAttributeValues(valueMap);
 
         return dynamoDbMapper.query(Book.class, queryExpression);
     }

@@ -1,30 +1,29 @@
 package capstoneservice.activity;
 
-import capstoneservice.activity.request.GetBookByGenreRequest;
-import capstoneservice.activity.result.GetBookByGenreResult;
+import capstoneservice.activity.request.GetBookByAuthorRequest;
+import capstoneservice.activity.result.GetBookByAuthorResult;
 import capstoneservice.converters.ModelConverter;
 import capstoneservice.dynamodb.BookDao;
 import capstoneservice.dynamodb.models.Book;
-import capstoneservice.dynamodb.models.GENRE;
 import capstoneservice.models.BookModel;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetBookByGenreActivity {
+public class GetBookByAuthorActivity {
 
     private final BookDao bookDao;
 
     @Inject
-    public GetBookByGenreActivity(BookDao bookDao) {
+    public GetBookByAuthorActivity(BookDao bookDao) {
         this.bookDao = bookDao;
     }
 
-    public GetBookByGenreResult handleRequest(final GetBookByGenreRequest getBookByGenreRequest) {
+    public GetBookByAuthorResult handleRequest(final GetBookByAuthorRequest getBookByAuthorRequest) {
 
-        String genre = getBookByGenreRequest.getGenre();
-        List<Book> books = bookDao.getBooksByGenre(genre);
+        String author = getBookByAuthorRequest.getAuthor();
+        List<Book> books = bookDao.getBooksByAuthor(author);
 
         List<BookModel> bookModels = new ArrayList<>();
         for(Book b : books) {
@@ -32,7 +31,7 @@ public class GetBookByGenreActivity {
             bookModels.add(model);
         }
 
-        return GetBookByGenreResult.builder()
+        return GetBookByAuthorResult.builder()
                 .withList(bookModels)
                 .build();
     }
