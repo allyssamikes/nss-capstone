@@ -9,28 +9,21 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
  class ViewLists extends BindingClass {
      constructor() {
          super();
-         this.bindClassMethods(['mount', 'submit', 'addItineraryToPage','submitItinerarySearch','addItinerariesToPage'], this);
+         this.bindClassMethods(['mount', 'submit'], this);
          this.dataStore = new DataStore();
 
-         this.dataStore.addChangeListener(this.addItineraryToPage);
          this.dataStoreSearch = new DataStore;
-         this.dataStoreSearch.addChangeListener(this.addItinerariesToPage);
          this.header = new Header(this.dataStore);
      }
      /**
       * Add the header to the page and load the Client.
       */
      mount() {
-         document.getElementById('activities-of-itinerary').addEventListener('click', this.submit);
-         document.getElementById('search-itineraries').addEventListener('click', this.submitItinerarySearch);
+         document.getElementById('lists').addEventListener('click', this.submit);
          this.header.addHeaderToPage();
 
          this.client = new CapstoneClient();
      }
-         /**
-          * Method to run when the submit button is pressed. Call the VacanzaService to see the
-          * details of an itinerary.
-          */
          async submit(evt) {
              evt.preventDefault();
 
@@ -38,128 +31,124 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
              errorMessageDisplay.innerText = ``;
              errorMessageDisplay.classList.add('hidden');
 
-             const getButton = document.getElementById('activities-of-itinerary');
+             const getButton = document.getElementById('lists');
              const origButtonText = getButton.innerText;
              getButton.innerText = 'Loading...';
+
              //user input
-             const tripName = document.getElementById('tripName').value;
-             const email = document.getElementById('email').value;
-             if(tripName == null || tripName === ''|| email == null || email === '') {
+             const userId = document.getElementById('userId').value;
+             if(userId == null || userId === '') {
              getButton.innerText = origButtonText;
              return;}
-             //get itinerary from database
-             const itinerary = await this.client.getItinerary(email, tripName, (error) => {
+
+             const toReadList = await this.client.getToReadList(userId, (error) => {
                  getButton.innerText = origButtonText;
                  const errorMessageDisplay = document.getElementById('error-message');
                  errorMessageDisplay.innerText = `Error: ${error.message}`;
                  errorMessageDisplay.classList.remove('hidden');
              });
-             this.dataStore.set('itinerary', itinerary);
+             this.dataStore.set('toReadList', toReadList);
 
-             getButton.innerText = 'Complete';
-             getButton.innerText = 'Submit to View';
-         }
-     /**
-      * Displays the details of an itinerary by embedding a list of all activities, as well as other attributes.
-       */
-     addItineraryToPage() {
-            const itinerary = this.dataStore.get('itinerary');
-                 if (itinerary == null) {
-                     return;
-                 }
-            document.getElementById('tripName').innerText = itinerary.tripName;
-            const submitResultsContainer = document.getElementById('submit-results-container');
-            const submitCriteriaDisplay  =   document.getElementById('city-title-display');
-            const cityResultsDisplay  =   document.getElementById('city-results-display');
+              const readList = await this.client.getReadList(userId, (error) => {
+                              getButton.innerText = origButtonText;
+                              const errorMessageDisplay = document.getElementById('error-message');
+                              errorMessageDisplay.innerText = `Error: ${error.message}`;
+                              errorMessageDisplay.classList.remove('hidden');
+              });
+               this.dataStore.set('readList', readList);
 
-            const submitUsersDisplay  =   document.getElementById('users-display');
-            const activityTableContainer = document.getElementById('activities-table-container');
-            const activitiesContainer = document.getElementById('activities-container');
-            const tagsResultsDisplay = document.getElementById('tags-results-display');
+             const currentlyReading = await this.client.getCurrentlyReading(userId, (error) => {
+                                           getButton.innerText = origButtonText;
+                                           const errorMessageDisplay = document.getElementById('error-message');
+                                           errorMessageDisplay.innerText = `Error: ${error.message}`;
+                                           errorMessageDisplay.classList.remove('hidden');
+             });
+             this.dataStore.set('currentlyReading', currentlyReading);
+                console.log(currentlyReading +  "currently");
+                console.log(toReadList + "to");
+                console.log(readList + "read")
+            const submit1ResultsContainer = document.getElementById('results1-container');
+            submit1ResultsContainer.classList.remove('hidden');
 
-            activitiesContainer.classList.remove('hidden');
-            submitResultsContainer.classList.remove('hidden');
+          const submit2ResultsContainer = document.getElementById('results2-container');
+           submit2ResultsContainer.classList.remove('hidden');
 
-            cityResultsDisplay.innerHTML = itinerary.cities;
+           const submit3ResultsContainer = document.getElementById('results3-container');
+           submit3ResultsContainer.classList.remove('hidden');
 
-            submitUsersDisplay.innerHTML = itinerary.users;
-            tagsResultsDisplay.innerHTML = itinerary.tags;
-
-
-            const activities = itinerary.activities
-
-            if (activities == null) {
-                 return '<h4>No activities found</h4>';
+        if (currentlyReading === undefined) {
+                 return '<h4>Currently Reading List Is Empty</h4>';
             }
-            let activityHtml = '';
-            let activity;
-                 for (activity of activities) {
+        if (toReadList === undefined) {
+                 return '<h4>To Read List Is Empty</h4>';
+            }
+            if (readList === undefined) {
+                 return '<h4>Read List Is Empty</h4>';
+            }
 
-                      const isKidFriendly = activity.kidFriendly === "Yes";
-                      const isWeatherPermitting = activity.weatherPermitting === "Yes";
+            let book;
+            let book1Html = '';
+                 for (book of toReadList) {
 
-                      if(isKidFriendly == true) { var kidFriendlyText = 'child-friendly'} else {var kidFriendlyText = 'not child-friendly'}
-                      if(isWeatherPermitting == true) { var weatherPermittingText = 'weather-permitting'} else {var weatherPermittingText = 'rain-or-shine'}
-                      if(activity.address != null) {
-                           var addressString = activity.address;
-                      } else {var addressString = ' ';}
-
-                      activityHtml += `
-                            <li class="activity">
-                                         <span class="name">${activity.name}</span>
+                      bookHtml += `
+                            <li class="toReadList">
+                                         <span class="Title">${book.title}</span>
                                          <span class="space">${" : "}</span>
-                                         <span class="place">${activity.cityCountry}</span>
+                                         <span class="Author">${book.author}</span>
                                          <span class="space">${"   :   "}</span>
-                                         <span class="type">${activity.type_OF_ACTIVITY}</span>
+                                         <span class="Genre">${activity.GENRE}</span>
                                          <span class="space">${"   :   "}</span>
-                                         <span class="kidFriendly">${kidFriendlyText}</span>
-
-                                         <span class="space">${"    :    "}</span>
-                                         <span class="weatherPermitting">${weatherPermittingText}</span>
-
+                                         <span class="Year Published">${book.yearPublished}</span>
+                                          <span class="space">${"   :   "}</span>
+                                         <span class="Length">${book.lengthInPages}</span>
                                          <span class="space">${"   :   "}</span>
-
-                                         <span class="address"><a href= "https://www.google.com/maps/place/${addressString}"> ${addressString}</a></span>
-
                             </li>
                              <br>
                        `;
-
                  }
-                 document.getElementById('activities').innerHTML = activityHtml;
+                      let book2Html = '';
+                                  for (book of currentlyReading) {
 
-                  document.getElementById('view-itinerary-activities-form').reset;
-             }
+                                       bookHtml += `
+                                             <li class="currentlyReading">
+                                                          <span class="Title">${book.title}</span>
+                                                          <span class="space">${" : "}</span>
+                                                          <span class="Author">${book.author}</span>
+                                                          <span class="space">${"   :   "}</span>
+                                                          <span class="Genre">${activity.GENRE}</span>
+                                                          <span class="space">${"   :   "}</span>
+                                                          <span class="Year Published">${book.yearPublished}</span>
+                                                           <span class="space">${"   :   "}</span>
+                                                          <span class="Length">${book.lengthInPages}</span>
+                                                          <span class="space">${"   :   "}</span>
+                                             </li>
+                                              <br>
+                                        `;
+                                  }
+                 document.getElementById('currentlyReading').innerHTML = book2Html;
 
- addItinerariesToPage() {
-            const itineraries = this.dataStoreSearch.get('itineraries');
- console.log(itineraries);
-            const searchResultsContainer = document.getElementById('search-results-container');
+                      let book3Html = '';
+                                                   for (book of readList) {
+                                                        bookHtml += `
+                                                              <li class="readList">
+                                                                           <span class="Title">${book.title}</span>
+                                                                           <span class="space">${" : "}</span>
+                                                                           <span class="Author">${book.author}</span>
+                                                                           <span class="space">${"   :   "}</span>
+                                                                           <span class="Genre">${activity.GENRE}</span>
+                                                                           <span class="space">${"   :   "}</span>
+                                                                           <span class="Year Published">${book.yearPublished}</span>
+                                                                            <span class="space">${"   :   "}</span>
+                                                                           <span class="Length">${book.lengthInPages}</span>
+                                                                           <span class="space">${"   :   "}</span>
+                                                              </li>
+                                                               <br>
+                                                         `;
+                                                   }
+                                  document.getElementById('readList').innerHTML = book3Html;
 
-             searchResultsContainer.classList.remove('hidden');
-            if (itineraries == null) {
-                 return '<h4>No itineraries found</h4>';
-            }
-            let itinerariesHtml = '';
-            let itinerary;
-                 for (itinerary of itineraries) {
-
-                      itinerariesHtml += `
-                            <li class="itinerary">
-                                         <span class="name">${itinerary.tripName}</span>
-                                         <span class="space">${" : "}</span>
-                                         <span class="cities">${itinerary.cities}</span>
-
-                            </li>
-                             <br>
-                       `;
-
-                 }
-                 document.getElementById('itineraries').innerHTML = itinerariesHtml;
-                 const getButton = document.getElementById('search-itineraries');
-                 getButton.innerText = "Search for Trips";
-                 document.getElementById('view-itinerary-activities-form').reset;
-             }
+                  document.getElementById('view-lists-form').reset;
+                  }
 
  }
  /**

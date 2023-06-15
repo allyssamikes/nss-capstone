@@ -14,12 +14,12 @@ const EMPTY_DATASTORE_STATE = {
 The "KEY" constants will be reused a few times below.
 */
 
-const SEARCH_CRITERIA_TITLE = 'title';
-const SEARCH_CRITERIA_DIRECTOR = 'director';
+const SEARCH_CRITERIA_TITLEM = 'title';
+const SEARCH_CRITERIA_DIRECTORM = 'director';
 const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
-    [SEARCH_CRITERIA_TITLE]: '',
-    [SEARCH_CRITERIA_DIRECTOR]: '',
+    [SEARCH_CRITERIA_TITLEM]: '',
+    [SEARCH_CRITERIA_DIRECTORM]: '',
    [SEARCH_RESULTS_KEY]: '',
 };
 
@@ -66,8 +66,8 @@ class GetMovie extends BindingClass {
         if (title && director) {
             const results = await this.client.getMovie(title, director);
             this.dataStore.setState({
-                [SEARCH_CRITERIA_TITLE]: title,
-                  [SEARCH_CRITERIA_DIRECTOR]: director,
+                [SEARCH_CRITERIA_TITLEM]: title,
+                  [SEARCH_CRITERIA_DIRECTORM]: director,
                 [SEARCH_RESULTS_KEY]: results,
             });
         } else {
@@ -79,8 +79,8 @@ class GetMovie extends BindingClass {
      * Pulls search results from the datastore and displays them on the html page.
      */
     async displaySearchResults() {
-        const title = await this.dataStore.get(SEARCH_CRITERIA_TITLE);
-        const director = await this.dataStore.get(SEARCH_CRITERIA_DIRECTOR);
+        const title = await this.dataStore.get(SEARCH_CRITERIA_TITLEM);
+        const director = await this.dataStore.get(SEARCH_CRITERIA_DIRECTORM);
         const searchResult = await this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('search-results-container');
@@ -114,7 +114,7 @@ class GetMovie extends BindingClass {
                 if ((searchResult.title != title) || (searchResult.director != director)) {
                                     html += `
                                     <tr>
-                                        <p> Click on Trip Name to Write Review</p>
+                                        <p> Click on Title to Write Review</p>
                                         <td>
                                             <a href="WRITEREVIEW.html?title=${searchResult.title}&director=${searchResult.director}&UUIDOfEntity=${searchResult.UUIDOfEntity}">${searchResult.title}</a>
                                         </td>

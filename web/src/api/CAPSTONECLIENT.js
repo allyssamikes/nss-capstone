@@ -11,13 +11,12 @@ import Authenticator from "./authenticator";
  * https://javascript.info/mixins
   */
 export default class CapstoneClient extends BindingClass {
-
     constructor(props = {}) {
         super();
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
-        'getBook', 'getTVShow', 'getMovie', 'getItineraryActivities', 'writeReview',
-        'createUser', 'updateUser', 'deleteUser', 'addBookToCurrentlyReading', 'addBookToToReadList', 'addBookToReadList', 'removeActivityFromItinerary', 'searchBooks'];
+        'getBook', 'getTVShow', 'getMovie', 'getToReadList', 'getReadList', 'getCurrentlyReading', 'writeReview',
+        'createUser', 'updateUser', 'deleteUser', 'addBookToCurrentlyReading', 'addBookToToReadList', 'addBookToReadList', 'searchBooks'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -85,7 +84,7 @@ export default class CapstoneClient extends BindingClass {
 
 
     async getTVShow(title, director, errorCallback) {
-
+    console.log("cc88");
           try {
               const response = await this.axiosClient.get(`tvshows/${title}/${director}`);
               return response.data.tvshow;
@@ -96,7 +95,6 @@ export default class CapstoneClient extends BindingClass {
 
 
     async getMovie(title, director, errorCallback) {
-
           try {
               const response = await this.axiosClient.get(`movies/${title}/${director}`);
               return response.data.movie;
@@ -105,32 +103,37 @@ export default class CapstoneClient extends BindingClass {
           }
       }
 
-    /**
-     * Get the songs on a given playlist by the playlist's identifier.
-     * @param id Unique identifier for a playlist
-     * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The list of activities in an itinerary.
-     */
-    async getItineraryActivities(email, tripName, errorCallback) {
 
+    async getToReadList(userId, errorCallback) {
+    console.log("get to read")
         try {
-           // const response = await this.axiosClient.get(`itineraries/${id}/activities`);
-           const response = await this.axiosClient.get(`itineraries/${email}/${tripName}/activities`);
-            return response.data.activities;
+           const response = await this.axiosClient.get(`users/${userId}/toReadList`);
+            return response.data.toReadList
         } catch (error) {
             this.handleError(error, errorCallback)
         }
     }
 
-        /**
-         * Create a new itinerary owned by the current user.
-         * @param tripName String The name of the itinerary to create.
-         * @param tags Metadata tags to associate with a itinerary.
-         * @param users Metadata users to associate with a itinerary.
-         * @param users Metadata cities to associate with a itinerary.
-         * @param errorCallback (Optional) A function to execute if the call fails.
-         * @returns The itinerary that has been created.
-         */
+        async getReadList(userId, errorCallback) {
+        console.log("get read")
+            try {
+               const response = await this.axiosClient.get(`users/${userId}/readList`);
+                return response.data.readList
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
+
+            async getCurrentlyReading(userId, errorCallback) {
+            console.log("get currently")
+                try {
+                   const response = await this.axiosClient.get(`users/${userId}/currentlyReading`);
+                    return response.data.currentlyReading
+                } catch (error) {
+                    this.handleError(error, errorCallback)
+                }
+            }
+
     async writeReview(userId, rating, review, UUIDOfEntity, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can create reviews.");
@@ -206,15 +209,6 @@ export default class CapstoneClient extends BindingClass {
                     }
                 }
 
-        /**
-         * Adds requested activity to requested itinerary's list of activities.
-         * @param email A string containing partition key for itinerary to pass to the API.
-         * @param tripName A string containing sort key for itinerary to pass to the API.
-         * @param cityCountry A string containing partition key for activity to pass to the API.
-         * @param name A string containing sort key for activity to pass to the API.
-         * @param errorCallback (Optional) A function to execute if the call fails.
-         * @returns The list of activities that have been updated in the itinerary.
-         */
     async addBookToCurrentlyReading(userId, isbn, errorCallback) {
             try {
                 const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
@@ -249,7 +243,6 @@ export default class CapstoneClient extends BindingClass {
                     }
                 }
 
-
                     async addBookToReadList(userId, isbn, errorCallback) {
                             try {
                                 const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
@@ -266,27 +259,6 @@ export default class CapstoneClient extends BindingClass {
                                 this.handleError(error, errorCallback)
                             }
                         }
-
-
-
-    async removeActivityFromItinerary(email, tripName, cityCountry, name, errorCallback) {
-            try {
-                const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
-                const response = await this.axiosClient.put(`itineraries/${email}/${tripName}/activities`, {
-                    email: email,
-                    tripName: tripName,
-                    cityCountry: cityCountry,
-                    name: name
-              }, {
-                  headers: {
-                      Authorization: `Bearer ${token}`
-                  }
-              });
-                return response.data.activityList;
-            } catch (error) {
-                this.handleError(error, errorCallback)
-            }
-        }
 
 
     async searchBooks(criteria, errorCallback) {

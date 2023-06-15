@@ -63,14 +63,17 @@ class GetTVShow extends BindingClass {
 
         const title = document.getElementById('title').value;
         const director = document.getElementById('director').value;
+    console.log("66")
 
         if (title && director) {
+            console.log("69")
             const results = await this.client.getTVShow(title, director);
             this.dataStore.setState({
                 [SEARCH_CRITERIA_TITLE]: title,
                   [SEARCH_CRITERIA_DIRECTOR]: director,
                 [SEARCH_RESULTS_KEY]: results,
             });
+            console.log(results)
         } else {
             this.dataStore.setState(EMPTY_DATASTORE_STATE);
         }
