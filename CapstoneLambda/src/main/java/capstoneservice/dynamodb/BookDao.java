@@ -23,8 +23,8 @@ public class BookDao {
     private final MetricsPublisher metricsPublisher;
     public static final String GENRE_INDEX = "Genre Index";
 
-   @Inject
-   public BookDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
+    @Inject
+    public BookDao(DynamoDBMapper dynamoDbMapper, MetricsPublisher metricsPublisher) {
         this.dynamoDbMapper = dynamoDbMapper;
         this.metricsPublisher = metricsPublisher;
     }
@@ -39,22 +39,18 @@ public class BookDao {
         return book;
     }
 
-    public Book saveBook(Book book){
+    public Book saveBook(Book book) {
         this.dynamoDbMapper.save(book);
         return book;
     }
-public List<Book> getBooksByGenre(GENRE enumGenre) {
-        String genre  = enumGenre.toString();
 
-    DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
-    Map<String, AttributeValue> valueMap = new HashMap<>();
-    valueMap.put(":genre", new AttributeValue().withS(genre));
-    DynamoDBQueryExpression<Book> queryExpression = new DynamoDBQueryExpression<Book>()
-            .withIndexName(GENRE_INDEX)
-            .withConsistentRead(false)
-            .withKeyConditionExpression("genre = :genre")
-            .withExpressionAttributeValues(valueMap);
+    public List<Book> getBooksByGenre(String genre) {
+        Book book = new Book();
+        book.setGenre(genre);
+        
+        DynamoDBQueryExpression<Book> queryExpression = new DynamoDBQueryExpression<Book>()
+                .withHashKeyValues(book);
 
-    return mapper.query(Book.class, queryExpression);
-}
+        return dynamoDbMapper.query(Book.class, queryExpression);
+    }
 }

@@ -13,12 +13,12 @@ public class BookModel {
 
     private Integer  yearPublished;
     private Integer  lengthInPages;
-    private GENRE genre;
+    private String genre;
     private List<Review> reviews;
 
     private String UUIDAsString;
 
-    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, GENRE genre, List<Review> reviews, String UUIDAsString) {
+    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, String genre, List<Review> reviews, String UUIDAsString) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -50,7 +50,7 @@ public class BookModel {
         return lengthInPages;
     }
 
-    public GENRE getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -91,7 +91,7 @@ public class BookModel {
 
         private Integer  yearPublished;
         private Integer  lengthInPages;
-        private GENRE genre;
+        private String genre;
         private List<Review> reviews;
         private String UUIDAsString;
 
@@ -120,7 +120,7 @@ public class BookModel {
             return this;
         }
 
-        public Builder withGenre(GENRE genre) {
+        public Builder withGenre(String genre) {
             this.genre = genre;
             return this;
         }

@@ -7,13 +7,13 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = GetBookByGenreRequest.Builder.class)
 public class GetBookByGenreRequest {
-    private final GENRE genre;
+    private final String genre;
 
-    public GetBookByGenreRequest(GENRE genre) {
+    public GetBookByGenreRequest(String genre) {
         this.genre = genre;
     }
 
-    public GENRE getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -32,10 +32,10 @@ public class GetBookByGenreRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
-        private GENRE genre;
+        private String genre;
 
 
-        public Builder withGenre(GENRE genre) {
+        public Builder withGenre(String genre) {
             this.genre = genre;
             return this;
         }

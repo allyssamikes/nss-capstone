@@ -16,7 +16,7 @@ public class Book {
 
     private Integer  yearPublished;
     private Integer  lengthInPages;
-    private GENRE genre;
+    private String genre;
     private List<Review> reviews;
 
     private UniqueId uniqueId = new UniqueId();
@@ -66,13 +66,12 @@ public class Book {
         this.lengthInPages = lengthInPages;
     }
 
-    @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "genre")
-    public GENRE getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(GENRE genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 

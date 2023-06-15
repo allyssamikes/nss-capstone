@@ -15,7 +15,7 @@ public class GetBookByGenreLambda  extends LambdaActivityRunner<GetBookByGenreRe
         return super.runActivity(
                 () -> input.fromQuery(query ->
                             GetBookByGenreRequest.builder()
-                                    .withGenre(GENRE.valueOf(query.get("genre")))
+                                    .withGenre(query.get("genre"))
                                     .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetBookByGenreActivity().handleRequest(request)

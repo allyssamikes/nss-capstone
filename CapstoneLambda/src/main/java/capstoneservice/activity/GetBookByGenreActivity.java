@@ -23,7 +23,7 @@ public class GetBookByGenreActivity {
 
     public GetBookByGenreResult handleRequest(final GetBookByGenreRequest getBookByGenreRequest) {
 
-        GENRE genre = getBookByGenreRequest.getGenre();
+        String genre = getBookByGenreRequest.getGenre();
         List<Book> books = bookDao.getBooksByGenre(genre);
 
         List<BookModel> bookModels = new ArrayList<>();
