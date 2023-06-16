@@ -16,7 +16,7 @@ export default class CapstoneClient extends BindingClass {
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
         'getBook', 'getTVShow', 'getMovie', 'getToReadList', 'getReadList', 'getCurrentlyReading', 'writeReview',
-        'createUser', 'updateUser', 'deleteUser', 'addBookToCurrentlyReading', 'addBookToToReadList', 'addBookToReadList', 'searchBooks'];
+        'createUser', 'updateUser', 'deleteUser', 'addBookToCurrentlyReading', 'addBookToToReadList', 'addBookToReadList', 'removeBookFromToReadList', ' removeBookFromCurrentlyReading', 'searchBooks'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -196,12 +196,14 @@ export default class CapstoneClient extends BindingClass {
                     try {
                         const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
                         console.log("delete196")
-                        const response = await this.axiosClient.delete(`users/${userId}`, {data : {
-                        userId: userId
-                        }, headers: {
-                          Authorization: `Bearer ${token}`
-                    }},
-                    );
+                        const response = await this.axiosClient.delete(`users/${userId}`, {
+                             headers: {
+                                Authorization: `Bearer ${token}`,
+                           },
+                        data : {
+                                  userId : userId
+                                  }
+                        });
                         return response.data.user;
                     } catch (error) {
                         this.handleError(error, errorCallback)
@@ -258,6 +260,40 @@ export default class CapstoneClient extends BindingClass {
                                 this.handleError(error, errorCallback)
                             }
                         }
+
+        async removeBookFromToReadList(userId, isbn, errorCallback) {
+                                      try {
+                                          const token = await this.getTokenOrThrow("Only authenticated users can remove a book.");
+                                          const response = await this.axiosClient.post(`users/${userId}/toReadList`, {
+                                              userId: userId,
+                                              isbn: isbn,
+                                        }, {
+                                            headers: {
+                                                Authorization: `Bearer ${token}`
+                                            }
+                                        });
+                                          return response.data.toReadList;
+                                      } catch (error) {
+                                          this.handleError(error, errorCallback)
+                                      }
+                                  }
+
+        async removeBookFromCurrentlyReading(userId, isbn, errorCallback) {
+                                      try {
+                                          const token = await this.getTokenOrThrow("Only authenticated users can remove a book.");
+                                          const response = await this.axiosClient.post(`users/${userId}/currentlyReading`, {
+                                              userId: userId,
+                                              isbn: isbn,
+                                        }, {
+                                            headers: {
+                                                Authorization: `Bearer ${token}`
+                                            }
+                                        });
+                                          return response.data.current;
+                                      } catch (error) {
+                                          this.handleError(error, errorCallback)
+                                      }
+                                  }
 
 
     async searchBooks(criteria, errorCallback) {

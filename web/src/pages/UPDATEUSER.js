@@ -47,7 +47,6 @@ class UpdateUser extends BindingClass {
             updateButton.innerText = 'Complete';
             updateButton.innerText = 'Update User';
 
-             document.getElementById("update-user-form").reset();
         }
 
     async delete(evt) {
@@ -70,7 +69,9 @@ class UpdateUser extends BindingClass {
                     errorMessageDisplay.classList.remove('hidden');
                     });
 
-                    document.getElementById("delete-user-form").reset();
+                    this.dataStore.set('user', user);
+                    deleteButton.innerText = 'Complete';
+                    deleteButton.innerText = 'Delete User';
 
                 }
 

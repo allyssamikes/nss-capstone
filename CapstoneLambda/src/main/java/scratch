@@ -21,8 +21,8 @@ ADD TO CURRENTLY READING LIST
 
 
 DELETE USER
-curl -X DELETE http://localhost:3000/users/allysamikes \
- -d '{"userId":"allysamikes"}'
+curl -X DELETE http://localhost:3000/users/amikesss \
+ -d '{"userId":"amikesss"}'
 
 
 

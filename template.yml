@@ -704,8 +704,7 @@ Resources:
           Properties:
             Path: /users/{userId}/toReadList
             Method: put
-            Auth:
-              Authorizer: 'NONE'
+
 
   RemoveFromCurrentlyReadingListLambda:
     Type: AWS::Serverless::Function
@@ -726,8 +725,7 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyReading
             Method: put
-            Auth:
-              Authorizer: 'NONE'
+
 
   RemoveFromCurrentlyWatchingListLambda:
     Type: AWS::Serverless::Function
@@ -748,8 +746,7 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyWatching
             Method: put
-            Auth:
-              Authorizer: 'NONE'
+
 
   RemoveFromToWatchListLambda:
     Type: AWS::Serverless::Function
@@ -770,8 +767,6 @@ Resources:
           Properties:
             Path: /users/{userId}/toWatchList
             Method: put
-            Auth:
-              Authorizer: 'NONE'
 
   GetBookByAuthorLambda:
     Type: AWS::Serverless::Function
