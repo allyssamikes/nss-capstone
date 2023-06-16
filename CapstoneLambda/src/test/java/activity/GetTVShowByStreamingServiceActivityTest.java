@@ -1,10 +1,11 @@
 package activity;
 
-import capstoneservice.activity.GetTVShowByStreamingServiceActivity;
-import capstoneservice.activity.request.GetTVShowByStreamingServiceRequest;
-import capstoneservice.activity.result.GetTVShowByStreamingServiceResult;
+import capstoneservice.activity.GetTVShowByGenreActivity;
+import capstoneservice.activity.request.GetTVShowByGenreRequest;
+import capstoneservice.activity.result.GetTVShowByGenreResult;
 import capstoneservice.converters.ModelConverter;
 import capstoneservice.dynamodb.TVShowDao;
+import capstoneservice.dynamodb.models.GENRE;
 import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import capstoneservice.dynamodb.models.TVShow;
 import capstoneservice.models.TVShowModel;
@@ -26,12 +27,12 @@ public class GetTVShowByStreamingServiceActivityTest {
 
 
         @InjectMocks
-        private GetTVShowByStreamingServiceActivity activity;
+        private GetTVShowByGenreActivity activity;
 
         @BeforeEach
         void setup() {
             openMocks(this);
-            this.activity = new GetTVShowByStreamingServiceActivity(tvShowDao);
+            this.activity = new GetTVShowByGenreActivity(tvShowDao);
         }
 
         @Test
@@ -45,23 +46,23 @@ public class GetTVShowByStreamingServiceActivityTest {
             TVShow show = new TVShow();
             show.setTitle("The Office");
             show.setDirector("Ken-Kwapis");
-            tvShow.setStreamingService(STREAMING_SERVICE.HULU);
+            tvShow.setGenre(GENRE.COMEDY);
             when(tvShowDao.getTVShow("The Office", "Ken-Kwapis")).thenReturn(show);
 
             List<TVShow> shows = new ArrayList<>();
             shows.add(tvShow);
-            when(tvShowDao.getTVShowByService(STREAMING_SERVICE.NETFLIX)).thenReturn(shows);
+            when(tvShowDao.getTVShowByGenre(GENRE.COMEDY)).thenReturn(shows);
 
             List<Object> showModels = new ArrayList<>();
             showModels.add(new ModelConverter().toTVShowModel(tvShow));
 
 
-            GetTVShowByStreamingServiceRequest request = GetTVShowByStreamingServiceRequest.builder()
-                    .withService(STREAMING_SERVICE.NETFLIX)
+            GetTVShowByGenreRequest request = GetTVShowByGenreRequest.builder()
+                    .withGenre(GENRE.COMEDY)
                     .build();
 
             // WHEN
-            GetTVShowByStreamingServiceResult result = activity.handleRequest(request);
+            GetTVShowByGenreResult result = activity.handleRequest(request);
             List<TVShowModel> models = result.getModels();
 
             // THEN

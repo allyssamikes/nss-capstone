@@ -5,11 +5,11 @@ import capstoneservice.models.TVShowModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetTVShowByStreamingServiceResult {
+public class GetTVShowByGenreResult {
 
     private final List<TVShowModel> models;
 
-    public GetTVShowByStreamingServiceResult(List<TVShowModel> models) {
+    public GetTVShowByGenreResult(List<TVShowModel> models) {
         this.models = models;
     }
 
@@ -19,7 +19,7 @@ public class GetTVShowByStreamingServiceResult {
 
     @Override
     public String toString() {
-        return "GetTVShowByStreamingServiceResult{" +
+        return "GetTVShowByGenreResult{" +
                 "models=" + models +
                 '}';
     }
@@ -36,8 +36,8 @@ public class GetTVShowByStreamingServiceResult {
             this.models = new ArrayList<>(models);
             return this;
         }
-        public GetTVShowByStreamingServiceResult build() {
-            return new GetTVShowByStreamingServiceResult(models);
+        public GetTVShowByGenreResult build() {
+            return new GetTVShowByGenreResult(models);
         }
     }
 }

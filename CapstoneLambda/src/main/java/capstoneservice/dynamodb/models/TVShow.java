@@ -9,7 +9,7 @@ import java.util.Objects;
 @DynamoDBTable(tableName ="tvshows")
 public class TVShow {
 
-    public static final String GENRE_INDEX = "Genre Index";
+    public static final String GENRE_INDEX = "GenreIndex";
     private String title;
 
     private String director;
@@ -60,6 +60,9 @@ public class TVShow {
         return genre;
     }
 
+    public void setGenre(GENRE genre) {
+        this.genre = genre;
+    }
 
     @DynamoDBTypeConvertedEnum
     @DynamoDBAttribute(attributeName = "streamingService")

@@ -1,11 +1,8 @@
 package capstoneservice.dynamodb;
-
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import capstoneservice.dynamodb.models.TVShow;
 import capstoneservice.exceptions.TVShowNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import capstoneservice.dynamodb.models.*;
 import capstoneservice.metrics.MetricsConstants;
@@ -17,6 +14,9 @@ import java.util.Map;
 
 import javax.inject.Singleton;
 import javax.inject.Inject;
+
+import static capstoneservice.dynamodb.models.TVShow.GENRE_INDEX;
+
 
 @Singleton
 public class TVShowDao {
@@ -45,21 +45,17 @@ public class TVShowDao {
         return tvShow;
     }
 
-    public List<TVShow> getTVShowByService(STREAMING_SERVICE sService) {
-        String service = sService.toString();
+    public List<TVShow> getTVShowsByGenre(GENRE Ggenre) {
+        String genre = Ggenre.toString();
 
         Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put("service", new AttributeValue().withS(service));
-
+        valueMap.put(":genre", new AttributeValue().withS(genre));
         DynamoDBQueryExpression<TVShow> queryExpression = new DynamoDBQueryExpression<TVShow>()
-                .withKeyConditionExpression("service = :service")
+                .withIndexName(GENRE_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("genre = :genre")
                 .withExpressionAttributeValues(valueMap);
-        PaginatedQueryList<TVShow> tvShowList = dynamoDbMapper.query(TVShow.class, queryExpression);
 
-        if (null == tvShowList  || tvShowList.size() == 0) {
-            throw new TVShowNotFoundException(
-                    String.format("Could not find any TVShows with this service '%s'", service));
-        }
-        return tvShowList;
+        return dynamoDbMapper.query(TVShow.class, queryExpression);
     }
 }

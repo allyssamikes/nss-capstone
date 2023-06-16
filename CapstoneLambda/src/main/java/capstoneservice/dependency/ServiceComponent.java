@@ -59,7 +59,7 @@ public interface ServiceComponent {
 
     GetBookByAuthorActivity provideGetBookByGenreActivity();
 
-    GetTVShowByStreamingServiceActivity provideGetTVShowByStreamingServiceActivity();
+    GetTVShowByGenreActivity provideGetTVShowByGenreActivity();
 
     GetMovieByStreamingServiceActivity provideGetMovieByStreamingServiceActivity();
 

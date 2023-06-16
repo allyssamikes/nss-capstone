@@ -48,7 +48,7 @@ public class BookDao {
 
     public List<Book> getBooksByAuthor(String author) {
         Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put(":author", new AttributeValue().withS("author"));
+        valueMap.put(":author", new AttributeValue().withS(author));
         DynamoDBQueryExpression<Book> queryExpression = new DynamoDBQueryExpression<Book>()
                 .withIndexName(AUTHOR_INDEX)
                 .withConsistentRead(false)

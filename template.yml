@@ -233,6 +233,14 @@ Resources:
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/tvshows"
 
+        - PolicyName: 'AccessTVSHowsTableGenreIndex'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/tvshows/index/GenreIndex"
+
         - PolicyName: 'AccessMoviesTable'
           PolicyDocument:
             Version: '2012-10-17'
@@ -240,6 +248,14 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/movies"
+
+        - PolicyName: 'AccessMoviesTableStreamingServiceIndex'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/movies/index/StreamingServiceIndex"
 
         - PolicyName: 'AccessReviewsTable'
           PolicyDocument:
@@ -790,12 +806,12 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
-  GetTVShowByStreamingServiceLambda:
+  GetTVShowByGenreLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetTVShowByStreamingServiceLambda::handleRequest
+      Handler: capstoneservice.lambda.GetTVShowByGenreLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -931,6 +947,15 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "tvshows"
+      GlobalSecondaryIndexes:
+        - IndexName: "GenreIndex"
+          KeySchema:
+            - AttributeName: "genre"
+              KeyType: "HASH"
+            - AttributeName: "title"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
 
   ReviewsTable:
     Type: AWS::DynamoDB::Table
@@ -956,6 +981,8 @@ Resources:
           AttributeType: "S"
         - AttributeName: "director"
           AttributeType: "S"
+        - AttributeName: "streamingService"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "title"
           KeyType: "HASH"
@@ -963,6 +990,15 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "movies"
+      GlobalSecondaryIndexes:
+        - IndexName: "StreamingServiceIndex"
+          KeySchema:
+            - AttributeName: "streamingService"
+              KeyType: "HASH"
+            - AttributeName: "title"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

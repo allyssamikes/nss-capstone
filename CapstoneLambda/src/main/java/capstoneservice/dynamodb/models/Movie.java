@@ -9,7 +9,7 @@ import java.util.Objects;
 @DynamoDBTable(tableName ="movies")
 public class Movie {
 
-    public static final String GENRE_INDEX = "Genre Index";
+    public static final String STREAMING_SERVICE_INDEX = "StreamingServiceIndex";
     private String title;
     private String director;
     private List<String> mainActors;
@@ -49,13 +49,13 @@ public class Movie {
     }
 
     @DynamoDBTypeConvertedEnum
-    @DynamoDBIndexHashKey(globalSecondaryIndexNames = {GENRE_INDEX}, attributeName = "genre")
+    @DynamoDBAttribute(attributeName = "genre")
     public GENRE getGenre() {
         return genre;
     }
 
     @DynamoDBTypeConvertedEnum
-    @DynamoDBAttribute(attributeName = "streamingService")
+    @DynamoDBIndexHashKey(globalSecondaryIndexNames = {STREAMING_SERVICE_INDEX}, attributeName = "streamingService")
     public STREAMING_SERVICE getStreamingService() {
         return streamingService;
     }

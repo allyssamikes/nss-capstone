@@ -18,6 +18,9 @@ import java.util.Map;
 import javax.inject.Singleton;
 import javax.inject.Inject;
 
+import static capstoneservice.dynamodb.models.Movie.STREAMING_SERVICE_INDEX;
+import static capstoneservice.dynamodb.models.TVShow.GENRE_INDEX;
+
 @Singleton
 public class MovieDao {
     private final DynamoDBMapper dynamoDbMapper;
@@ -45,21 +48,17 @@ public class MovieDao {
         return movie;
     }
 
-    public List<Movie> getMovieByService(STREAMING_SERVICE sService) {
-            String service = sService.toString();
+    public List<Movie> getMoviesByStreamingService(STREAMING_SERVICE streamingService) {
+        String service = streamingService.toString();
 
         Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put("service", new AttributeValue().withS(service));
-
+        valueMap.put(":streamingService", new AttributeValue().withS(service));
         DynamoDBQueryExpression<Movie> queryExpression = new DynamoDBQueryExpression<Movie>()
-                .withKeyConditionExpression("service = :service")
+                .withIndexName(STREAMING_SERVICE_INDEX)
+                .withConsistentRead(false)
+                .withKeyConditionExpression("streamingService = :streamingService")
                 .withExpressionAttributeValues(valueMap);
-        PaginatedQueryList<Movie> movieList = dynamoDbMapper.query(Movie.class, queryExpression);
 
-        if (null == movieList  || movieList.size() == 0) {
-            throw new MovieNotFoundException(
-                    String.format("Could not find any Movies with this service '%s'", service));
-        }
-        return movieList;
+        return dynamoDbMapper.query(Movie.class, queryExpression);
     }
 }
