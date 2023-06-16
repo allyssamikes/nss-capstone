@@ -5,7 +5,6 @@ import capstoneservice.activity.result.GetMovieByStreamingServiceResult;
 import capstoneservice.converters.ModelConverter;
 import capstoneservice.dynamodb.MovieDao;
 import capstoneservice.dynamodb.models.Movie;
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import capstoneservice.models.MovieModel;
 
 import javax.inject.Inject;
@@ -24,8 +23,8 @@ public class GetMovieByStreamingServiceActivity {
     public GetMovieByStreamingServiceResult handleRequest(final GetMovieByStreamingServiceRequest getMovieByStreamingServiceRequest) {
 
 
-        STREAMING_SERVICE service = getMovieByStreamingServiceRequest.getService();
-        List<Movie> movies = movieDao.getMovieByService(service);
+        String service = getMovieByStreamingServiceRequest.getService();
+        List<Movie> movies = movieDao.getMoviesByStreamingService(service);
 
         List<MovieModel> models = new ArrayList<>();
         for(Movie m : movies) {

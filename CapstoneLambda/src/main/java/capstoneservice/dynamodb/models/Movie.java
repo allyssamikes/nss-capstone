@@ -14,8 +14,8 @@ public class Movie {
     private String director;
     private List<String> mainActors;
     private Integer lengthInMinutes;
-    private GENRE genre;
-    private STREAMING_SERVICE streamingService;
+    private String genre;
+    private String streamingService;
     private List<Review> reviews;
     private UniqueId uniqueId = new UniqueId();
 
@@ -48,19 +48,18 @@ public class Movie {
         return lengthInMinutes;
     }
 
-    @DynamoDBTypeConvertedEnum
+
     @DynamoDBAttribute(attributeName = "genre")
-    public GENRE getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    @DynamoDBTypeConvertedEnum
     @DynamoDBIndexHashKey(globalSecondaryIndexNames = {STREAMING_SERVICE_INDEX}, attributeName = "streamingService")
-    public STREAMING_SERVICE getStreamingService() {
+    public String getStreamingService() {
         return streamingService;
     }
 
-    public void setStreamingService(STREAMING_SERVICE streamingService) {
+    public void setStreamingService(String streamingService) {
         this.streamingService = streamingService;
     }
 

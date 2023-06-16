@@ -5,8 +5,6 @@ import capstoneservice.activity.request.GetTVShowByGenreRequest;
 import capstoneservice.activity.result.GetTVShowByGenreResult;
 import capstoneservice.converters.ModelConverter;
 import capstoneservice.dynamodb.TVShowDao;
-import capstoneservice.dynamodb.models.GENRE;
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import capstoneservice.dynamodb.models.TVShow;
 import capstoneservice.models.TVShowModel;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,24 +39,24 @@ public class GetTVShowByStreamingServiceActivityTest {
             TVShow tvShow = new TVShow();
             tvShow.setTitle("Friends");
             tvShow.setDirector("James-Burrows");
-            tvShow.setStreamingService(STREAMING_SERVICE.NETFLIX);
+            tvShow.setStreamingService("netflix");
             when(tvShowDao.getTVShow("Friends", "James-Burrows")).thenReturn(tvShow);
             TVShow show = new TVShow();
             show.setTitle("The Office");
             show.setDirector("Ken-Kwapis");
-            tvShow.setGenre(GENRE.COMEDY);
+            tvShow.setGenre("comedy");
             when(tvShowDao.getTVShow("The Office", "Ken-Kwapis")).thenReturn(show);
 
             List<TVShow> shows = new ArrayList<>();
             shows.add(tvShow);
-            when(tvShowDao.getTVShowByGenre(GENRE.COMEDY)).thenReturn(shows);
+            when(tvShowDao.getTVShowsByGenre("comedy")).thenReturn(shows);
 
             List<Object> showModels = new ArrayList<>();
             showModels.add(new ModelConverter().toTVShowModel(tvShow));
 
 
             GetTVShowByGenreRequest request = GetTVShowByGenreRequest.builder()
-                    .withGenre(GENRE.COMEDY)
+                    .withGenre("comedy")
                     .build();
 
             // WHEN

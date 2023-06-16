@@ -4,8 +4,6 @@ import capstoneservice.activity.request.GetTVShowByGenreRequest;
 import capstoneservice.activity.result.GetTVShowByGenreResult;
 import capstoneservice.converters.ModelConverter;
 import capstoneservice.dynamodb.TVShowDao;
-import capstoneservice.dynamodb.models.GENRE;
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import capstoneservice.dynamodb.models.TVShow;
 import capstoneservice.models.TVShowModel;
 
@@ -25,7 +23,7 @@ public class GetTVShowByGenreActivity {
     public GetTVShowByGenreResult handleRequest(final GetTVShowByGenreRequest getTVShowByGenreRequest) {
 
 
-        GENRE genre = getTVShowByGenreRequest.getGenre();
+        String genre = getTVShowByGenreRequest.getGenre();
         List<TVShow> tvShows = tvShowDao.getTVShowsByGenre(genre);
 
         List<TVShowModel> models = new ArrayList<>();

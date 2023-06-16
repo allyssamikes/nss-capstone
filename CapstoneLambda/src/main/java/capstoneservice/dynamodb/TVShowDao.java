@@ -45,8 +45,7 @@ public class TVShowDao {
         return tvShow;
     }
 
-    public List<TVShow> getTVShowsByGenre(GENRE Ggenre) {
-        String genre = Ggenre.toString();
+    public List<TVShow> getTVShowsByGenre(String genre) {
 
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put(":genre", new AttributeValue().withS(genre));

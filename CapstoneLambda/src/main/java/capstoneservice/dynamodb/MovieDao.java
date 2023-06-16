@@ -1,13 +1,10 @@
 package capstoneservice.dynamodb;
 
 import capstoneservice.dynamodb.models.Movie;
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import capstoneservice.exceptions.MovieNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import capstoneservice.dynamodb.models.*;
 import capstoneservice.metrics.MetricsConstants;
 import capstoneservice.metrics.MetricsPublisher;
 
@@ -19,7 +16,6 @@ import javax.inject.Singleton;
 import javax.inject.Inject;
 
 import static capstoneservice.dynamodb.models.Movie.STREAMING_SERVICE_INDEX;
-import static capstoneservice.dynamodb.models.TVShow.GENRE_INDEX;
 
 @Singleton
 public class MovieDao {
@@ -48,8 +44,7 @@ public class MovieDao {
         return movie;
     }
 
-    public List<Movie> getMoviesByStreamingService(STREAMING_SERVICE streamingService) {
-        String service = streamingService.toString();
+    public List<Movie> getMoviesByStreamingService(String service) {
 
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put(":streamingService", new AttributeValue().withS(service));

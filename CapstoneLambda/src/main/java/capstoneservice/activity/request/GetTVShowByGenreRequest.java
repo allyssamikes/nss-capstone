@@ -1,7 +1,5 @@
 package capstoneservice.activity.request;
 
-import capstoneservice.dynamodb.models.GENRE;
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -9,12 +7,12 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = GetTVShowByGenreRequest.Builder.class)
 public class GetTVShowByGenreRequest {
 
-    private final GENRE genre;
-    public GetTVShowByGenreRequest(GENRE genre) {
+    private final String genre;
+    public GetTVShowByGenreRequest(String genre) {
         this.genre = genre;
     }
 
-    public GENRE getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -32,9 +30,9 @@ public class GetTVShowByGenreRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
-    private GENRE genre;
+    private String genre;
 
-    public Builder withGenre(GENRE genre) {
+    public Builder withGenre(String genre) {
         this.genre = genre;
         return this;
     }

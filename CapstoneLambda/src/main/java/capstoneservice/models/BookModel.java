@@ -1,6 +1,5 @@
 package capstoneservice.models;
 
-import capstoneservice.dynamodb.models.GENRE;
 import capstoneservice.dynamodb.models.Review;
 
 import java.util.List;

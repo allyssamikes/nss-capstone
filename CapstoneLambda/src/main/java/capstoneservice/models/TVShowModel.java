@@ -1,8 +1,6 @@
 package capstoneservice.models;
 
-import capstoneservice.dynamodb.models.GENRE;
 import capstoneservice.dynamodb.models.Review;
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,12 +12,12 @@ public class TVShowModel {
     private List<String> mainActors;
     private Integer  lengthInSeasons;
     private Integer  lengthInMinutes;
-    private GENRE genre;
-    private STREAMING_SERVICE streamingService;
+    private String genre;
+    private String streamingService;
     private List<Review> reviews;
     private String UUIDAsString;
 
-    public TVShowModel(String title, String director, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, GENRE genre, STREAMING_SERVICE streamingService, List<Review> reviews, String UUIDAsString) {
+    public TVShowModel(String title, String director, List<String> mainActors, Integer lengthInSeasons, Integer lengthInMinutes, String genre, String streamingService, List<Review> reviews, String UUIDAsString) {
         this.title = title;
         this.director = director;
         this.mainActors = mainActors;
@@ -50,11 +48,11 @@ public class TVShowModel {
         return lengthInMinutes;
     }
 
-    public GENRE getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public STREAMING_SERVICE getStreamingService() {
+    public String getStreamingService() {
         return streamingService;
     }
 
@@ -93,8 +91,8 @@ public class TVShowModel {
         private List<String> mainActors;
         private Integer  lengthInSeasons;
         private Integer  lengthInMinutes;
-        private GENRE genre;
-        private STREAMING_SERVICE streamingService;
+        private String genre;
+        private String streamingService;
         private List<Review> reviews;
         private String UUIDAsString;
 
@@ -122,12 +120,12 @@ public class TVShowModel {
             return this;
         }
 
-        public Builder withGenre(GENRE genre) {
+        public Builder withGenre(String genre) {
             this.genre = genre;
             return this;
         }
 
-        public Builder withStreamingService(STREAMING_SERVICE streamingService) {
+        public Builder withStreamingService(String streamingService) {
             this.streamingService = streamingService;
             return this;
         }

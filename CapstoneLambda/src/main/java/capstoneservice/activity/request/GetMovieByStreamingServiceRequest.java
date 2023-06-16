@@ -1,6 +1,5 @@
 package capstoneservice.activity.request;
 
-import capstoneservice.dynamodb.models.STREAMING_SERVICE;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
@@ -8,12 +7,12 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = GetMovieByStreamingServiceRequest.Builder.class)
 public class GetMovieByStreamingServiceRequest {
 
-    private final STREAMING_SERVICE service;
-    public GetMovieByStreamingServiceRequest(STREAMING_SERVICE service) {
+    private final String service;
+    public GetMovieByStreamingServiceRequest(String service) {
         this.service = service;
     }
 
-    public STREAMING_SERVICE getService() {
+    public String getService() {
         return service;
     }
 
@@ -31,10 +30,9 @@ public class GetMovieByStreamingServiceRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
-        private STREAMING_SERVICE service;
+        private String service;
 
-
-        public Builder withService(STREAMING_SERVICE service) {
+        public Builder withService(String service) {
             this.service = service;
             return this;
         }

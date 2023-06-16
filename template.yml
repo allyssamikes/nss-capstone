@@ -940,6 +940,8 @@ Resources:
          AttributeType: "S"
        - AttributeName: "director"
          AttributeType: "S"
+       - AttributeName: "genre"
+         AttributeType: "S"
       KeySchema:
         - AttributeName: "title"
           KeyType: "HASH"

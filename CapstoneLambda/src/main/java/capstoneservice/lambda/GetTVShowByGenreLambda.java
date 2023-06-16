@@ -2,7 +2,6 @@ package capstoneservice.lambda;
 
 import capstoneservice.activity.request.GetTVShowByGenreRequest;
 import capstoneservice.activity.result.GetTVShowByGenreResult;
-import capstoneservice.dynamodb.models.GENRE;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 
@@ -16,7 +15,7 @@ public class GetTVShowByGenreLambda
         return  super.runActivity(
                 () -> input.fromQuery(query ->
                         GetTVShowByGenreRequest.builder()
-                                .withGenre(GENRE.valueOf(query.get("genre")))
+                                .withGenre(query.get("genre"))
                                     .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetTVShowByGenreActivity().handleRequest(request)

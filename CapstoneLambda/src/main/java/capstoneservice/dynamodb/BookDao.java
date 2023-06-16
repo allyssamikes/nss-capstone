@@ -4,9 +4,7 @@ import capstoneservice.exceptions.MovieNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import capstoneservice.dependency.DynamoDbClientProvider;
 import capstoneservice.dynamodb.models.Book;
-import capstoneservice.dynamodb.models.GENRE;
 import capstoneservice.metrics.MetricsConstants;
 import capstoneservice.metrics.MetricsPublisher;
 
