@@ -15,8 +15,9 @@ export default class CapstoneClient extends BindingClass {
         super();
 
         const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getTokenOrThrow',
-        'getBook', 'getTVShow', 'getMovie', 'getToReadList', 'getReadList', 'getCurrentlyReading', 'writeReview',
-        'createUser', 'updateUser', 'deleteUser', 'addBookToCurrentlyReading', 'addBookToToReadList', 'addBookToReadList', 'removeBookFromToReadList', ' removeBookFromCurrentlyReading', 'searchBooks'];
+        'getBook', 'getTVShow', 'getMovie', 'getToReadList', 'getReadList', 'getCurrentlyReading',
+        'createUser', 'updateUser', 'deleteUser', 'addBookToCurrentlyReading', 'addBookToToReadList',
+        'addBookToReadList', 'removeBookFromToReadList', 'removeBookFromCurrentlyReading', 'searchBooks'];
 
         this.bindClassMethods(methodsToBind, this);
         this.authenticator = new Authenticator();
@@ -133,26 +134,6 @@ export default class CapstoneClient extends BindingClass {
                     this.handleError(error, errorCallback)
                 }
             }
-
-    async writeReview(userId, rating, review, UUIDOfEntity, errorCallback) {
-        try {
-            const token = await this.getTokenOrThrow("Only authenticated users can create reviews.");
-            const response = await this.axiosClient.post(`reviews`, {
-                userId: userId,
-                rating: rating,
-                review: review,
-               UUIDOfEntity: UUIDOfEntity,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            return response.data.review;
-        } catch (error) {
-            this.handleError(error, errorCallback)
-        }
-    }
-
 
         async createUser(userId, name, errorCallback) {
             try {
@@ -299,7 +280,7 @@ export default class CapstoneClient extends BindingClass {
                     try{
                  const queryParams = new URLSearchParams({ q: criteria })
                 const queryString = queryParams.toString();
-
+                    console.log("capstone 283")
                 const response = await this.axiosClient.get(`books/search?${queryString}`);
                 return response.data.books;
                        } catch (error) {

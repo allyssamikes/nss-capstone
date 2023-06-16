@@ -24,6 +24,14 @@ DELETE USER
 curl -X DELETE http://localhost:3000/users/amikesss \
  -d '{"userId":"amikesss"}'
 
+curl https://d1sr95kegwkx13.cloudfront.net/books/search \
+-d '{"author":"AllyssaMikes"}'
+
+curl https://localhost:3000/books/search?q
+-d {"author":"AllyssaMikes"}''
+
+
+
 
 
 curl http://localhost:3000/movies/The-Parent-Trap/Nancy-Meyers
