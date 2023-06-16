@@ -196,13 +196,12 @@ export default class CapstoneClient extends BindingClass {
                     try {
                         const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
                         console.log("delete196")
-                        const response = await this.axiosClient.delete(`users/${userId}`, {
-                          userId
-                        }, {
-                            headers: {
-                                Authorization: `Bearer ${token}`
-                            }
-                        });
+                        const response = await this.axiosClient.delete(`users/${userId}`, {data : {
+                        userId: userId
+                        }, headers: {
+                          Authorization: `Bearer ${token}`
+                    }},
+                    );
                         return response.data.user;
                     } catch (error) {
                         this.handleError(error, errorCallback)
