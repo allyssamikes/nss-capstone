@@ -15,7 +15,7 @@ public class DeleteUserResult {
 
         @Override
         public String toString() {
-            return "CreateUserResult{" +
+            return "DeleteUserResult{" +
                     "model=" + model +
                     '}';
         }

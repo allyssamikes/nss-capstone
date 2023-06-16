@@ -244,7 +244,7 @@ export default class CapstoneClient extends BindingClass {
                     }
                 }
 
-                    async addBookToReadList(userId, isbn, errorCallback) {
+             async addBookToReadList(userId, isbn, errorCallback) {
                             try {
                                 const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
                                 const response = await this.axiosClient.post(`users/${userId}/readList`, {
@@ -295,18 +295,18 @@ export default class CapstoneClient extends BindingClass {
                                       }
                                   }
 
+             async searchBooks(criteria, errorCallback) {
+                    try{
+                 const queryParams = new URLSearchParams({ q: criteria })
+                const queryString = queryParams.toString();
 
-    async searchBooks(criteria, errorCallback) {
-        try{
-         const queryParams = new URLSearchParams({ q: criteria })
-         const queryString = queryParams.toString();
-
-          const response = await this.axiosClient.get(`books/search?${queryString}`);
-          return response.data.books;
-        } catch (error) {
-            this.handleError(error, errorCallback);
-        }
+                const response = await this.axiosClient.get(`books/search?${queryString}`);
+                return response.data.books;
+                       } catch (error) {
+                       this.handleError(error, errorCallback);
+                  }
     }
+
 
     /**
      * Helper method to log the error and run any error functions.
