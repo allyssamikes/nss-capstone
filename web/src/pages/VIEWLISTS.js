@@ -102,6 +102,8 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
                                           <span class="space">${"   :   "}</span>
                                          <span class="Length">${book.lengthInPages}</span>
                                          <span class="space">${"   :   "}</span>
+                                          <span href="REMOVEBOOKFROMLIST.html?isbn=${book.isbn}"></span>
+                                         <span class="space">${"   :   "}</span>
                             </li>
                              <br>
                        `;
@@ -120,6 +122,8 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
                                                           <span class="Year Published">${book.yearPublished}</span>
                                                            <span class="space">${"   :   "}</span>
                                                           <span class="Length">${book.lengthInPages}</span>
+                                                          <span class="space">${"   :   "}</span>
+                                                          <span href="REMOVEBOOKFROMLIST.html?isbn=${book.isbn}"></span>
                                                           <span class="space">${"   :   "}</span>
                                              </li>
                                               <br>
@@ -140,6 +144,8 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
                                                                            <span class="Year Published">${book.yearPublished}</span>
                                                                             <span class="space">${"   :   "}</span>
                                                                            <span class="Length">${book.lengthInPages}</span>
+                                                                           <span class="space">${"   :   "}</span>
+                                                                           <span class="ISBN">${book.isbn}</span>
                                                                            <span class="space">${"   :   "}</span>
                                                               </li>
                                                                <br>

@@ -108,7 +108,7 @@ export default class CapstoneClient extends BindingClass {
     console.log("get to read")
         try {
            const response = await this.axiosClient.get(`users/${userId}/toReadList`);
-            return response.data.toReadList
+            return response.data.toReadList;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
@@ -118,7 +118,7 @@ export default class CapstoneClient extends BindingClass {
         console.log("get read")
             try {
                const response = await this.axiosClient.get(`users/${userId}/readList`);
-                return response.data.readList
+                return response.data.readList;
             } catch (error) {
                 this.handleError(error, errorCallback)
             }
@@ -128,7 +128,7 @@ export default class CapstoneClient extends BindingClass {
             console.log("get currently")
                 try {
                    const response = await this.axiosClient.get(`users/${userId}/currentlyReading`);
-                    return response.data.currentlyReading
+                    return response.data.currentlyReading;
                 } catch (error) {
                     this.handleError(error, errorCallback)
                 }
@@ -197,7 +197,7 @@ export default class CapstoneClient extends BindingClass {
                         const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
                         console.log("delete196")
                         const response = await this.axiosClient.delete(`users/${userId}`, {
-                            userId: userId,
+                          userId
                         }, {
                             headers: {
                                 Authorization: `Bearer ${token}`

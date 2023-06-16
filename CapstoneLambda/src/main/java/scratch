@@ -13,6 +13,7 @@ GET LISTS
 
 GET ENTITY
 
+REMOVE BOOKS FROM
 
 ADD TO READ LIST
 ADD TO TO READ LIST
@@ -20,8 +21,8 @@ ADD TO CURRENTLY READING LIST
 
 
 DELETE USER
-curl -X DELETE http://localhost:3000/users/allyssamikes \
- -d '{"userId":"allyssamikes"}'
+curl -X DELETE http://localhost:3000/users/allysamikes \
+ -d '{"userId":"allysamikes"}'
 
 
 
@@ -29,7 +30,7 @@ curl http://localhost:3000/movies/The-Parent-Trap/Nancy-Meyers
 
 
 
-curl -X PUT http://localhost:3000/users/amikes/currentlyReading \
+curl -X PUT http://localhost:3000/users/amikes/toReadList \
     -d '{"userId":"amikes","isbn":"85"}'
 
 

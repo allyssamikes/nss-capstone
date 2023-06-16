@@ -56,10 +56,10 @@ class SearchBooks extends BindingClass {
         if (previousSearchCriteria === searchCriteria) {
             return;
         }
-
+        console.log(" search books59")
         if (searchCriteria) {
             const results = await this.client.searchBooks(searchCriteria);
-
+            console.log(results)
             this.dataStore.setState({
                 [SEARCH_CRITERIA_KEY]: searchCriteria,
                 [SEARCH_RESULTS_KEY]: results,

@@ -6,7 +6,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 
 
-public class RemoveBookFromCurrentlyReadingListLambda
+public class RemoveFromCurrentlyReadingListLambda
         extends LambdaActivityRunner<RemoveBookFromCurrentlyReadingRequest, RemoveBookFromCurrentlyReadingResult>
         implements RequestHandler<AuthenticatedLambdaRequest<RemoveBookFromCurrentlyReadingRequest> , LambdaResponse> {
 
