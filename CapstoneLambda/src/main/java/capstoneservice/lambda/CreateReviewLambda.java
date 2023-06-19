@@ -17,7 +17,7 @@ public class CreateReviewLambda
                                     .withUserId(unauthenticatedRequest.getUserId())
                                     .withReview(unauthenticatedRequest.getReview())
                                     .withRating(unauthenticatedRequest.getRating())
-                                    .withUUID(unauthenticatedRequest.getUUIDOfEntity())
+                                    .withUUIDOfEntity(unauthenticatedRequest.getUUIDOfEntity())
                                     .build();
                 },
                 (request, serviceComponent) ->

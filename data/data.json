@@ -1,0 +1,43 @@
+{
+  "books": [
+    {
+      "PutRequest": {
+        "Item": {
+          "isbn": { "S": "978-0-525-55948-1" },
+          "title": { "S": "The Midnight Library" },
+          "author": { "S": "MattHaig" },
+          "yearPublished": { "N": "2020" },
+          "lengthInPages": { "N": "304" },
+          "genre": { "S": "Science Fiction" },
+          "UUIDAsString": { "S": "hdn3S2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "isbn": { "S": "978-1-4328-5900-8" },
+          "title": { "S": "Nine Perfect Strangers" },
+          "author": { "S": "LianeMoriarty" },
+          "yearPublished": { "N": "2018" },
+          "lengthInPages": { "N": "464" },
+          "genre": { "S": "Psychological Fiction" },
+          "UUIDAsString": { "S": "aldWc2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "isbn": { "S": "978-0-1431-0842-9" },
+          "title": { "S": "The Expatriates" },
+          "author": { "S": "JaniceYKLee" },
+          "yearPublished": { "N": "2016" },
+          "lengthInPages": { "N": "336" },
+          "genre": { "S": "Fiction" },
+          "UUIDAsString": { "S": "la4jLs" }
+        }
+      }
+    }
+  ]
+}

@@ -57,7 +57,7 @@ public interface ServiceComponent {
 
     AddMovieReviewActivity provideAddMovieReviewActivity();
 
-    GetBookByAuthorActivity provideGetBookByGenreActivity();
+    GetBookByAuthorActivity provideGetBookByAuthorActivity();
 
     GetTVShowByGenreActivity provideGetTVShowByGenreActivity();
 

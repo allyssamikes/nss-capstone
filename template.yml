@@ -801,7 +801,7 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /books/search
+            Path: /books/author/{author}
             Method: get
             Auth:
               Authorizer: 'NONE'

@@ -109,7 +109,7 @@ export default class CapstoneClient extends BindingClass {
     console.log("get to read")
         try {
            const response = await this.axiosClient.get(`users/${userId}/toReadList`);
-            return response.data.toReadList;
+            return response;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
@@ -119,7 +119,7 @@ export default class CapstoneClient extends BindingClass {
         console.log("get read")
             try {
                const response = await this.axiosClient.get(`users/${userId}/readList`);
-                return response.data.readList;
+                return response;
             } catch (error) {
                 this.handleError(error, errorCallback)
             }
@@ -129,7 +129,7 @@ export default class CapstoneClient extends BindingClass {
             console.log("get currently")
                 try {
                    const response = await this.axiosClient.get(`users/${userId}/currentlyReading`);
-                    return response.data.currentlyReading;
+                    return response;
                 } catch (error) {
                     this.handleError(error, errorCallback)
                 }
@@ -177,7 +177,7 @@ export default class CapstoneClient extends BindingClass {
                     try {
                         const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
                         console.log("delete196")
-                        const response = await this.axiosClient.delete(`users/${userId}`, {
+                        await this.axiosClient.delete(`users/${userId}`, {
                              headers: {
                                 Authorization: `Bearer ${token}`,
                            },
@@ -185,9 +185,10 @@ export default class CapstoneClient extends BindingClass {
                                   userId : userId
                                   }
                         });
-                        return response.data.user;
+                        return true;
                     } catch (error) {
                         this.handleError(error, errorCallback)
+                        return false;
                     }
                 }
 
@@ -276,16 +277,15 @@ export default class CapstoneClient extends BindingClass {
                                       }
                                   }
 
-             async searchBooks(criteria, errorCallback) {
-                    try{
-                 const queryParams = new URLSearchParams({ q: criteria })
-                const queryString = queryParams.toString();
-                    console.log("capstone 283")
-                const response = await this.axiosClient.get(`books/search?${queryString}`);
-                return response.data.books;
-                       } catch (error) {
-                       this.handleError(error, errorCallback);
-                  }
+             async searchBooks(author, errorCallback) {
+             console.log("281");
+                        try {
+                             const response = await this.axiosClient.get(`books/author/${author}`);
+                             console.log(response);
+                             return response;
+                         } catch (error) {
+                             this.handleError(error, errorCallback)
+                         }
     }
 
 

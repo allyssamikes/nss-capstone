@@ -8,7 +8,7 @@ public class Review {
     private String userId;
     private String review;
     private String rating;
-    private  String UUIDOfEntity;
+    private String UUIDOfEntity;
 
 
     @DynamoDBHashKey(attributeName = "userId")

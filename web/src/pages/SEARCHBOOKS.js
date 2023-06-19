@@ -50,31 +50,23 @@ class SearchBooks extends BindingClass {
         evt.preventDefault();
 
         const searchCriteria = document.getElementById('search-criteria').value;
-        const previousSearchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
 
-        // If the user didn't change the search criteria, do nothing
-        if (previousSearchCriteria === searchCriteria) {
-            return;
-        }
-        console.log(" search books59")
-        if (searchCriteria) {
-            const results = await this.client.searchBooks(searchCriteria);
-            console.log(results)
+        console.log(" search books59");
+        console.log(searchCriteria);
+         const results = await this.client.searchBooks(searchCriteria);
+          console.log(results)
             this.dataStore.setState({
                 [SEARCH_CRITERIA_KEY]: searchCriteria,
                 [SEARCH_RESULTS_KEY]: results,
             });
-        } else {
-            this.dataStore.setState(EMPTY_DATASTORE_STATE);
         }
-    }
 
     /**
      * Pulls search results from the datastore and displays them on the html page.
      */
     displaySearchResults() {
         const searchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
-        const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
+        let searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchCriteriaDisplay = document.getElementById('search-criteria-display');
@@ -97,22 +89,20 @@ class SearchBooks extends BindingClass {
      * @returns A string of HTML suitable for being dropped on the page.
      */
     getHTMLForSearchResults(searchResults) {
-        if (searchResults === undefined) {
+        if (searchResults.length === 0) {
             return '<h4>No results found</h4>';
         }
-
         let html = '<table><tr><th>Title</th><th>Author</th><th>Isbn</th></tr>';
-        for (const res of searchResults) {
+        for (let res in searchResults) {
             html += `
             <tr>
                  <p> Click on Title to Add To A List </p>
-                    <a href="ADDBOOKTOLIST.html?isbn=${searchResult.isbn}">${res.title}</a>
+                    <a href="ADDBOOKTOLIST.html?isbn=${res.isbn}">${res.title}</a>
                 <td>${res.author}</td>
                 <td>${res.isbn}</td>
             </tr>`;
         }
         html += '</table>';
-
         return html;
     }
 

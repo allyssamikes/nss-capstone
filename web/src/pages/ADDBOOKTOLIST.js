@@ -9,10 +9,8 @@ import DataStore from '../util/DataStore';
 class AddBookToList extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'clientLoaded', 'submit','submitRemove', 'searchActivities', 'addActivitiesToPage'], this);
+        this.bindClassMethods(['mount', 'clientLoaded', 'submit'], this);
         this.dataStore = new DataStore();
-        this.dataStoreSearch = new DataStore();
-        this.dataStoreSearch.addChangeListener(this.addActivitiesToPage);
         this.header = new Header(this.dataStore);
         this.clientLoaded();
     }
@@ -50,7 +48,7 @@ class AddBookToList extends BindingClass {
             const list = document.getElementById("list-type").value;
 
 
-            if (list === currentlyReading ) {
+            if (list === "currentlyReading" ) {
             const currentlyReading = await this.client.addBookToCurrentlyReading(userId, isbn, (error) => {
                 createButton.innerText = origButtonText;
                 const errorMessageDisplay = document.getElementById('error-message');
@@ -61,7 +59,7 @@ class AddBookToList extends BindingClass {
             }
 
 
-            if (list === toReadList) {
+            if (list === "toReadList") {
             const toReadList = await this.client.addBookToToReadList(userId, isbn, (error) => {
                 createButton.innerText = origButtonText;
                 const errorMessageDisplay = document.getElementById('error-message');
@@ -71,7 +69,7 @@ class AddBookToList extends BindingClass {
             this.dataStore.set('toReadList', toReadList);
             }
 
-            if (list === readList ) {
+            if (list === "readList" ) {
             const readList = await this.client.addBookToReadList(userId, isbn, (error) => {
                 createButton.innerText = origButtonText;
                 const errorMessageDisplay = document.getElementById('error-message');

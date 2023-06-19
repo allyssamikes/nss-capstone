@@ -9,7 +9,7 @@ public class CreateReviewRequest {
     private final String userId;
     private final String review;
     private final String rating;
-    private  final String UUIDOfEntity;
+    private final String UUIDOfEntity;
 
     private CreateReviewRequest(String userId, String review, String rating, String UUIDOfEntity) {
         this.userId = userId;
@@ -34,10 +34,21 @@ public class CreateReviewRequest {
         return UUIDOfEntity;
     }
 
+    @Override
+    public String toString() {
+        return "CreateReviewRequest{" +
+                "userId='" + userId + '\'' +
+                ", review='" + review + '\'' +
+                ", rating='" + rating + '\'' +
+                ", UUIDOfEntity='" + UUIDOfEntity + '\'' +
+                '}';
+    }
+
     //CHECKSTYLE:OFF:Builder
     public static Builder builder() {
         return new Builder();
     }
+
 
     @JsonPOJOBuilder
     public static class Builder {
@@ -61,7 +72,7 @@ public class CreateReviewRequest {
             return this;
         }
 
-        public Builder withUUID(String UUIDOfEntity) {
+        public Builder withUUIDOfEntity(String UUIDOfEntity) {
             this.UUIDOfEntity = UUIDOfEntity;
             return this;
         }

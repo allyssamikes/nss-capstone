@@ -73,7 +73,7 @@ public class ReviewModel {
         return this;
     }
 
-    public Builder withUUID(String UUIDOfEntity) {
+    public Builder withUUIDOfEntity(String UUIDOfEntity) {
         this.UUIDOfEntity = UUIDOfEntity;
         return this;
     }

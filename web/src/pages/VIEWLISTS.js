@@ -86,44 +86,44 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
                  return '<h4>Read List Is Empty</h4>';
             }
 
-            let book;
-            let book1Html = '';
-                 for (book of toReadList) {
 
-                      bookHtml += `
+            let book1Html = '';
+                 for (let book1 in toReadList) {
+
+                      book1Html += `
                             <li class="toReadList">
-                                         <span class="Title">${book.title}</span>
+                                         <span class="Title">${book1.title}</span>
                                          <span class="space">${" : "}</span>
-                                         <span class="Author">${book.author}</span>
+                                         <span class="Author">${book1.author}</span>
                                          <span class="space">${"   :   "}</span>
-                                         <span class="Genre">${activity.GENRE}</span>
+                                         <span class="Genre">${book1.genre}</span>
                                          <span class="space">${"   :   "}</span>
-                                         <span class="Year Published">${book.yearPublished}</span>
+                                         <span class="Year Published">${book1.yearPublished}</span>
                                           <span class="space">${"   :   "}</span>
-                                         <span class="Length">${book.lengthInPages}</span>
+                                         <span class="Length">${book1.lengthInPages}</span>
                                          <span class="space">${"   :   "}</span>
-                                          <span href="REMOVEBOOKFROMLIST.html?isbn=${book.isbn}"></span>
+                                          <a href="REMOVEBOOKFROMLIST.html?isbn=${book1.isbn}">${book1.isbn}</a>
                                          <span class="space">${"   :   "}</span>
                             </li>
                              <br>
                        `;
                  }
                       let book2Html = '';
-                                  for (book of currentlyReading) {
+                                  for (let book2 in currentlyReading) {
 
-                                       bookHtml += `
+                                       book2Html += `
                                              <li class="currentlyReading">
-                                                          <span class="Title">${book.title}</span>
+                                                          <span class="Title">${book2.title}</span>
                                                           <span class="space">${" : "}</span>
-                                                          <span class="Author">${book.author}</span>
+                                                          <span class="Author">${book2.author}</span>
                                                           <span class="space">${"   :   "}</span>
-                                                          <span class="Genre">${activity.GENRE}</span>
+                                                          <span class="Genre">${book2.genre}</span>
                                                           <span class="space">${"   :   "}</span>
-                                                          <span class="Year Published">${book.yearPublished}</span>
+                                                          <span class="Year Published">${book2.yearPublished}</span>
                                                            <span class="space">${"   :   "}</span>
-                                                          <span class="Length">${book.lengthInPages}</span>
+                                                          <span class="Length">${book2.lengthInPages}</span>
                                                           <span class="space">${"   :   "}</span>
-                                                          <span href="REMOVEBOOKFROMLIST.html?isbn=${book.isbn}"></span>
+                                                          <a href="REMOVEBOOKFROMLIST.html?isbn=${book2.isbn}">${book2.isbn}</a>
                                                           <span class="space">${"   :   "}</span>
                                              </li>
                                               <br>
@@ -132,20 +132,20 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
                  document.getElementById('currentlyReading').innerHTML = book2Html;
 
                       let book3Html = '';
-                                                   for (book of readList) {
-                                                        bookHtml += `
+                                                   for (let book3 in readList) {
+                                                        book3Html += `
                                                               <li class="readList">
-                                                                           <span class="Title">${book.title}</span>
+                                                                           <span class="Title">${book3.title}</span>
                                                                            <span class="space">${" : "}</span>
-                                                                           <span class="Author">${book.author}</span>
+                                                                           <span class="Author">${book3.author}</span>
                                                                            <span class="space">${"   :   "}</span>
-                                                                           <span class="Genre">${activity.GENRE}</span>
+                                                                           <span class="Genre">${book3.genre}</span>
                                                                            <span class="space">${"   :   "}</span>
-                                                                           <span class="Year Published">${book.yearPublished}</span>
+                                                                           <span class="Year Published">${book3.yearPublished}</span>
                                                                             <span class="space">${"   :   "}</span>
-                                                                           <span class="Length">${book.lengthInPages}</span>
+                                                                           <span class="Length">${book3.lengthInPages}</span>
                                                                            <span class="space">${"   :   "}</span>
-                                                                           <span class="ISBN">${book.isbn}</span>
+                                                                           <span class="ISBN">${book3.isbn}</span>
                                                                            <span class="space">${"   :   "}</span>
                                                               </li>
                                                                <br>
