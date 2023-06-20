@@ -36,7 +36,7 @@ curl http://localhost:3000/books/author/MattHaig \
 
 curl http://localhost:3000/movies/The-Parent-Trap/Nancy-Meyers
 
-
+curl http://localhost:3000/books/author/MattHaig
 
 curl -X POST http://localhost:3000/users/amikes/currentlyReading \
     -d '{"userId":"amikes","isbn":"66"}'

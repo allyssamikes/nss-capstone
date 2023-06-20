@@ -60,14 +60,6 @@ public class BookModel {
         return UUIDAsString;
     }
 
-
-    //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,8 +73,26 @@ public class BookModel {
         return Objects.hash(isbn);
     }
 
+    @Override
+    public String toString() {
+        return "BookModel{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", yearPublished=" + yearPublished +
+                ", lengthInPages=" + lengthInPages +
+                ", genre='" + genre + '\'' +
+                ", reviews=" + reviews +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
+    }
+
 
     //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String isbn;
         private String title;

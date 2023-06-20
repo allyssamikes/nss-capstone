@@ -53,7 +53,7 @@ class SearchBooks extends BindingClass {
 
         console.log(" search books59");
         const results = await this.client.searchBooks(author);
-        console.log(results.toString()+"55");
+        console.log(results+"55");
             this.dataStore.setState({
                 [SEARCH_CRITERIA_KEY]: author,
                 [SEARCH_RESULTS_KEY]: results,

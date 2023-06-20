@@ -20,7 +20,7 @@ public class GetBookByAuthorResult {
     public String toString() {
         return "GetBookByAuthorResult{" +
                 "models=" + models +
-                '}';
+                "}";
     }
 
     //CHECKSTYLE:OFF:Builder
