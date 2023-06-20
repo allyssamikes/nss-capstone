@@ -221,16 +221,11 @@ export default class CapstoneClient extends BindingClass {
 
         async removeBookFromToReadList(userId, isbn, errorCallback) {
                                       try {
-                                          const token = await this.getTokenOrThrow("Only authenticated users can remove a book.");
-                                          const response = await this.axiosClient.post(`users/${userId}/toReadList`, {
+                                          const response = await this.axiosClient.put(`users/${userId}/toReadList`, {
                                               userId: userId,
                                               isbn: isbn,
-                                        }, {
-                                            headers: {
-                                                Authorization: `Bearer ${token}`
-                                            }
                                         });
-                                          return response.data.toReadList;
+                                          return true;
                                       } catch (error) {
                                           this.handleError(error, errorCallback)
                                       }
@@ -238,16 +233,11 @@ export default class CapstoneClient extends BindingClass {
 
         async removeBookFromCurrentlyReading(userId, isbn, errorCallback) {
                                       try {
-                                          const token = await this.getTokenOrThrow("Only authenticated users can remove a book.");
-                                          const response = await this.axiosClient.post(`users/${userId}/currentlyReading`, {
+                                          const response = await this.axiosClient.put(`users/${userId}/currentlyReading`, {
                                               userId: userId,
                                               isbn: isbn,
-                                        }, {
-                                            headers: {
-                                                Authorization: `Bearer ${token}`
-                                            }
                                         });
-                                          return response.data.current;
+                                          return true;
                                       } catch (error) {
                                           this.handleError(error, errorCallback)
                                       }

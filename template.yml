@@ -726,6 +726,8 @@ Resources:
           Properties:
             Path: /users/{userId}/toReadList
             Method: put
+            Auth:
+              Authorizer: 'NONE'
 
 
   RemoveFromCurrentlyReadingListLambda:
@@ -747,6 +749,8 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyReading
             Method: put
+            Auth:
+              Authorizer: 'NONE'
 
 
   RemoveFromCurrentlyWatchingListLambda:

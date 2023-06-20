@@ -9,11 +9,12 @@ import DataStore from '../util/DataStore';
 class RemoveBookFromList extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'clientLoaded', 'submit'], this);
+        this.bindClassMethods(['mount', 'submit'], this);
         this.dataStore = new DataStore();
         this.dataStoreSearch = new DataStore();
         this.header = new Header(this.dataStore);
-        this.clientLoaded();
+       // this.clientLoaded();
+        console.log("constructor")
     }
     /**
      * Add the header to the page and load the Client.
@@ -24,15 +25,15 @@ class RemoveBookFromList extends BindingClass {
 
         this.client = new CapstoneClient();
     }
-        async clientLoaded() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const isbn = urlParams.get("isbn");
-            const book = await this.client.getBook(isbn);
-            this.dataStore.set('book', book);
-
-            let Input1 = document.getElementById("isbn");
-            Input1.value = isbn;
-            }
+//        async clientLoaded() {
+//            const urlParams = new URLSearchParams(window.location.search);
+//            const isbn = urlParams.get("isbn");
+//            const book = await this.client.getBook(isbn);
+//            this.dataStore.set('book', book);
+//
+//            let Input1 = document.getElementById("isbn");
+//            Input1.value = isbn;
+//            }
 
         async submit(evt) {
             evt.preventDefault();
@@ -46,26 +47,26 @@ class RemoveBookFromList extends BindingClass {
             removeButton.innerText = 'Loading...';
 
 
-            const list = document.getElementById('list').value;
+            const list = document.getElementById('list-type').value;
+            const isbn =document.getElementById('isbn').value;
+           console.log("54");
+           console.log(isbn);
 
-               if (list === currentlyReading ) {
-                        const currentlyReading = await this.client.removeBookFromCurrentlyReading(userId, isbn, (error) => {
-                            createButton.innerText = origButtonText;
+               if (list === "currentlyReading" ) {
+                     await this.client.removeBookFromCurrentlyReading(userId, isbn, (error) => {
+                            removeButton.innerText = origButtonText;
                             const errorMessageDisplay = document.getElementById('error-message');
                             errorMessageDisplay.innerText = `Error: ${error.message}`;
                             errorMessageDisplay.classList.remove('hidden');
                         });
-                        this.dataStore.set('currentlyReading', currentlyReading);
                         }
-
-                        if (list === toReadList) {
-                        const toReadList = await this.client.removeBookFromToReadList(userId, isbn, (error) => {
-                            createButton.innerText = origButtonText;
+              if (list === "toReadList") {
+                      await this.client.removeBookFromToReadList(userId, isbn, (error) => {
+                            removeButton.innerText = origButtonText;
                             const errorMessageDisplay = document.getElementById('error-message');
                             errorMessageDisplay.innerText = `Error: ${error.message}`;
                             errorMessageDisplay.classList.remove('hidden');
-                        });
-                        this.dataStore.set('toReadList', toReadList);
+              });
                         }
 
             removeButton.innerText = 'Complete';
