@@ -31,6 +31,7 @@ module.exports = {
     VIEWLISTS: path.resolve(__dirname, 'src', 'pages', 'VIEWLISTS.js'),
     WRITEREVIEW: path.resolve(__dirname, 'src', 'pages', 'WRITEREVIEW.js'),
     ADDBOOKTOLIST: path.resolve(__dirname, 'src', 'pages', 'ADDBOOKTOLIST.js'),
+    DELETEUSER: path.resolve(__dirname, 'src', 'pages', 'DELETEUSER.js'),
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

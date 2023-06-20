@@ -11,8 +11,6 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
          super();
          this.bindClassMethods(['mount', 'submit'], this);
          this.dataStore = new DataStore();
-
-         this.dataStoreSearch = new DataStore;
          this.header = new Header(this.dataStore);
      }
      /**
@@ -88,7 +86,7 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
 
 
             let book1Html = '';
-                 for (let book1 in toReadList) {
+                 for (let book1 in toReadList.models) {
 
                       book1Html += `
                             <li class="toReadList">
@@ -109,7 +107,7 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
                        `;
                  }
                       let book2Html = '';
-                                  for (let book2 in currentlyReading) {
+                                  for (let book2 in currentlyReading.models) {
 
                                        book2Html += `
                                              <li class="currentlyReading">
@@ -132,7 +130,7 @@ import CapstoneClient from '../api/CAPSTONECLIENT';
                  document.getElementById('currentlyReading').innerHTML = book2Html;
 
                       let book3Html = '';
-                                                   for (let book3 in readList) {
+                                                   for (let book3 in readList.models) {
                                                         book3Html += `
                                                               <li class="readList">
                                                                            <span class="Title">${book3.title}</span>

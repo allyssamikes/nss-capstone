@@ -9,14 +9,13 @@ import DataStore from '../util/DataStore';
 class UpdateUser extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'update', 'delete'], this);
+        this.bindClassMethods(['mount', 'update'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
     }
 
     mount() {
         document.getElementById('update-user').addEventListener('click', this.update);
-        document.getElementById('delete-user').addEventListener('click', this.delete);
 
         this.header.addHeaderToPage();
 
@@ -48,32 +47,6 @@ class UpdateUser extends BindingClass {
             updateButton.innerText = 'Update User';
 
         }
-
-    async delete(evt) {
-                    evt.preventDefault();
-
-                    const errorMessageDisplay = document.getElementById('error-message');
-                    errorMessageDisplay.innerText = ``;
-                    errorMessageDisplay.classList.add('hidden');
-
-                    const deleteButton = document.getElementById('delete-user');
-                    const origButtonText = deleteButton.innerText;
-                    deleteButton.innerText = 'Loading...';
-
-                    const userId = document.getElementById('user-userId').value;
-                    const name = document.getElementById('user-name').value;
-
-                    const user = await this.client.deleteUser(userId, (error) => {
-                    deleteButton.innerText = origButtonText;
-                    errorMessageDisplay.innerText = `Error: ${error.message}`;
-                    errorMessageDisplay.classList.remove('hidden');
-                    });
-
-                    this.dataStore.set('user', user);
-                    deleteButton.innerText = 'Complete';
-                    deleteButton.innerText = 'Delete User';
-
-                }
 
 }
 /**

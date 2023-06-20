@@ -74,7 +74,6 @@ export default class CapstoneClient extends BindingClass {
 
 
     async getBook(isbn, errorCallback) {
-
           try {
               const response = await this.axiosClient.get(`books/${isbn}`);
               return response.data.book;
@@ -109,7 +108,7 @@ export default class CapstoneClient extends BindingClass {
     console.log("get to read")
         try {
            const response = await this.axiosClient.get(`users/${userId}/toReadList`);
-            return response;
+            return response.data.toRealList;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
@@ -119,7 +118,7 @@ export default class CapstoneClient extends BindingClass {
         console.log("get read")
             try {
                const response = await this.axiosClient.get(`users/${userId}/readList`);
-                return response;
+                return response.data.readList;
             } catch (error) {
                 this.handleError(error, errorCallback)
             }
@@ -129,7 +128,7 @@ export default class CapstoneClient extends BindingClass {
             console.log("get currently")
                 try {
                    const response = await this.axiosClient.get(`users/${userId}/currentlyReading`);
-                    return response;
+                    return response.data.currentlyReading;
                 } catch (error) {
                     this.handleError(error, errorCallback)
                 }
@@ -175,16 +174,8 @@ export default class CapstoneClient extends BindingClass {
 
   async deleteUser(userId, errorCallback) {
                     try {
-                        const token = await this.getTokenOrThrow("Only authenticated users can delete users.");
                         console.log("delete196")
-                        await this.axiosClient.delete(`users/${userId}`, {
-                             headers: {
-                                Authorization: `Bearer ${token}`,
-                           },
-                        data : {
-                                  userId : userId
-                                  }
-                        });
+                        await this.axiosClient.delete(`users/${userId}`);
                         return true;
                     } catch (error) {
                         this.handleError(error, errorCallback)
@@ -194,14 +185,9 @@ export default class CapstoneClient extends BindingClass {
 
     async addBookToCurrentlyReading(userId, isbn, errorCallback) {
             try {
-                const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
                 const response = await this.axiosClient.post(`users/${userId}/currentlyReading`, {
                     userId: userId,
                     isbn: isbn,
-              }, {
-                  headers: {
-                      Authorization: `Bearer ${token}`
-                  }
               });
                 return response.data.currentlyReading;
             } catch (error) {
@@ -211,15 +197,10 @@ export default class CapstoneClient extends BindingClass {
 
             async addBookToToReadList(userId, isbn, errorCallback) {
                     try {
-                        const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
                         const response = await this.axiosClient.post(`users/${userId}/toReadList`, {
                             userId: userId,
                             isbn: isbn,
-                      }, {
-                          headers: {
-                              Authorization: `Bearer ${token}`
-                          }
-                      });
+                              });
                         return response.data.toReadList;
                     } catch (error) {
                         this.handleError(error, errorCallback)
@@ -228,15 +209,10 @@ export default class CapstoneClient extends BindingClass {
 
              async addBookToReadList(userId, isbn, errorCallback) {
                             try {
-                                const token = await this.getTokenOrThrow("Only authenticated users can add a book.");
                                 const response = await this.axiosClient.post(`users/${userId}/readList`, {
                                     userId: userId,
                                     isbn: isbn,
-                              }, {
-                                  headers: {
-                                      Authorization: `Bearer ${token}`
-                                  }
-                              });
+                                     });
                                 return response.data.readList;
                             } catch (error) {
                                 this.handleError(error, errorCallback)
@@ -277,11 +253,11 @@ export default class CapstoneClient extends BindingClass {
                                       }
                                   }
 
-             async searchBooks(author, errorCallback) {
+          async searchBooks(author, errorCallback) {
              console.log("281");
                         try {
                              const response = await this.axiosClient.get(`books/author/${author}`);
-                             console.log(response);
+                             console.log(response.data + "260");
                              return response;
                          } catch (error) {
                              this.handleError(error, errorCallback)
