@@ -51,7 +51,7 @@ public class RemoveBookFromCurrentlyReadingActivity {
         }
         List<Book> bookList;
 
-        if (user.getToReadList() == null) {
+        if (user.getCurrentlyReading() == null) {
             throw new BookNotFoundException("This list has no books.");
         } else  {
             bookList = new ArrayList<>(user.getCurrentlyReading()) ;

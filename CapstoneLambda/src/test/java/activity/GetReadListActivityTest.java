@@ -44,7 +44,7 @@ public class GetReadListActivityTest {
         book.setIsbn("978-1-4328-5900-8");
         List<Book> books = new ArrayList<>();
         books.add(book);
-        user.setToReadList(books);
+        user.setReadList(books);
         when(userDao.getUser("abcd")).thenReturn(user);
 
         List<BookModel> bookModels = new ArrayList<>();
