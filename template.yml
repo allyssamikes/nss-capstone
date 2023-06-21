@@ -217,6 +217,14 @@ Resources:
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/books"
 
+        - PolicyName: 'AccessBooksTableAuthorIndex'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/books/index/AuthorIndex"
+
         - PolicyName: 'AccessTVShowsTable'
           PolicyDocument:
             Version: '2012-10-17'
@@ -225,6 +233,14 @@ Resources:
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/tvshows"
 
+        - PolicyName: 'AccessTVSHowsTableGenreIndex'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/tvshows/index/GenreIndex"
+
         - PolicyName: 'AccessMoviesTable'
           PolicyDocument:
             Version: '2012-10-17'
@@ -232,6 +248,14 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/movies"
+
+        - PolicyName: 'AccessMoviesTableStreamingServiceIndex'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: dynamodb:*
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/movies/index/StreamingServiceIndex"
 
         - PolicyName: 'AccessReviewsTable'
           PolicyDocument:
@@ -504,6 +528,8 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyReading
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddToCurrentlyWatchingListLambda:
     Type: AWS::Serverless::Function
@@ -546,6 +572,8 @@ Resources:
           Properties:
             Path: /users/{userId}/toReadList
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddToToWatchListLambda:
     Type: AWS::Serverless::Function
@@ -610,6 +638,8 @@ Resources:
           Properties:
             Path: /users/{userId}/readList
             Method: post
+            Auth:
+              Authorizer: 'NONE'
 
   AddBookReviewLambda:
     Type: AWS::Serverless::Function
@@ -699,6 +729,7 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+
   RemoveFromCurrentlyReadingListLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -721,6 +752,7 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+
   RemoveFromCurrentlyWatchingListLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -740,8 +772,7 @@ Resources:
           Properties:
             Path: /users/{userId}/currentlyWatching
             Method: put
-            Auth:
-              Authorizer: 'NONE'
+
 
   RemoveFromToWatchListLambda:
     Type: AWS::Serverless::Function
@@ -762,15 +793,13 @@ Resources:
           Properties:
             Path: /users/{userId}/toWatchList
             Method: put
-            Auth:
-              Authorizer: 'NONE'
 
-  GetBookByGenreLambda:
+  GetBookByAuthorLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetBookByGenreLambda::handleRequest
+      Handler: capstoneservice.lambda.GetBookByAuthorLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -782,17 +811,17 @@ Resources:
         MusicPlaylistService:
           Type: Api
           Properties:
-            Path: /books/search
+            Path: /books/author/{author}
             Method: get
             Auth:
               Authorizer: 'NONE'
 
-  GetTVShowByStreamingServiceLambda:
+  GetTVShowByGenreLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetTVShowByStreamingServiceLambda::handleRequest
+      Handler: capstoneservice.lambda.GetTVShowByGenreLambda::handleRequest
       Runtime: java11
       Architectures:
         - x86_64
@@ -871,6 +900,8 @@ Resources:
           Properties:
             Path: /users/{userId}
             Method: delete
+            Auth:
+              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration
@@ -921,6 +952,8 @@ Resources:
          AttributeType: "S"
        - AttributeName: "director"
          AttributeType: "S"
+       - AttributeName: "genre"
+         AttributeType: "S"
       KeySchema:
         - AttributeName: "title"
           KeyType: "HASH"
@@ -928,6 +961,15 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "tvshows"
+      GlobalSecondaryIndexes:
+        - IndexName: "GenreIndex"
+          KeySchema:
+            - AttributeName: "genre"
+              KeyType: "HASH"
+            - AttributeName: "title"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
 
   ReviewsTable:
     Type: AWS::DynamoDB::Table
@@ -953,6 +995,8 @@ Resources:
           AttributeType: "S"
         - AttributeName: "director"
           AttributeType: "S"
+        - AttributeName: "streamingService"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "title"
           KeyType: "HASH"
@@ -960,6 +1004,15 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "movies"
+      GlobalSecondaryIndexes:
+        - IndexName: "StreamingServiceIndex"
+          KeySchema:
+            - AttributeName: "streamingService"
+              KeyType: "HASH"
+            - AttributeName: "title"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

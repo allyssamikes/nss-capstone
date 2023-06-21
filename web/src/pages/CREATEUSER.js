@@ -46,6 +46,8 @@ class CreateUser extends BindingClass {
             });
 
             this.dataStore.set('user', user);
+            createButton.innerText = 'Complete';
+            createButton.innerText = 'Create User';
         }
         }
 

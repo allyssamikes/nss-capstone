@@ -1,6 +1,5 @@
 package capstoneservice.models;
 
-import capstoneservice.dynamodb.models.GENRE;
 import capstoneservice.dynamodb.models.Review;
 
 import java.util.List;
@@ -13,12 +12,12 @@ public class BookModel {
 
     private Integer  yearPublished;
     private Integer  lengthInPages;
-    private GENRE genre;
+    private String genre;
     private List<Review> reviews;
 
     private String UUIDAsString;
 
-    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, GENRE genre, List<Review> reviews, String UUIDAsString) {
+    public BookModel(String isbn, String title, String author, Integer yearPublished, Integer lengthInPages, String genre, List<Review> reviews, String UUIDAsString) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -50,7 +49,7 @@ public class BookModel {
         return lengthInPages;
     }
 
-    public GENRE getGenre() {
+    public String getGenre() {
         return genre;
     }
 
@@ -60,14 +59,6 @@ public class BookModel {
     public String getUUIDAsString() {
         return UUIDAsString;
     }
-
-
-    //CHECKSTYLE:OFF:Builder
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
 
     @Override
     public boolean equals(Object o) {
@@ -82,8 +73,26 @@ public class BookModel {
         return Objects.hash(isbn);
     }
 
+    @Override
+    public String toString() {
+        return "BookModel{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", yearPublished=" + yearPublished +
+                ", lengthInPages=" + lengthInPages +
+                ", genre='" + genre + '\'' +
+                ", reviews=" + reviews +
+                ", UUIDAsString='" + UUIDAsString + '\'' +
+                '}';
+    }
+
 
     //CHECKSTYLE:OFF:Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String isbn;
         private String title;
@@ -91,7 +100,7 @@ public class BookModel {
 
         private Integer  yearPublished;
         private Integer  lengthInPages;
-        private GENRE genre;
+        private String genre;
         private List<Review> reviews;
         private String UUIDAsString;
 
@@ -120,7 +129,7 @@ public class BookModel {
             return this;
         }
 
-        public Builder withGenre(GENRE genre) {
+        public Builder withGenre(String genre) {
             this.genre = genre;
             return this;
         }

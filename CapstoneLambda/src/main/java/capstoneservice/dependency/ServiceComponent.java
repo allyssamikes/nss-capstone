@@ -17,51 +17,32 @@ public interface ServiceComponent {
 
     GetCurrentlyReadingActivity provideGetCurrentlyReadingActivity();
 
-    GetCurrentlyWatchingActivity provideGetCurrentlyWatchingActivity();
 
     GetToReadListActivity provideGetToReadListActivity();
 
-    GetToWatchListActivity provideGetToWatchActivity();
 
     GetReadListActivity provideGetReadListActivity();
 
-    GetWatchedListActivity provideGetWatchedActivity();
-
-    CreateReviewActivity provideCreateReviewActivity();
 
     UpdateUserActivity provideUpdateUserActivity();
 
     AddToCurrentlyReadingListActivity provideAddToCurrentlyReadingListActivity();
 
-    AddToCurrentlyWatchingListActivity provideAddToCurrentlyWatchingListActivity();
+
 
     AddBookToToReadListActivity provideAddBookToToReadListActivity();
 
-    AddToToWatchListActivity provideAddToToWatchListActivity();
 
     AddBookToReadListActivity provideAddBookToReadListActivity();
 
-    AddToWatchedListActivity provideAddToWatchedListActivity();
 
     RemoveBookFromCurrentlyReadingActivity provideRemoveBookFromCurrentlyReadingActivity();
 
     RemoveBookFromToReadListActivity provideRemoveBookFromToReadListActivity();
 
-    RemoveFromToWatchListActivity provideRemoveFromToWatchListActivity();
 
-    RemoveFromCurrentlyWatchingActivity provideRemoveFromCurrentlyWatchingActivity();
+    GetBookByAuthorActivity provideGetBookByAuthorActivity();
 
-    AddBookReviewActivity provideAddBookReviewActivity();
-
-    AddTVShowReviewActivity provideAddTVShowReviewActivity();
-
-    AddMovieReviewActivity provideAddMovieReviewActivity();
-
-    GetBookByGenreActivity provideGetBookByGenreActivity();
-
-    GetTVShowByStreamingServiceActivity provideGetTVShowByStreamingServiceActivity();
-
-    GetMovieByStreamingServiceActivity provideGetMovieByStreamingServiceActivity();
 
     CreateUserActivity provideCreateUserActivity();
 

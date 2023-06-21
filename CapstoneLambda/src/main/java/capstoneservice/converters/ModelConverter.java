@@ -55,7 +55,7 @@ public class ModelConverter {
                 .withUserId(review.getUserId())
                 .withReview(review.getReview())
                 .withRating(review.getRating())
-                .withUUID(review.getUUIDOfEntity())
+                .withUUIDOfEntity(review.getUUIDOfEntity())
                 .build();
     }
 

@@ -2,39 +2,41 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="assets/CREATEUSER.js"></script>
+    <script type="text/javascript" src="assets/UPDATEUSER.js">
+    </script>
     <link rel="stylesheet" type="text/css" href="css/joy.css">
 </head>
 
 <body class="background">
 <header class="header" id="header"></header>
-
 <nav>
     <div class="navbar">
         <div class="center">
             <ul>
                 <tr>
-                    <a href="index.html"> Home  </a>
+                    <a href="index.html"> Home </a>
                 </tr>
             </ul>
         </div>
     </div>
 </nav>
+
 <div class="card">
-    <h2>Create User</h2>
-    <form class="card-content" id="create-user-form">
+    <h2>Update User</h2>
+    <form class="card-content" id="update-user-form">
         <p class="hidden error" id="error-message"> </p>
         <p class="form-field">
-            <label>User ID</label>
+            <label>User Id</label>
             <input type="text" required class="validated-field" id="user-userId"
                    autofocus>
         </p>
         <p class="form-field">
-            <label>Name</label>
-            <input type="text" id="user-name" class="name" >
+            <label>New Name</label>
+            <input type="text" required class="validated-field" id="user-name" placeholder="Enter new name for User"
+                   autofocus>
         </p>
         <p>
-            <a href="#" class="button" id="create-user">Create User</a>
+            <a href="#" class="button" id="update-user">Update User</a>
         </p>
     </form>
 </div>

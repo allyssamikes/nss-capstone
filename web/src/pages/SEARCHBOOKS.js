@@ -49,26 +49,16 @@ class SearchBooks extends BindingClass {
         // Prevent submitting the from from reloading the page.
         evt.preventDefault();
 
-        const searchCriteria = document.getElementById('search-criteria').value;
-        const previousSearchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
+        const author = document.getElementById('search-criteria').value;
 
-        // If the user didn't change the search criteria, do nothing
-        if (previousSearchCriteria === searchCriteria) {
-            return;
-        }
-
-        if (searchCriteria) {
-            const results = await this.client.searchBooks(searchCriteria);
-
-
+        console.log(" search books59");
+        const results = await this.client.searchBooks(author);
+        console.log(results.toString()+"55");
             this.dataStore.setState({
-                [SEARCH_CRITERIA_KEY]: searchCriteria,
+                [SEARCH_CRITERIA_KEY]: author,
                 [SEARCH_RESULTS_KEY]: results,
             });
-        } else {
-            this.dataStore.setState(EMPTY_DATASTORE_STATE);
         }
-    }
 
     /**
      * Pulls search results from the datastore and displays them on the html page.
@@ -101,19 +91,18 @@ class SearchBooks extends BindingClass {
         if (searchResults === undefined) {
             return '<h4>No results found</h4>';
         }
-
         let html = '<table><tr><th>Title</th><th>Author</th><th>Isbn</th></tr>';
-        for (const res of searchResults) {
+        for (const res in searchResults.models) {
+        console.log(res);
             html += `
             <tr>
                  <p> Click on Title to Add To A List </p>
-                    <a href="ADDBOOKTOLIST.html?isbn=${searchResult.isbn}">${res.title}</a>
+                    <a href="ADDBOOKTOLIST.html?isbn=${res.isbn}">${res.title}</a>
                 <td>${res.author}</td>
                 <td>${res.isbn}</td>
             </tr>`;
         }
         html += '</table>';
-
         return html;
     }
 

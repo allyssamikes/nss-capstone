@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="assets/ADDBOOKTOLIST.js"></script>
+    <script type="text/javascript" src="assets/REMOVEBOOKFROMLIST.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/joy.css"></head>
-<header class="header"> <img src="images/JoyBanner.jpg" width=99% length=99% align=left/></header>
 
 <body class="background">
-
+<header class="header" id="header"></header>
 
 <nav>
     <div class="navbar">
@@ -22,8 +21,8 @@
 </nav>
 
 <div class="card">
-    <h2>Add Book to List</h2>
-    <form class="card-content" id="add-book-form">
+    <h2>Remove Book From List</h2>
+    <form class="card-content" id="remove-book-form">
         <p class="hidden error" id="error-message"> </p>
 
         <p class="form-field">
@@ -39,17 +38,14 @@
         <p class="form-field">
             <label>Which List?</label>
             <select name="list-type" id="list-type" class="type">
-                 <option value="toReadList"> To Read List</option>
+                <option value="toReadList"> To Read List</option>
                 <option value="currentlyReading">Currently Reading</option>
-                <option value="readList"> Read List </option>
             </select>
-            <a href="#" class="button" id="add-book">Add Book</a>
+            <a href="#" class="button" id="remove-book">Remove Book</a>
         </p>
     </form>
 
 </div>
 </body>
-
-
 </html>
 

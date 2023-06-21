@@ -1,0 +1,22 @@
+
+
+
+GetBook - B
+GetMovie - B
+GetTVShow- B
+GetCurrentlyReadingList - B
+GetToReadList- B
+GetReadList - B
+CreateReview - X
+UpdateUser - F&B
+AddToCurrentlyReadingList - B
+AddToToReadList - B
+AddToReadList - B
+AddBookReview - X
+AddMovieReview - X
+AddTVShowReview - X
+RemoveFromToReadList - B
+RemoveFromCurrentlyReadingList - B
+GetBookByAuthor - B
+CreateUser - F&B
+DeleteUser - B
