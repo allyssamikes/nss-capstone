@@ -10,7 +10,7 @@ public class GetTVShowResult {
         this.tvShow = tvShow;
     }
 
-    public TVShowModel getTvShow() {
+    public TVShowModel getTVShow() {
         return tvShow;
     }
 
