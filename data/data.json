@@ -39,5 +39,82 @@
         }
       }
     }
+  ],
+  "tvshows": [
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "Friends" },
+          "director": { "S": "JamesBurrows" },
+          "lengthInMinutes": { "N": "30" },
+          "lengthInSeasons": { "N": "10" },
+          "streamingService": { "S": "MAX" },
+          "UUIDAsString": { "S": "hsdgS2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "TheOffice" },
+          "director": { "S": "KenKwapis" },
+          "lengthInMinutes": { "N": "30" },
+          "lengthInSeasons": { "N": "9" },
+          "streamingService": { "S": "HULU" },
+          "UUIDAsString": { "S": "34dgS2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "NeverHaveIEver" },
+          "director": { "S": "TristramShapeero" },
+          "lengthInMinutes": { "N": "30" },
+          "lengthInSeasons": { "N": "4" },
+          "streamingService": { "S": "NETFLIX" },
+          "UUIDAsString": { "S": "ksb19d" }
+        }
+      }
+    }
+  ],
+  "movies": [
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "TheParentTrap" },
+          "director": { "S": "NancyMeyers" },
+          "genre": { "S": "Family Comedy" },
+          "lengthInMinutes": { "N": "128" },
+          "streamingService": { "S": "DISNEY" },
+          "UUIDAsString": { "S": "adf2S2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "AvatarTheWayOfWater" },
+          "director": { "S": "JamesCameron" },
+          "genre": { "S": "Science Fiction" },
+          "lengthInMinutes": { "N": "192" },
+          "streamingMinutes": { "S": "MAX" },
+          "UUIDAsString": { "S": "G4dgS2" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "MeanGirls" },
+          "director": { "S": "MarkWaters" },
+          "genre": { "S": "Teen Comedy" },
+          "lengthInMinutes": { "N": "157" },
+          "streamingService": { "S": "NETFLIX" },
+          "UUIDAsString": { "S": "Df6gS2" }
+        }
+      }
+    }
   ]
 }
+
