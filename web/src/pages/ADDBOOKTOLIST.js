@@ -1,34 +1,30 @@
 import CapstoneClient from '../api/CAPSTONECLIENT';
- import Header from '../components/header';
+import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
-/**
- * Logic needed for the AddActivityToItinerary page of the website.
- */
+
 class AddBookToList extends BindingClass {
     constructor() {
         super();
         this.bindClassMethods(['mount', 'submit'], this);
         this.dataStore = new DataStore();
+        this.dataStoreSearch = new DataStore();
         this.header = new Header(this.dataStore);
+        console.log("constructor")
     }
     /**
      * Add the header to the page and load the Client.
      */
     mount() {
         document.getElementById('add-book').addEventListener('click', this.submit);
-       this.header.addHeaderToPage();
+        this.header.addHeaderToPage();
 
         this.client = new CapstoneClient();
     }
 
         async submit(evt) {
             evt.preventDefault();
-
-            const isbn = document.getElementById("isbn");
-           const book = await this.client.getBook(isbn);
-           this.dataStore.set('book', book);
 
             const errorMessageDisplay = document.getElementById('error-message');
             errorMessageDisplay.innerText = ``;
@@ -38,10 +34,11 @@ class AddBookToList extends BindingClass {
             const origButtonText = createButton.innerText;
             createButton.innerText = 'Loading...';
 
+            const isbn = document.getElementById('isbn').value;
             const userId = document.getElementById('userId').value;
-            const list = document.getElementById("list-type").value;
+            const list = document.getElementById('list-type').value;
 
-
+            console.log("42")
             if (list === "currentlyReading" ) {
                  await this.client.addBookToCurrentlyReading(userId, isbn, (error) => {
                 createButton.innerText = origButtonText;
@@ -69,6 +66,9 @@ class AddBookToList extends BindingClass {
                 errorMessageDisplay.classList.remove('hidden');
             });
             }
+
+               createButton.innerText = 'Complete';
+               createButton.innerText = 'Add';
 
         }
 }

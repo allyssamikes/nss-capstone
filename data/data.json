@@ -8,7 +8,7 @@
           "author": { "S": "MattHaig" },
           "yearPublished": { "N": "2020" },
           "lengthInPages": { "N": "304" },
-          "genre": { "S": "Science Fiction" },
+          "genre": { "S": "ScienceFiction" },
           "UUIDAsString": { "S": "hdn3S2" }
         }
       }
@@ -21,7 +21,7 @@
           "author": { "S": "LianeMoriarty" },
           "yearPublished": { "N": "2018" },
           "lengthInPages": { "N": "464" },
-          "genre": { "S": "Psychological Fiction" },
+          "genre": { "S": "PsychologicalFiction" },
           "UUIDAsString": { "S": "aldWc2" }
         }
       }
@@ -39,5 +39,64 @@
         }
       }
     }
+  ],
+  "tvshows": [
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "Friends" },
+          "director": { "S": "JamesBurrows" },
+          "streamingService": { "S": "MAX" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "TheOffice" },
+          "director": { "S": "KenKwapis" },
+          "streamingService": { "S": "HULU" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "NeverHaveIEver" },
+          "director": { "S": "TristramShapeero" },
+          "streamingService": { "S": "NETFLIX" }
+        }
+      }
+    }
+  ],
+  "movies": [
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "TheParentTrap" },
+          "director": { "S": "NancyMeyers" },
+          "streamingService": { "S": "DISNEY" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "AvatarTheWayOfWater" },
+          "director": { "S": "JamesCameron" },
+          "streamingMinutes": { "S": "MAX" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "title": { "S": "MeanGirls" },
+          "director": { "S": "MarkWaters" },
+          "streamingService": { "S": "NETFLIX" }
+        }
+      }
+    }
   ]
 }
+

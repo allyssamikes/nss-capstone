@@ -85,8 +85,8 @@ REMOVE FROM
  curl -X POST  http://localhost:3000/books/6/reviews \
              -d  '{"userId":"allyssamikes","UUIDOfEntity":"abcdef"}'
 
-    curl -X POST  http://localhost:3000/users/allyssamikes/readList \
-             -d  '{"userId":"allyssamikes","isbn":"66","title":"New Book"}'
+    curl -X POST  http://localhost:3000/users/amikes/readList \
+             -d  '{"userId":"amikes","isbn":"978-1-4328-5900-8"}'
 
 
 
@@ -108,8 +108,6 @@ sam deploy --s3-bucket nss-s3-c02-capstone-allyssamikes \
 --parameter-overrides S3Bucket=nss-s3-c02-capstone-allyssamikes \
 CognitoDomain=capstone-allyssamikes
 
-Outputs
----------------------------------------------------------------------------------------------------------------------------
 Key                 CognitoUserPoolClientId
 Description         The Cognito User Pool Client ID (COGNITO_USER_POOL_CLIENT_ID).
 Value               2g89el7eg80907pudc6seebips
@@ -124,11 +122,11 @@ Value               us-east-2_ssjK5rkGN
 
 Key                 CognitoRedirectSignin
 Description         The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNIN).
-Value               https://d17as88o1xcz0.cloudfront.net
+Value               https://d5tyne73w670s.cloudfront.net
 
 Key                 CognitoRedirectSignout
 Description         The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNOUT).
-Value               https://d17as88o1xcz0.cloudfront.net
+Value               https://d5tyne73w670s.cloudfront.net
 
 Key                 CognitoDomain
 Description         The Cognito Domain (COGNITO_DOMAIN).

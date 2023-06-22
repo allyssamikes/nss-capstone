@@ -3,9 +3,7 @@ import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
-/**
- * Logic needed for the AddActivityToItinerary page of the website.
- */
+
 class RemoveBookFromList extends BindingClass {
     constructor() {
         super();
@@ -13,7 +11,6 @@ class RemoveBookFromList extends BindingClass {
         this.dataStore = new DataStore();
         this.dataStoreSearch = new DataStore();
         this.header = new Header(this.dataStore);
-       // this.clientLoaded();
         console.log("constructor")
     }
     /**
@@ -25,15 +22,6 @@ class RemoveBookFromList extends BindingClass {
 
         this.client = new CapstoneClient();
     }
-//        async clientLoaded() {
-//            const urlParams = new URLSearchParams(window.location.search);
-//            const isbn = urlParams.get("isbn");
-//            const book = await this.client.getBook(isbn);
-//            this.dataStore.set('book', book);
-//
-//            let Input1 = document.getElementById("isbn");
-//            Input1.value = isbn;
-//            }
 
         async submit(evt) {
             evt.preventDefault();
@@ -46,7 +34,7 @@ class RemoveBookFromList extends BindingClass {
             const origButtonText = removeButton.innerText;
             removeButton.innerText = 'Loading...';
 
-
+            const userId = document.getElementById('userId').value;
             const list = document.getElementById('list-type').value;
             const isbn =document.getElementById('isbn').value;
            console.log("54");
@@ -70,7 +58,7 @@ class RemoveBookFromList extends BindingClass {
                         }
 
             removeButton.innerText = 'Complete';
-            removeButton.innerText = 'Remove';
+            removeButton.innerText = 'Removed';
         }
 }
 

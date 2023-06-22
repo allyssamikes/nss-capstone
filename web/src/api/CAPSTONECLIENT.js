@@ -189,7 +189,7 @@ export default class CapstoneClient extends BindingClass {
                     userId: userId,
                     isbn: isbn,
               });
-                return response.data.currentlyReading;
+                return true;
             } catch (error) {
                 this.handleError(error, errorCallback)
             }
@@ -201,25 +201,27 @@ export default class CapstoneClient extends BindingClass {
                             userId: userId,
                             isbn: isbn,
                               });
-                        return response.data.toReadList;
+                        return true;
                     } catch (error) {
                         this.handleError(error, errorCallback)
                     }
                 }
 
              async addBookToReadList(userId, isbn, errorCallback) {
+             console.log("client211")
                             try {
                                 const response = await this.axiosClient.post(`users/${userId}/readList`, {
                                     userId: userId,
                                     isbn: isbn,
                                      });
-                                return response.data.readList;
+                                return true;
                             } catch (error) {
                                 this.handleError(error, errorCallback)
                             }
                         }
 
         async removeBookFromToReadList(userId, isbn, errorCallback) {
+        console.log("client223")
                                       try {
                                           const response = await this.axiosClient.put(`users/${userId}/toReadList`, {
                                               userId: userId,
@@ -232,6 +234,7 @@ export default class CapstoneClient extends BindingClass {
                                   }
 
         async removeBookFromCurrentlyReading(userId, isbn, errorCallback) {
+        console.log("client 236")
                                       try {
                                           const response = await this.axiosClient.put(`users/${userId}/currentlyReading`, {
                                               userId: userId,
@@ -249,6 +252,7 @@ export default class CapstoneClient extends BindingClass {
                              const response = await this.axiosClient.get(`books/author/${author}`);
                              const dataAsString = JSON.stringify(response.data);
                             const result =  {"data":response};
+                            consolte.log(dataAsString);
                             return result.data;
                          } catch (error) {
                              this.handleError(error, errorCallback)
