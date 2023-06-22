@@ -10,7 +10,7 @@ export default class Header extends BindingClass {
 
         const methodsToBind = [
             'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton','createItinerarySiteTitle'
+            'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
 
         this.bindClassMethods(methodsToBind, this);
@@ -44,18 +44,6 @@ export default class Header extends BindingClass {
         siteTitle.appendChild(homeButton);
 
         return siteTitle;
-    }
-    createItinerarySiteTitle() {
-            const homeButton = document.createElement('a');
-            homeButton.classList.add('header_home');
-            homeButton.href = 'createUser.html';
-            homeButton.innerText = 'Joy';
-
-            const siteTitle = document.createElement('div');
-            siteTitle.classList.add('site-title');
-            siteTitle.appendChild(homeButton);
-
-            return siteTitle;
     }
 
     createUserInfoForHeader(currentUser) {

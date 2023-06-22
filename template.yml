@@ -357,28 +357,6 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
-  GetCurrentlyWatchingListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetCurrentlyWatchingListLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/currentlyWatching
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
   GetToReadListLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -397,28 +375,6 @@ Resources:
           Type: Api
           Properties:
             Path: /users/{userId}/toReadList
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  GetToWatchListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetToWatchListLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/toWatchList
             Method: get
             Auth:
               Authorizer: 'NONE'
@@ -442,50 +398,6 @@ Resources:
           Properties:
             Path: /users/{userId}/readList
             Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  GetWatchedListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetWatchedListLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/watchedList
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  CreateReviewLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.CreateReviewLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /reviews
-            Method: post
             Auth:
               Authorizer: 'NONE'
 
@@ -531,28 +443,6 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
-  AddToCurrentlyWatchingListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.AddToCurrentlyWatchingListLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/currentlyWatching
-            Method: post
-            Auth:
-              Authorizer: 'NONE'
-
   AddToToReadListLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -575,50 +465,6 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
-  AddToToWatchListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.AddToToWatchListLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/toWatchList
-            Method: post
-            Auth:
-              Authorizer: 'NONE'
-
-  AddToWatchedListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.AddToWatchedListLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/watchedList
-            Method: post
-            Auth:
-              Authorizer: 'NONE'
-
   AddToReadListLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -637,72 +483,6 @@ Resources:
           Type: Api
           Properties:
             Path: /users/{userId}/readList
-            Method: post
-            Auth:
-              Authorizer: 'NONE'
-
-  AddBookReviewLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.AddBookReviewLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /books/{isbn}/reviews
-            Method: post
-            Auth:
-              Authorizer: 'NONE'
-
-  AddMovieReviewLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.AddMovieReviewLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /movies/{title}/{director}/reviews
-            Method: post
-            Auth:
-              Authorizer: 'NONE'
-
-  AddTVShowReviewLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.AddTVShowReviewLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /tvshows/{title}/{director}/reviews
             Method: post
             Auth:
               Authorizer: 'NONE'
@@ -752,48 +532,6 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
-
-  RemoveFromCurrentlyWatchingListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.ambda.RemoveFromCurrentlyWatchingListLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/currentlyWatching
-            Method: put
-
-
-  RemoveFromToWatchListLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.RemoveFromToReadWatchLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /users/{userId}/toWatchList
-            Method: put
-
   GetBookByAuthorLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -812,50 +550,6 @@ Resources:
           Type: Api
           Properties:
             Path: /books/author/{author}
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  GetTVShowByGenreLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetTVShowByGenreLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /tvshows/search
-            Method: get
-            Auth:
-              Authorizer: 'NONE'
-
-  GetMovieByStreamingServiceLambda:
-    Type: AWS::Serverless::Function
-    Properties:
-      Role: !GetAtt AccessRole.Arn
-      CodeUri: CapstoneLambda
-      Handler: capstoneservice.lambda.GetMovieByStreamingServiceLambda::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 512
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-      Events:
-        MusicPlaylistService:
-          Type: Api
-          Properties:
-            Path: /movies/search
             Method: get
             Auth:
               Authorizer: 'NONE'

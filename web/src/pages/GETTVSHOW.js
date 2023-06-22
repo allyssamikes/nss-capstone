@@ -117,9 +117,7 @@ class GetTVShow extends BindingClass {
                 if ((searchResult.title != title) || (searchResult.director != director)) {
                                     html += `
                                     <tr>
-                                        <p> Click on Trip Name to Write Review</p>
-                                        <td>
-                                            <a href="WRITEREVIEW.html?title=${searchResult.title}&director=${searchResult.director}&UUIDOfEntity=${searchResult.UUIDOfEntity}">${searchResult.title}</a>
+                                        <td>${searchResult.title}
                                         </td>
                                          <td>${searchResult.director}</td>
                                           </tr>`;
