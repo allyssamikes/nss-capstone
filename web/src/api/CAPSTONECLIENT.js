@@ -252,7 +252,7 @@ export default class CapstoneClient extends BindingClass {
                              const response = await this.axiosClient.get(`books/author/${author}`);
                              const dataAsString = JSON.stringify(response.data);
                             const result =  {"data":response};
-                            consolte.log(dataAsString);
+                            console.log(dataAsString);
                             return result.data;
                          } catch (error) {
                              this.handleError(error, errorCallback)
